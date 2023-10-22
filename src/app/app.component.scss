@@ -1,0 +1,42 @@
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  :nth-child(odd of .row) {
+    margin-left: -44px;
+  }
+  z-index: 0;
+}
+
+#tilesContainer {
+  height: 100%;
+}
+
+.tileContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.row {
+  display: flex;
+  margin-bottom: -25px;
+}
+
+.column {
+
+}
+
+.tile {
+  position: absolute;
+}
+
+.generate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}

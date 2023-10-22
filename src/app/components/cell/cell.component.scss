@@ -1,0 +1,44 @@
+
+.addTile {
+  $height: 30px;
+  $width: 30px;
+
+  height: $height;
+  width: $width;
+
+  position: absolute;
+  top: calc(50px - 15px);
+  left: calc(50px - 15px);
+  z-index: 1;
+
+  cursor: pointer;
+  transition: opacity .2s;
+
+  opacity: 0;
+}
+
+.cell {
+  //border: 1px solid red;
+  width: 100px;
+  height: 100px;
+  margin-left: -7px;
+  margin-right: -7px;
+  position: relative;
+
+  &:hover .addTile {
+    opacity: 1;
+  }
+}
+
+
+img {
+  width: 100px;
+  height: 100px;
+  opacity: .8;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+}

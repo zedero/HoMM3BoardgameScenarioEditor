@@ -1,0 +1,12 @@
+.tile {
+  overflow: hidden;
+  pointer-events: all;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
