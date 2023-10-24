@@ -13,8 +13,10 @@ export enum EXPANSION {
 
 export const tilesConfiguration = {
   'S1': {
+    id: 'S1',
     img: 'tile',
-    expansionID: EXPANSION.CORE,
+    desc: 'Rampart Starting Tile',
+    expansionID: EXPANSION.RAMPART,
     groundType: GROUNDTYPE.GRASS
   }
 };

@@ -1,11 +1,12 @@
-<div class="tile" cdkDrag (mouseup)="snap($event)" [cdkDragFreeDragPosition]="dragPosition">
-  <img src="assets/{{image}}.png" alt="rampart">
+<div class="tile" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
+  <div class="controls">
+    <button><i class="fa-solid fa-pen"></i></button>
+    <span cdkDragHandle class="move" (mouseup)="snap($event)">
+      <i class="fa-solid fa-up-down-left-right"></i>
+    </span>
+    <button (click)="delete()"><i class="fa-regular fa-trash-can"></i></button>
+    <button class="rotate-button" (click)="rotate()"><i class="fa-solid fa-rotate-right"></i></button>
+  </div>
+  <img src="assets/{{image}}.png" alt="rampart" [style.rotate]="rotation">
 </div>
 
-<!-- [cdkDragConstrainPosition]="computeDragRenderPos" -->
-<!--
-
-<div class="tile" cdkDrag (mouseup)="snap($event)" [cdkDragFreeDragPosition]="dragPosition">
-  <img src="assets/tile.png" alt="rampart">
-</div>
--->

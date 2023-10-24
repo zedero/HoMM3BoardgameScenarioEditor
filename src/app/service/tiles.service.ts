@@ -31,4 +31,13 @@ export class TilesService {
   public saveTileData() {
     localStorage.setItem(this.storageKey, JSON.stringify(this.tileList));
   }
+
+  public deleteTile(id: any) {
+    const tileListIndex = this.tileList.findIndex((element: any) => {
+      return element.id === id;
+    });
+
+    this.tileList.splice(tileListIndex, 1);
+    this.saveTileData();
+  }
 }

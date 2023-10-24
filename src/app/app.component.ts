@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TilesService} from "./service/tiles.service";
 import * as htmlToImage from 'html-to-image';
+import {MatDialog} from "@angular/material/dialog";
+import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 
 
 @Component({
@@ -16,19 +18,29 @@ export class AppComponent implements OnInit {
 
   public tileList:any = [];
 
-  constructor(public tilesService: TilesService) {}
+  constructor(public tilesService: TilesService, public dialog: MatDialog) {}
 
   ngOnInit() {
     // this.createTile({row: 3, col: 4});
   }
 
   public createTile(data: any) {
-    this.tilesService.registerNewTile({
-      row: data.row,
-      col: data.col,
-      id: this.generateGuid(),
-      tileId: 'S1',
-      cubes: [0,0,0,0,0,0,0],
+    let dialogRef = this.dialog.open(SelectionDialogComponent, {
+      height: '400px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+
+      this.tilesService.registerNewTile({
+        row: data.row,
+        col: data.col,
+        id: this.generateGuid(),
+        tileId: 'S1',
+        cubes: [0,0,0,0,0,0,0],
+        rotation: 0,
+      });
     });
   }
 
@@ -57,10 +69,6 @@ export class AppComponent implements OnInit {
     htmlToImage.toPng(node)
       .then( (dataUrl) => {
         this.download(dataUrl, `scenario-map-${new Date().getTime()}.png`)
-        console.log('dataUrl', dataUrl)
-        let img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);

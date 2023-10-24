@@ -1,0 +1,5 @@
+<button (click)="close()">CLOSE</button>
+
+<div *ngFor="let tile of tilesConfiguration">
+  <button  (click)="close(tile.id)">{{tile.id}}</button>
+</div>

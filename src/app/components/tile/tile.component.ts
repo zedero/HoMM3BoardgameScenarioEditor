@@ -15,17 +15,21 @@ export class TileComponent implements OnInit {
 
   public dragPosition = {x: 0, y: 0};
 
+  public rotation = '0deg';
+
   private config = {
     row: 0,
     col: 0,
     id: -1, // UUID
     tileId: '', // type of tile, random tile or starting town tile
     cubes: [0,0,0,0,0,0,0],
+    rotation: 0,
   };
 
   @Input()
   public set setConfig(configData: any) {
     this.config = configData;
+    this.rotation = (this.config.rotation * 60) + 'deg';
     this.setImage();
   }
 
@@ -83,6 +87,19 @@ export class TileComponent implements OnInit {
 
   private saveTileData() {
     this.tilesService.updateTileData(this.config);
+  }
+
+  public rotate() {
+    this.config.rotation++;
+    if (this.config.rotation >= 6) {
+      this.config.rotation = 0;
+    }
+    this.rotation = (this.config.rotation * 60) + 'deg';
+    this.saveTileData();
+  }
+
+  public delete() {
+    this.tilesService.deleteTile(this.config.id);
   }
 }
 
