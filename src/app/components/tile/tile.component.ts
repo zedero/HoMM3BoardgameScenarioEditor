@@ -1,6 +1,9 @@
 import { Component, Input, OnInit} from '@angular/core';
-import {TilesService} from "../../service/tiles.service";
+import {TileData, TilesService} from "../../service/tiles.service";
 import { tilesConfiguration } from "../../config";
+import {SelectionDialogComponent} from "../selection-dialog/selection-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 
 @Component({
   selector: 'app-tile',
@@ -9,7 +12,7 @@ import { tilesConfiguration } from "../../config";
 })
 export class TileComponent implements OnInit {
 
-  constructor(public tilesService: TilesService) {}
+  constructor(public tilesService: TilesService, public dialog: MatDialog) {}
 
   public image = '';
 
@@ -17,12 +20,13 @@ export class TileComponent implements OnInit {
 
   public rotation = '0deg';
 
-  private config = {
+  private config: TileData = {
     row: 0,
     col: 0,
-    id: -1, // UUID
+    id: '-1', // UUID
     tileId: '', // type of tile, random tile or starting town tile
     cubes: [0,0,0,0,0,0,0],
+    hero: [0,0,0,0,0,0,0],
     rotation: 0,
   };
 
@@ -99,6 +103,27 @@ export class TileComponent implements OnInit {
 
   public delete() {
     this.tilesService.deleteTile(this.config.id);
+  }
+
+  public editTile() {
+    let dialogRef = this.dialog.open(EditDialogComponent, {
+      height: '400px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      // if (result) {
+      //   this.tilesService.registerNewTile({
+      //     row: data.row,
+      //     col: data.col,
+      //     id: this.generateGuid(),
+      //     tileId: result,
+      //     cubes: [0,0,0,0,0,0,0],
+      //     rotation: 0,
+      //   });
+      // }
+    });
   }
 }
 

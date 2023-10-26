@@ -1,6 +1,6 @@
 <div class="tile" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
   <div class="controls">
-    <button><i class="fa-solid fa-pen"></i></button>
+    <button><i class="fa-solid fa-pen" (click)="editTile()"></i></button>
     <span cdkDragHandle class="move" (mouseup)="snap($event)">
       <i class="fa-solid fa-up-down-left-right"></i>
     </span>

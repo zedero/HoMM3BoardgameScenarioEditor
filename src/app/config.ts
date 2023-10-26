@@ -15,6 +15,7 @@ export enum GROUP {
 }
 
 export enum EXPANSION {
+  RANDOM,
   ALL,
   CORE,
   SG,
@@ -53,7 +54,7 @@ export const tilesConfiguration = {
     id: 'S0',
     img: 'random-1',
     desc: 'Random Starting tile',
-    expansionID: EXPANSION.ALL,
+    expansionID: EXPANSION.RANDOM,
     groundType: GROUNDTYPE.RANDOM,
     group: GROUP.RANDOM
   },
@@ -61,7 +62,7 @@ export const tilesConfiguration = {
     id: 'F0',
     img: 'random-2-3',
     desc: 'Random Far Tile',
-    expansionID: EXPANSION.ALL,
+    expansionID: EXPANSION.RANDOM,
     groundType: GROUNDTYPE.RANDOM,
     group: GROUP.RANDOM
   },
@@ -69,7 +70,7 @@ export const tilesConfiguration = {
     id: 'N0',
     img: 'random-4-5',
     desc: 'Random Near Tile',
-    expansionID: EXPANSION.ALL,
+    expansionID: EXPANSION.RANDOM,
     groundType: GROUNDTYPE.RANDOM,
     group: GROUP.RANDOM
   },
@@ -77,7 +78,7 @@ export const tilesConfiguration = {
     id: 'C0',
     img: 'random-6-7',
     desc: 'Random Center Tile',
-    expansionID: EXPANSION.ALL,
+    expansionID: EXPANSION.RANDOM,
     groundType: GROUNDTYPE.RANDOM,
     group: GROUP.RANDOM
   },

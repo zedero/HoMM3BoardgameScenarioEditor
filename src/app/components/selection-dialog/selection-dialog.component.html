@@ -1,5 +1,13 @@
-<button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
-
+<div class="header">
+  <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
+<!--  <input type="checkbox">-->
+  <div class="filter" [formGroup]="sets">
+    <mat-checkbox formControlName="RANDOM">Random</mat-checkbox>
+    <mat-checkbox formControlName="CORE">Core</mat-checkbox>
+    <mat-checkbox formControlName="TOWER">Tower</mat-checkbox>
+    <mat-checkbox formControlName="RAMPART">Rampart</mat-checkbox>
+  </div>
+</div>
 <div class="scrollable">
   <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.RANDOM).length">
     <div class="title">Random Tiles</div>

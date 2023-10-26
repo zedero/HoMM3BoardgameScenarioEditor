@@ -11,6 +11,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {CommonModule} from "@angular/common";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -28,6 +30,9 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     DragDropModule,
     MatDialogModule,
     CommonModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent]

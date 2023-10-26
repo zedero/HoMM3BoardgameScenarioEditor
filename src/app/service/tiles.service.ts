@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
 
+export interface TileData {
+  row: number;
+  col: number;
+  id: string;
+  tileId: string;
+  cubes: Array<number>;
+  hero: Array<number>;
+  rotation: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +28,7 @@ export class TilesService {
     }
   }
 
-  public registerNewTile(tileData: any) {
+  public registerNewTile(tileData: TileData) {
     this.tileList.push(tileData);
   }
 

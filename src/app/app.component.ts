@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-
       if (result) {
         this.tilesService.registerNewTile({
           row: data.row,
@@ -42,6 +40,7 @@ export class AppComponent implements OnInit {
           id: this.generateGuid(),
           tileId: result,
           cubes: [0,0,0,0,0,0,0],
+          hero: [0,0,0,0,0,0,0],
           rotation: 0,
         });
       }
