@@ -6,10 +6,13 @@
  </div>
 </div>
 
-<div id="tilesContainer">
+<div id="tilesContainer" [style.height]="tileContainerHeight">
   <div *ngFor="let tile of tilesService.tileList" class="tileContainer">
     <app-tile [setConfig]="tile"></app-tile>
   </div>
 </div>
 
-<button (click)="generateImage()" class="generate">Generate Image</button>
+<div class="toolbar">
+  <button (click)="clearGrid()" class="toolbar-button warn">Clear</button>
+  <button (click)="generateImage()" class="toolbar-button">Generate Image</button>
+</div>

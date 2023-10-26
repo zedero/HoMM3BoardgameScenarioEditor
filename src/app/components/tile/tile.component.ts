@@ -39,7 +39,6 @@ export class TileComponent implements OnInit {
     } else {
       this.image = 'default'
     }
-
   }
 
   ngOnInit() {
@@ -72,8 +71,8 @@ export class TileComponent implements OnInit {
     }
 
     this.dragPosition = {
-      x: element.offsetLeft - 75,
-      y: element.offsetTop - 75
+      x: element.offsetLeft - 86,
+      y: element.offsetTop - 74
     }
     this.savePos(id);
   }

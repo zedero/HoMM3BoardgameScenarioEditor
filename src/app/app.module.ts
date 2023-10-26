@@ -10,6 +10,7 @@ import { TileComponent } from './components/tile/tile.component';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {CommonModule} from "@angular/common";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {SelectionDialogComponent} from "./components/selection-dialog/selection-
     AppComponent,
     CellComponent,
     TileComponent,
-    SelectionDialogComponent
+    SelectionDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,

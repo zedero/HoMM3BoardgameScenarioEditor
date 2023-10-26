@@ -1,5 +1,49 @@
-<button (click)="close()">CLOSE</button>
+<button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
 
-<div *ngFor="let tile of tilesConfiguration">
-  <button  (click)="close(tile.id)">{{tile.id}}</button>
+<div class="scrollable">
+  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.RANDOM).length">
+    <div class="title">Random Tiles</div>
+    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.RANDOM)">
+      <div class="mini-tile">
+        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
+        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.STARTINGTILE).length">
+    <div class="title">Starting Town Tiles</div>
+    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.STARTINGTILE)">
+      <div class="mini-tile">
+        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
+        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.FAR).length">
+    <div class="title">Far Tiles</div>
+    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.FAR)">
+      <div class="mini-tile">
+        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
+        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.NEAR).length">
+    <div class="title">Near Tiles</div>
+    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.NEAR)">
+      <div class="mini-tile">
+        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
+        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.CENTER).length">
+    <div class="title">Center Tiles</div>
+    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.CENTER)">
+      <div class="mini-tile">
+        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
+        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+      </div>
+    </div>
+  </div>
 </div>

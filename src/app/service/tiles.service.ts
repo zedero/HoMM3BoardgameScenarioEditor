@@ -7,11 +7,14 @@ export class TilesService {
 
   public storageKey = 'scenarioCreatorData';
   public tileList:any = [];
+  public mapSelection = "default";
 
   constructor() {
     const data = localStorage.getItem(this.storageKey);
     if (data) {
-      this.tileList = JSON.parse(data);
+      this.tileList = JSON.parse(data)[this.mapSelection];
+    } else {
+      this.saveTileData();
     }
   }
 
@@ -29,7 +32,10 @@ export class TilesService {
   }
 
   public saveTileData() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.tileList));
+    const save = {
+      'default': this.tileList
+    };
+    localStorage.setItem(this.storageKey, JSON.stringify(save));
   }
 
   public deleteTile(id: any) {
@@ -38,6 +44,11 @@ export class TilesService {
     });
 
     this.tileList.splice(tileListIndex, 1);
+    this.saveTileData();
+  }
+
+  public clearGrid() {
+    this.tileList = [];
     this.saveTileData();
   }
 }

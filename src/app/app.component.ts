@@ -13,6 +13,8 @@ import {SelectionDialogComponent} from "./components/selection-dialog/selection-
 export class AppComponent implements OnInit {
   private tilePerRow = 5;
   private tilesPerColumn = 5;
+
+  public tileContainerHeight = '200px';
   public rows = Array(this.tilePerRow * 3);
   public columns = Array(this.tilesPerColumn * 3);
 
@@ -21,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(public tilesService: TilesService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    // this.createTile({row: 3, col: 4});
+    this.tileContainerHeight = (this.tilesPerColumn * 3 * 74) + 26 + 'px';
   }
 
   public createTile(data: any) {
@@ -33,14 +35,16 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
 
-      this.tilesService.registerNewTile({
-        row: data.row,
-        col: data.col,
-        id: this.generateGuid(),
-        tileId: 'S1',
-        cubes: [0,0,0,0,0,0,0],
-        rotation: 0,
-      });
+      if (result) {
+        this.tilesService.registerNewTile({
+          row: data.row,
+          col: data.col,
+          id: this.generateGuid(),
+          tileId: result,
+          cubes: [0,0,0,0,0,0,0],
+          rotation: 0,
+        });
+      }
     });
   }
 
@@ -73,5 +77,9 @@ export class AppComponent implements OnInit {
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
+  }
+
+  clearGrid() {
+    this.tilesService.clearGrid();
   }
 }
