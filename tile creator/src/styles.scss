@@ -1,0 +1,17 @@
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-option {
+  color: black;
+}
+
+$primary: rgb(250,236,175);
+
+@font-face{
+  font-family:"century-schoolbook-bold";
+  src:url("assets/CSCHLBKB.ttf") format("truetype");
+}

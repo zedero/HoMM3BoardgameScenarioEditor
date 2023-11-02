@@ -1,0 +1,109 @@
+::ng-deep {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: white;
+  }
+}
+
+.closeButton {
+  background: white;
+  color: black;
+  border: none;
+
+  cursor: pointer;
+  border-left: 3px solid #ccc;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 30px;
+
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: #ccc;
+  }
+}
+:host {
+  display: block;
+}
+
+.header {
+  background-color: #333;
+  padding: 5px 0 5px 10px;
+}
+
+.scrollable {
+  height: 345px;
+  overflow-y: scroll;
+}
+
+.mini-tile {
+  height: 100px;
+  width: 100px;
+  position: relative;
+
+  margin-bottom: 18px;
+  margin-right: 18px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    transition: opacity .2s;
+
+    $b-color-1: rgba(255,255,255,1);
+    $b-color-2: rgba(205,205,205,1);
+
+    background-color: #eee;
+    border: 2px solid #777777;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,.3));
+
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+  }
+
+  &:hover {
+    button  {
+      opacity: .85;
+    }
+  }
+}
+
+.tileContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.title {
+  width: 100%;
+  margin: 0 0 10px 10px;
+  font-weight: bold;
+}
+
+.formTitle {
+  color: white;
+  margin-right: 10px;
+}
+
+::ng-deep {
+  .mdc-form-field > label {
+    margin-left: -7px !important;
+  }
+}
+
+mat-checkbox {
+  margin-right: 5px;
+}

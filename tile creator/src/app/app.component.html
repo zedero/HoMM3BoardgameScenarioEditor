@@ -1,0 +1,14 @@
+<div class="controls">
+  <button (click)="newTile()">New Tile</button>
+  <button (click)="generate()">Generate ALL images</button>
+</div>
+<ng-container *ngFor="let tile of tileList">
+  <app-tile
+    [saveData]="tile.data"
+    [guid]="tile.guid"
+    [id]="tile.tileId"
+    [terrainSelected]="tile.terrain"
+    (updateTile)="updateTile($event)"
+    (deleteTile)="deleteTile($event)"
+  ></app-tile>
+</ng-container>

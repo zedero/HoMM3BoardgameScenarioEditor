@@ -1,0 +1,4 @@
+@font-face{
+  font-family:"century-schoolbook-bold";
+  src:url("assets/CSCHLBKB.ttf") format("truetype");
+}

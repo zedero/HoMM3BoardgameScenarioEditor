@@ -1,0 +1,37 @@
+<div>Tile ID</div>
+<input type="text" [value]="id" (change)="saveTileId($event)"> (press enter to save)
+<br>
+<br>
+<div>Terrain</div>
+<select name="terrain" #terrain (change)="selectTerrain(terrain.value)" [(ngModel)]="terrainSelected">
+  <option *ngFor="let terrain of terrains" [value]="terrain.value">{{terrain.name}}</option>
+</select>
+<br>
+<br>
+
+
+<div class="container" [id]="guid">
+  <div class="ui-container">
+    <div class="row">
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[0]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[1]" (saveData)="saveCell($event)"></app-editor></div>
+    </div>
+    <div class="row">
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[2]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[3]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[4]" (saveData)="saveCell($event)"></app-editor></div>
+    </div>
+    <div class="row">
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[5]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[6]" (saveData)="saveCell($event)"></app-editor></div>
+    </div>
+  </div>
+  <div class="background-container">
+    <img src="/assets/tiles/{{terrainSelected}}.png" alt="">
+  </div>
+</div>
+
+<button (click)="generateImage()">Generate Image</button>
+<button (click)="delete()">DELETE</button>
+
+<br><br><hr><br>
