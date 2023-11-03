@@ -12,8 +12,11 @@ export class TileComponent {
   terrains: any[] = [
     {value: 'grass', name: 'Grass'},
     {value: 'dirt', name: 'Dirt'},
+    {value: 'subterrain', name: 'Subterrain'},
     {value: 'snow', name: 'Snow'},
     {value: 'lava', name: 'Lava'},
+    {value: 'cursed', name: 'Cursed'},
+    {value: 'swamp', name: 'Swamp'},
   ];
   @Input() terrainSelected: string = 'grass';
 
@@ -90,7 +93,8 @@ export class TileComponent {
   }
 
   generateImage(){
-    let node:any = document.getElementById(this.elementId);
+    let node:any = document.getElementById(this.guid);
+    console.log('@', node)
     htmlToImage.toPng(node)
       .then( (dataUrl) => {
         this.download(dataUrl, `${this.id}.png`)

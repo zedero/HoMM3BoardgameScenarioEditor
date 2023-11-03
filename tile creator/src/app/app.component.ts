@@ -41,11 +41,16 @@ export class AppComponent {
   }
 
   deleteTile(guid: string) {
+    if (!confirm("Are you sure you want to delete this tile?")) {
+      return;
+    }
+
     const index = this.tileList.findIndex((tile) => {
       return tile.guid === guid;
     })
     this.tileList.splice(index, 1);
     console.log('@', index, guid)
+    this.save();
   }
 
   save(){
@@ -152,5 +157,12 @@ export class AppComponent {
           console.error('oops, something went wrong!', error);
         });
     })
+  }
+
+  sort() {
+    console.log(this.tileList)
+    this.tileList = this.tileList.sort((tileA:StorageSaveData, tileB:StorageSaveData) => {
+      return tileA.tileId.replace('#', 'Z').localeCompare(tileB.tileId.replace('#', 'Z'))
+    });
   }
 }

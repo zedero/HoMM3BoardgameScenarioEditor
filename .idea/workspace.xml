@@ -2,72 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/cell/cell.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/cell/cell.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/cell/cell.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/cell/cell.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/edit-dialog/edit-dialog.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/edit-dialog/edit-dialog.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/edit-dialog/edit-dialog.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/edit-dialog/edit-dialog.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/selection-dialog/selection-dialog.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/selection-dialog/selection-dialog.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/selection-dialog/selection-dialog.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/selection-dialog/selection-dialog.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tile/tile.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tile/tile.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tile/tile.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/tile/tile.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/service/tiles.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/service/tiles.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/hex-single.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/hexagon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/honeycomb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/placeholder.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scenario-map-example.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/single-tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/S1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/S2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/S3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/dragon-utopia.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/grail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/dragon-utopia.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/grail-old.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/grail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/obelisk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/random-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/random-2-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/random-4-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/old/random-6-7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/random-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/random-2-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/random-4-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/tiles/random-6-7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S0.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S2.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S3.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S4.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/S6.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/S6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/tiles/lava.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/tiles/lava.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +62,7 @@
       <recent name="C:\DEV\scenario-creator\src\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.build (1)">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -117,6 +71,16 @@
       <command value="run" />
       <scripts>
         <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/map editor/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -154,6 +118,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.build" />
@@ -170,7 +135,7 @@
       <updated>1697615893304</updated>
       <workItem from="1697615894601" duration="6605000" />
       <workItem from="1697725313891" duration="32745000" />
-      <workItem from="1698012056622" duration="91866000" />
+      <workItem from="1698012056622" duration="107354000" />
     </task>
     <servers />
   </component>

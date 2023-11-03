@@ -22,10 +22,10 @@
 <!--  <div class="tileId" *ngIf="blockedSpace && id" ></div>-->
   <div class="tileId" *ngIf="blockedSpace && tileName" >
     <span>{{tileName}}</span>
-    <img src="assets/tiles/blocked1.png" alt="" style="margin-left: 1px;">
+    <img src="assets/tiles/blocked-test.png" alt="">
   </div>
   <div class="tileId" *ngIf="blockedBorder && !blockedSpace">
-    <img src="assets/tiles/blocked1.png" alt="" style="margin-left: 1px;" [class]="getBorderClass()">
+    <img src="assets/tiles/blocked-test.png" alt="" [class]="getBorderClass()">
   </div>
   <div class="tileEnemy" *ngIf="enemySelected"><span>{{toRoman[enemySelected]}}</span></div>
   <div class="tileIcon" *ngIf="iconSelected"><img src="assets/icons/{{iconSelected}}.png" alt=""></div>

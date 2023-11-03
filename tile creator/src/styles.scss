@@ -15,3 +15,23 @@ $primary: rgb(250,236,175);
   font-family:"century-schoolbook-bold";
   src:url("assets/CSCHLBKB.ttf") format("truetype");
 }
+
+button {
+  background-color: white;
+  border: 2px solid #777777;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-family: Roboto, serif;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &.warn {
+    border-color: red;
+    color: red;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}

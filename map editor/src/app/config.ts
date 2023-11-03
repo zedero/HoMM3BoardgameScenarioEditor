@@ -127,7 +127,7 @@ export const tilesConfiguration = {
   },
   'C1': {
     id: 'C1',
-    img: 'dragon-utopia',
+    img: 'C1',
     desc: 'Dragon Utopia',
     expansionID: EXPANSION.CORE,
     groundType: GROUNDTYPE.DIRT,
@@ -135,7 +135,7 @@ export const tilesConfiguration = {
   },
   'C2': {
     id: 'C2',
-    img: 'grail',
+    img: 'C2',
     desc: 'Grail',
     expansionID: EXPANSION.CORE,
     groundType: GROUNDTYPE.DIRT,
