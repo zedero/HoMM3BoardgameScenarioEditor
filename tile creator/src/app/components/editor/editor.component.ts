@@ -39,6 +39,7 @@ export class EditorComponent {
     {value: 'fountain-of-youth', name: 'Fountain of Youth'},
     {value: 'pandora', name: "Pandora's Box"},
     {value: 'shrine-gesture', name: "Shrine of Magic Gesture"},
+    {value: 'magicshrine', name: "Shrine of Magic Incantation"},
     {value: 'mystical-garden', name: "Mystical Garden"},
     {value: 'warriors-tomb', name: "Warriors Tomb"},
     {value: 'temple', name: "Temple"},
@@ -54,9 +55,17 @@ export class EditorComponent {
     {value: 'learning-stone', name: 'Learning Stone'},
     {value: 'witchhut', name: 'Witch Hut'},
     {value: 'sanctuary', name: 'Sanctuary'},
+    {value: 'waterwheel', name: 'Water Wheel'},
+    {value: 'obelisk', name: 'Obelisk'},
+    {value: 'magicspring', name: 'Magic Spring'},
+    {value: 'staraxis', name: 'Star Axis'},
 
 
     {value: 'random-necro', name: 'Random Town Necro'},
+    {value: 'random-castle', name: 'Random Town Castle'},
+    {value: 'random-tower', name: 'Random Town Tower'},
+    {value: 'random-dungeon', name: 'Random Town Dungeon'},
+    {value: 'random-town', name: 'Random Town'},
     {value: 'necropolis', name: 'Necropolis'},
     {value: 'dungeon', name: 'Dungeon'},
     {value: 'castle', name: 'Castle'},
@@ -64,10 +73,10 @@ export class EditorComponent {
     {value: 'rampart', name: 'Rampart'},
     {value: 'fortress', name: 'Fortress'},
     {value: 'inferno', name: 'Inferno'},
-    // {value: 'crystalCaverns', name: 'Crystal Caverns'},
-    // {value: 'alchemistLab', name: "Alchemist's Lab"},
-    // {value: 'sulfurDune', name: 'Sulfur Dune'},
-    // {value: 'goldMine', name: 'Gold Mine'},
+    {value: 'crystalcavern', name: 'Crystal Caverns'},
+    {value: 'alchemistlab', name: "Alchemist's Lab"},
+    {value: 'sulfurdune', name: 'Sulfur Dune'},
+    {value: 'goldmine', name: 'Gold Mine'},
   ];
   iconSelected: string = '';
 

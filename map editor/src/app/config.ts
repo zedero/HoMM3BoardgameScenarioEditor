@@ -29,14 +29,6 @@ export enum EXPANSION {
 }
 
 export const tilesConfiguration = {
-  'T1': {
-    id: 'T1',
-    img: 'test',
-    desc: 'Test tile',
-    expansionID: EXPANSION.CORE,
-    groundType: GROUNDTYPE.DIRT,
-    group: GROUP.STARTINGTILE
-  },
   'S1': {
     id: 'S1',
     img: 'S1',

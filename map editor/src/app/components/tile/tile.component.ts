@@ -50,7 +50,16 @@ export class TileComponent implements OnInit {
   }
 
   public snap(event: any) {
-    const collisionElements = document.elementsFromPoint(event.clientX, event.clientY);
+    let x,y;
+    if (event.type === 'mouseup') {
+      x = event.clientX;
+      y = event.clientY;
+    } else {
+      x = event.changedTouches[0].clientX;
+      y = event.changedTouches[0].clientY;
+    }
+
+    const collisionElements = document.elementsFromPoint(x, y);
 
     const target = collisionElements.find((element: Element) => {
       return element.className === "cell";

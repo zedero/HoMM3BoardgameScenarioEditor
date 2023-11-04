@@ -75,3 +75,11 @@
 
 
 }
+
+:host {
+  display: block;
+  position: relative;
+  max-height: 100vh;
+  height: 100vh;
+  overflow: scroll;
+}
