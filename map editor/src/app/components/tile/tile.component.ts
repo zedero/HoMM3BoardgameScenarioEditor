@@ -1,7 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import {TileData, TilesService} from "../../service/tiles.service";
 import { tilesConfiguration } from "../../config";
-import {SelectionDialogComponent} from "../selection-dialog/selection-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 
@@ -66,8 +65,11 @@ export class TileComponent implements OnInit {
     });
 
     if (!target?.id) {
+      this.snapToCell(this.generateId(this.config));
       return
     }
+
+    // this.tilesService.isValidSnapSpace(target.id, this.config);
 
     this.snapToCell(target.id);
 

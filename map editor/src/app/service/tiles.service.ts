@@ -67,4 +67,41 @@ export class TilesService {
     this.tileList = [];
     this.saveTileData();
   }
+
+  isEven(n) {
+    return n % 2 == 0;
+  }
+
+  generateBlockedcellsList(excludeGuid?: string) {
+    const blockedCells = new Set();
+    this.tileList.forEach((tile) => {
+      if (tile.id === excludeGuid) {
+        return;
+      }
+      blockedCells.add(`${tile.row}.${tile.col}`);
+      blockedCells.add(`${tile.row}.${tile.col-1}`);
+      blockedCells.add(`${tile.row}.${tile.col+1}`);
+      if(this.isEven(tile.row)) {
+        blockedCells.add(`${tile.row-1}.${tile.col-1}`);
+        blockedCells.add(`${tile.row-1}.${tile.col}`);
+        blockedCells.add(`${tile.row+1}.${tile.col-1}`);
+        blockedCells.add(`${tile.row+1}.${tile.col}`);
+      } else {
+        blockedCells.add(`${tile.row-1}.${tile.col}`);
+        blockedCells.add(`${tile.row-1}.${tile.col+1}`);
+        blockedCells.add(`${tile.row+1}.${tile.col}`);
+        blockedCells.add(`${tile.row+1}.${tile.col+1}`);
+      }
+    })
+
+    return blockedCells;
+  }
+
+  public isValidSnapSpace(id: string, config?: any) {
+    this.generateBlockedcellsList(config.id);
+    const pos = id.split('.').map((a)=>{return Number(a)});
+    const row = pos[0];
+    const col = pos[1];
+    console.log(this.generateBlockedcellsList(config.id).has(id))
+  }
 }

@@ -21,7 +21,11 @@ export class AppComponent implements OnInit {
 
   public tileList:any = [];
 
-  constructor(public tilesService: TilesService, public dialog: MatDialog) {}
+  constructor(public tilesService: TilesService, public dialog: MatDialog) {
+    setTimeout(() => {
+      // this.rows = Array(5)
+    }, 3000)
+  }
 
   ngOnInit() {
     this.tilesService.tilesUpdated.subscribe((val) => {
