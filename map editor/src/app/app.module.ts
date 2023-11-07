@@ -19,6 +19,7 @@ import { CellEditorComponent } from './components/cell-editor/cell-editor.compon
 import { CubeComponent } from './components/cube/cube.component';
 import { ImportExportDialogComponent } from './components/import-export-dialog/import-export-dialog.component';
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     CommonModule,
     MatCheckboxModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule, MatFormFieldModule, MatInputModule,ClipboardModule
   ],
   providers: [MatDialog],

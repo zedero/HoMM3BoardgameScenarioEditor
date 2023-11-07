@@ -4,6 +4,7 @@ import * as htmlToImage from 'html-to-image';
 import {MatDialog} from "@angular/material/dialog";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 import {ImportExportDialogComponent} from "./components/import-export-dialog/import-export-dialog.component";
+import {ConfigService} from "./service/config.service";
 
 
 @Component({
@@ -22,8 +23,10 @@ export class AppComponent implements OnInit {
 
   public tileList:any = [];
 
-  constructor(public tilesService: TilesService, public dialog: MatDialog) {
-
+  constructor(public tilesService: TilesService, public dialog: MatDialog, private configService: ConfigService) {
+    configService.load().then(() => {
+      console.log('@ INITIALIZED');
+    });
   }
 
   ngOnInit() {

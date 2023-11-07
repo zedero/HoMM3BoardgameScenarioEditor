@@ -1,0 +1,37 @@
+{
+  "GROUNDTYPE": [
+    "RANDOM",
+    "GRASS",
+    "DIRT",
+    "SUBTERRAIN",
+    "SNOW",
+    "SWAMP",
+    "LAVA"
+  ],
+  "GROUP": [
+    "STARTINGTILE",
+    "RANDOM",
+    "FAR",
+    "NEAR",
+    "CENTER"
+  ],
+  "EXPANSION": [
+    "RANDOM",
+    "CORE",
+    "SG",
+    "TOWER",
+    "RAMPART",
+    "FORTRESS",
+    "INFERNO"
+  ],
+  "TILES": {
+    "S1": {
+      "id": "S1",
+      "img": "S1",
+      "desc": "Necropolis Starting tile",
+      "expansionID": "EXPANSION.CORE",
+      "groundType": "GROUNDTYPE.DIRT",
+      "group": "GROUP.STARTINGTILE"
+    }
+  }
+}

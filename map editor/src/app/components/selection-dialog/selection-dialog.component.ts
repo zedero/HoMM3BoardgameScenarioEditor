@@ -4,6 +4,7 @@ import {tilesConfiguration} from "../../config";
 import { GROUP } from '../../config'
 import {FormBuilder} from '@angular/forms';
 import {EXPANSION} from '../../config'
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-selection-dialog',
@@ -21,14 +22,19 @@ export class SelectionDialogComponent {
     FORTRESS: true,
     INFERNO: true
   });
-  public EXPANSION = EXPANSION;
+  public EXPANSION;
+
+  private config: ConfigService;
 
   constructor(
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<SelectionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    config: ConfigService,
   ) {
-    this.GROUP = GROUP
+    this.config = config;
+    this.GROUP = config.GROUP;
+    this.EXPANSION = config.EXPANSION
   }
 
   onNoClick(): void {
@@ -52,8 +58,6 @@ export class SelectionDialogComponent {
   getGroup(config: any, groupEnum: number) {
     const selectedExpansionsIDs = this.getExpansionSelection()
     return config.filter((item) => {
-      // console.log('T', item, selectedExpansionsIDs, selectedExpansionsIDs.has(item.expansionID))
-      // console.log('T', item.expansionID)
       return item.group === groupEnum && selectedExpansionsIDs.has(item.expansionID);
     });
   }
