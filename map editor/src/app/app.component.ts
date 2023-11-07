@@ -3,6 +3,7 @@ import {TilesService} from "./service/tiles.service";
 import * as htmlToImage from 'html-to-image';
 import {MatDialog} from "@angular/material/dialog";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
+import {ImportExportDialogComponent} from "./components/import-export-dialog/import-export-dialog.component";
 
 
 @Component({
@@ -67,6 +68,13 @@ export class AppComponent implements OnInit {
           rotation: 0,
         });
       }
+    });
+  }
+
+  importExport() {
+    let dialogRef = this.dialog.open(ImportExportDialogComponent, {
+      height: '400px',
+      width: '100%',
     });
   }
 

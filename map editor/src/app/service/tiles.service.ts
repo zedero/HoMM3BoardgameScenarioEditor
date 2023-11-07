@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import * as zlib from 'pako';
 
 export interface TileData {
   row: number;
@@ -26,7 +27,6 @@ export class TilesService {
     const data = localStorage.getItem(this.storageKey);
     if (data) {
       this.tileList = JSON.parse(data)[this.mapSelection];
-      console.log(JSON.stringify(this.tileList))
     } else {
       this.saveTileData();
     }
@@ -104,5 +104,24 @@ export class TilesService {
     const row = pos[0];
     const col = pos[1];
     console.log(this.generateBlockedcellsList(config.id).has(id))
+  }
+
+  export() {
+    return btoa(
+      zlib.deflate(JSON.stringify(this.tileList), { to: 'string' })
+    )
+  }
+
+  import(data) {
+    return new Promise((resolve, reject) => {
+      try {
+        this.tileList = JSON.parse(
+          zlib.inflate(atob(data), { to: 'string' })
+        );
+        resolve('');
+      } catch (err) {
+        reject();
+      }
+    })
   }
 }

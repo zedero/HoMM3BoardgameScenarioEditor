@@ -1,0 +1,19 @@
+<div class="header">
+  <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="scrollable">
+  <div class="container">
+    <label>Import Map</label>
+    <textarea [(ngModel)]="importValue"></textarea>
+    <button (click)="import()">Import Map</button>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <label>Export Map</label>
+    <textarea [(ngModel)]="exportValue"></textarea>
+    <button [cdkCopyToClipboard]="exportValue" (click)="close()">Copy to clipboard</button>
+  </div>
+
+</div>

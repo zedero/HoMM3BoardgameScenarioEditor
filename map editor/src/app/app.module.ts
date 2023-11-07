@@ -17,6 +17,8 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { CellEditorComponent } from './components/cell-editor/cell-editor.component';
 import { CubeComponent } from './components/cube/cube.component';
+import { ImportExportDialogComponent } from './components/import-export-dialog/import-export-dialog.component';
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { CubeComponent } from './components/cube/cube.component';
     SelectionDialogComponent,
     EditDialogComponent,
     CellEditorComponent,
-    CubeComponent
+    CubeComponent,
+    ImportExportDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { CubeComponent } from './components/cube/cube.component';
     CommonModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule, MatFormFieldModule, MatInputModule
+    ReactiveFormsModule, MatFormFieldModule, MatInputModule,ClipboardModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent]
