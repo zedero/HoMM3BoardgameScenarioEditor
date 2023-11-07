@@ -83,3 +83,19 @@
   height: 100vh;
   overflow: scroll;
 }
+
+
+.inputGroup {
+  margin-right: 20px;
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+input[type="number"] {
+  border: 2px solid #777777;
+  border-radius: 5px;
+  height: 30px;
+  width: 75px
+}

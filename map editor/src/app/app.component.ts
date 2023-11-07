@@ -11,20 +11,18 @@ import {SelectionDialogComponent} from "./components/selection-dialog/selection-
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  private tilePerRow = 5;
-  private tilesPerColumn = 5;
+  public tilesPerRow = 5;
+  public tilesPerColumn = 5;
 
   public tileContainerHeight = '200px';
   public tileContainerWidth = '200px';
-  public rows = Array(this.tilePerRow * 3);
+  public rows = Array(this.tilesPerRow * 3);
   public columns = Array(this.tilesPerColumn * 3);
 
   public tileList:any = [];
 
   constructor(public tilesService: TilesService, public dialog: MatDialog) {
-    setTimeout(() => {
-      // this.rows = Array(5)
-    }, 3000)
+
   }
 
   ngOnInit() {
@@ -105,5 +103,19 @@ export class AppComponent implements OnInit {
 
   clearGrid() {
     this.tilesService.clearGrid();
+  }
+
+  changeRows($event: any) {
+    if (!$event.target.value) {
+      return
+    }
+    this.rows = Array(parseInt($event.target.value))
+  }
+
+  changeCols($event: any) {
+    if (!$event.target.value) {
+      return
+    }
+    this.columns = Array(parseInt($event.target.value))
   }
 }

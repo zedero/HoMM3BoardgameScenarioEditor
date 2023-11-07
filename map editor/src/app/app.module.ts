@@ -13,6 +13,8 @@ import {SelectionDialogComponent} from "./components/selection-dialog/selection-
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, MatFormFieldModule, MatInputModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent]
