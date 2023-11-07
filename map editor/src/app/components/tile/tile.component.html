@@ -7,6 +7,21 @@
     <button (click)="delete()"><i class="fa-regular fa-trash-can"></i></button>
     <button class="rotate-button" (click)="rotate()"><i class="fa-solid fa-rotate-right"></i></button>
   </div>
+  <div class="game-components">
+    <div class="row">
+      <div class="cell"><app-cube [cube]="config.cubes[0]"></app-cube></div>
+      <div class="cell"><app-cube [cube]="config.cubes[1]"></app-cube></div>
+    </div>
+    <div class="row">
+      <div class="cell"><app-cube [cube]="config.cubes[2]"></app-cube></div>
+      <div class="cell"><app-cube [cube]="config.cubes[3]"></app-cube></div>
+      <div class="cell"><app-cube [cube]="config.cubes[4]"></app-cube></div>
+    </div>
+    <div class="row">
+      <div class="cell"><app-cube [cube]="config.cubes[5]"></app-cube></div>
+      <div class="cell"><app-cube [cube]="config.cubes[6]"></app-cube></div>
+    </div>
+  </div>
   <img src="assets/tiles/{{image}}.png" alt="rampart" [style.rotate]="rotation">
 </div>
 

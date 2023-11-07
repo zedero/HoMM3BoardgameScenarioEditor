@@ -19,7 +19,7 @@ export class TileComponent implements OnInit {
 
   public rotation = '0deg';
 
-  private config: TileData = {
+  public config: TileData = {
     row: 0,
     col: 0,
     id: '-1', // UUID
@@ -118,22 +118,17 @@ export class TileComponent implements OnInit {
 
   public editTile() {
     let dialogRef = this.dialog.open(EditDialogComponent, {
-      height: '400px',
+      height: '500px',
       width: '100%',
+      data: this.config
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      // if (result) {
-      //   this.tilesService.registerNewTile({
-      //     row: data.row,
-      //     col: data.col,
-      //     id: this.generateGuid(),
-      //     tileId: result,
-      //     cubes: [0,0,0,0,0,0,0],
-      //     rotation: 0,
-      //   });
-      // }
+      if (result) {
+        this.config = result;
+        this.tilesService.updateTileData(this.config);
+      }
     });
   }
 }

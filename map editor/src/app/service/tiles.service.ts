@@ -26,6 +26,7 @@ export class TilesService {
     const data = localStorage.getItem(this.storageKey);
     if (data) {
       this.tileList = JSON.parse(data)[this.mapSelection];
+      console.log(JSON.stringify(this.tileList))
     } else {
       this.saveTileData();
     }

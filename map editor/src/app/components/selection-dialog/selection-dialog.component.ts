@@ -36,7 +36,6 @@ export class SelectionDialogComponent {
   }
 
   close(id?: any): void {
-    console.log(tilesConfiguration)
     this.dialogRef.close(id);
   }
 

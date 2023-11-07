@@ -1,0 +1,11 @@
+<div class="container">
+<!--<select name="hero" #hero (change)="selectHero(hero.value)" [(ngModel)]="selectedHero">-->
+<!--  <option *ngFor="let hero of heroes" [value]="hero.value">{{hero.name}}</option>-->
+<!--</select>-->
+
+<select name="cube" #cube (change)="selectCube(cube.value)" [(ngModel)]="selectedCube">
+  <option *ngFor="let cube of cubes" [value]="cube.value">{{cube.name}}</option>
+</select>
+</div>
+<app-cube [cube]="selectedCube"></app-cube>
+<!--<div class="hero">2</div>-->

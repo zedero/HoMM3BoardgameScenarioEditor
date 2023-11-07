@@ -15,6 +15,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { CellEditorComponent } from './components/cell-editor/cell-editor.component';
+import { CubeComponent } from './components/cube/cube.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {MatInputModule} from "@angular/material/input";
     CellComponent,
     TileComponent,
     SelectionDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    CellEditorComponent,
+    CubeComponent
   ],
   imports: [
     BrowserModule,

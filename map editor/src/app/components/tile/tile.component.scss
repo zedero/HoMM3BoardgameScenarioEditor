@@ -54,3 +54,30 @@
   position: absolute;
   top: 60px;
 }
+
+.game-components {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+
+  .row {
+    display: flex;
+    &:nth-child(1), &:nth-child(3) {
+      margin-left: 44.5px;
+    }
+    margin-bottom: -25px;
+
+    .cell {
+      position: relative;
+      width: 86px;
+      height: 100px;
+    }
+  }
+
+  app-cube {
+    position: absolute;
+    top: 10px;
+    left: 33px;
+    transform: scale(.7);
+  }
+}

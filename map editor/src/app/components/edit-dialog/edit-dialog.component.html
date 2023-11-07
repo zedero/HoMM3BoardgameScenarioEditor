@@ -1,6 +1,25 @@
-<div class="edit-container">
-  <p><b>Under Construction</b></p>
-  <p>Future functionality:</p>
-  <div>Add Hero Icon</div>
-  <div>Place cubes on grid</div>
+<div class="header">
+  <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="scrollable">
+  <div class="edit-container">
+    <div class="ui">
+      <div class="row">
+        <div class="cell"><app-cell-editor [config]="config" [index]="0" (saveData)="update($event)"></app-cell-editor></div>
+        <div class="cell"><app-cell-editor [config]="config" [index]="1" (saveData)="update($event)"></app-cell-editor></div>
+      </div>
+      <div class="row">
+        <div class="cell"><app-cell-editor [config]="config" [index]="2" (saveData)="update($event)"></app-cell-editor></div>
+        <div class="cell"><app-cell-editor [config]="config" [index]="3" (saveData)="update($event)"></app-cell-editor></div>
+        <div class="cell"><app-cell-editor [config]="config" [index]="4" (saveData)="update($event)"></app-cell-editor></div>
+      </div>
+      <div class="row">
+        <div class="cell"><app-cell-editor [config]="config" [index]="5" (saveData)="update($event)"></app-cell-editor></div>
+        <div class="cell"><app-cell-editor [config]="config" [index]="6" (saveData)="update($event)"></app-cell-editor></div>
+      </div>
+    </div>
+    <div class="tileContainer">
+      <img src="assets/tiles/{{image}}.png" alt="rampart">
+    </div>
+  </div>
 </div>
