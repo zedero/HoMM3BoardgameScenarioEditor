@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {tilesConfiguration} from "../../config";
 import {TilesService} from "../../service/tiles.service";
 import {ConfigService} from "../../service/config.service";
 
