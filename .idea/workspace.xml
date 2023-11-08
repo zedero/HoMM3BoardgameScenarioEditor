@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/selection-dialog/selection-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/selection-dialog/selection-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/edit-dialog/edit-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/edit-dialog/edit-dialog.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/edit-dialog/edit-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/edit-dialog/edit-dialog.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/assets/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/json/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +120,7 @@
       <updated>1697615893304</updated>
       <workItem from="1697615894601" duration="6605000" />
       <workItem from="1697725313891" duration="32745000" />
-      <workItem from="1698012056622" duration="169672000" />
+      <workItem from="1698012056622" duration="169953000" />
     </task>
     <servers />
   </component>

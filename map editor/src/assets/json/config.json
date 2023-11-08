@@ -142,14 +142,6 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.CENTER"
-    },
-    "0F3": {
-      "id": "0F3",
-      "img": "assets/tiles/0F3.png",
-      "desc": "#F3",
-      "expansionID": "EXPANSION.TOWER",
-      "groundType": "GROUNDTYPE.SNOW",
-      "group": "GROUP.FAR"
     }
   }
 }

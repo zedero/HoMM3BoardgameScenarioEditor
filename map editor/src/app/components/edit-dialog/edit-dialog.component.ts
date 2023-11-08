@@ -11,6 +11,7 @@ import {ConfigService} from "../../service/config.service";
 export class EditDialogComponent {
   public config: any;
   public image: string = "";
+  public desc = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
@@ -20,6 +21,7 @@ export class EditDialogComponent {
   ) {
     this.config = data;
     this.setImage();
+    this.setDesc();
   }
 
   onNoClick = () => {
@@ -35,6 +37,14 @@ export class EditDialogComponent {
       this.image = this.configService.TILES[this.config.tileId].img;
     } else {
       this.image = 'default'
+    }
+  }
+
+  private setDesc() {
+    if (this.configService.TILES[this.config.tileId]) {
+      this.desc = this.configService.TILES[this.config.tileId].desc;
+    } else {
+      this.desc = '';
     }
   }
 
