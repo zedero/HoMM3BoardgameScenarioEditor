@@ -9,8 +9,8 @@
     "LAVA"
   ],
   "GROUP": [
-    "STARTINGTILE",
     "RANDOM",
+    "STARTINGTILE",
     "FAR",
     "NEAR",
     "CENTER"
@@ -18,12 +18,26 @@
   "EXPANSION": [
     "RANDOM",
     "CORE",
-    "SG",
     "TOWER",
     "RAMPART",
     "FORTRESS",
     "INFERNO"
   ],
+  "GROUP_DESC": {
+    "STARTINGTILE": "Starting Town Tiles",
+    "RANDOM": "Random Tiles",
+    "FAR": "Far Tiles",
+    "NEAR": "Near Tiles",
+    "CENTER": "Center Tiles"
+  },
+  "EXPANSION_FILTER_DESC": {
+    "RANDOM": "Random",
+    "CORE": "Core",
+    "TOWER": "Tower",
+    "RAMPART": "Rampart",
+    "FORTRESS": "Fortress",
+    "INFERNO": "Inferno"
+  },
   "TILES": {
     "S1": {
       "id": "S1",

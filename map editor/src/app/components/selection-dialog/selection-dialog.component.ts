@@ -12,14 +12,8 @@ export class SelectionDialogComponent {
   public tilesConfiguration;
   public GROUP;
   public EXPANSION;
-  public sets = this._formBuilder.group({
-    RANDOM: true,
-    CORE: true,
-    TOWER: true,
-    RAMPART: true,
-    FORTRESS: true,
-    INFERNO: true
-  });
+  public sets;
+  public expansionsFilter;
 
   public config: ConfigService;
 
@@ -33,6 +27,36 @@ export class SelectionDialogComponent {
     this.GROUP = config.GROUP;
     this.EXPANSION = config.EXPANSION
     this.tilesConfiguration = Object.values(this.config.TILES);
+
+    this.sets = this._formBuilder.group(this.generateFormBuilderGroup(config.EXPANSION_FILTER_DESC));
+    this.expansionsFilter = this.generateFilterList(config.EXPANSION, config.EXPANSION_FILTER_DESC);
+  }
+
+  enumToList(obj: any) {
+    return Object.keys(obj).filter((val) => {
+      return isNaN(parseInt(val))
+    })
+  }
+
+  generateFormBuilderGroup(descObj: any) {
+    const group = {}
+    Object.keys(descObj).forEach((val: any) => {
+     group[val] = true;
+    })
+    return group;
+  }
+
+  generateFilterList(filterObj: any, descObj: any) {
+    // change enum obj to string list of keys
+    const filterList = Object.keys(filterObj).filter((val) => {
+      return isNaN(parseInt(val))
+    });
+    return filterList.map((val: any) => {
+      return {
+        name: val,
+        desc: descObj[val]
+      }
+    });
   }
 
   onNoClick(): void {

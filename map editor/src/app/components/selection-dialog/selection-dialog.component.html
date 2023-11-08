@@ -1,60 +1,22 @@
 <div class="header">
   <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
-<!--  <input type="checkbox">-->
   <div class="filter" [formGroup]="sets">
     <span class="formTitle">Expansions:</span>
-    <mat-checkbox formControlName="RANDOM">Random</mat-checkbox>
-    <mat-checkbox formControlName="CORE">Core</mat-checkbox>
-    <mat-checkbox formControlName="TOWER">Tower</mat-checkbox>
-    <mat-checkbox formControlName="RAMPART">Rampart</mat-checkbox>
-    <mat-checkbox formControlName="FORTRESS">Fortress</mat-checkbox>
-    <mat-checkbox formControlName="INFERNO">Inferno</mat-checkbox>
+    <ng-container *ngFor="let filter of expansionsFilter">
+      <mat-checkbox formControlName="{{filter.name}}">{{filter.desc}}</mat-checkbox>
+    </ng-container>
   </div>
 </div>
 <div class="scrollable">
-  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.RANDOM).length">
-    <div class="title">Random Tiles</div>
-    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.RANDOM)">
-      <div class="mini-tile">
-        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
-        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+  <ng-container *ngFor="let group of enumToList(this.GROUP)">
+    <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP[group]).length">
+      <div class="title">{{config.GROUP_DESC[group]}}</div>
+      <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP[group])">
+        <div class="mini-tile">
+          <img src="assets/tiles/{{tile.img}}.png" alt="{{tile.desc}}">
+          <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.STARTINGTILE).length">
-    <div class="title">Starting Town Tiles</div>
-    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.STARTINGTILE)">
-      <div class="mini-tile">
-        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
-        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
-      </div>
-    </div>
-  </div>
-  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.FAR).length">
-    <div class="title">Far Tiles</div>
-    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.FAR)">
-      <div class="mini-tile">
-        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
-        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
-      </div>
-    </div>
-  </div>
-  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.NEAR).length">
-    <div class="title">Near Tiles</div>
-    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.NEAR)">
-      <div class="mini-tile">
-        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
-        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
-      </div>
-    </div>
-  </div>
-  <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP.CENTER).length">
-    <div class="title">Center Tiles</div>
-    <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP.CENTER)">
-      <div class="mini-tile">
-        <img src="assets/tiles/{{tile.img}}.png" alt="rampart">
-        <button (click)="close(tile.id)">Add {{tile.desc}}</button>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>

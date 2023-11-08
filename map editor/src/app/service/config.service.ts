@@ -16,8 +16,16 @@ export class ConfigService {
     STARTINGTILE: 0
   }
 
+  public GROUP_DESC: any = {
+    STARTINGTILE: "Starting tile"
+  }
+
   public EXPANSION: any = {
     CORE: 0,
+  }
+
+  public EXPANSION_FILTER_DESC: any = {
+    CORE: "Core",
   }
 
   public TILES: any = {
@@ -61,7 +69,9 @@ export class ConfigService {
   parseData(data) {
     this.GROUNDTYPE = this.arrayToEnum(data.GROUNDTYPE);
     this.GROUP = this.arrayToEnum(data.GROUP);
+    this.GROUP_DESC = data.GROUP_DESC;
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
+    this.EXPANSION_FILTER_DESC = data.EXPANSION_FILTER_DESC;
     this.TILES = this.tileJsonToData(data.TILES);
   }
 
