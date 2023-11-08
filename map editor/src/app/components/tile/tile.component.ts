@@ -42,6 +42,7 @@ export class TileComponent implements OnInit {
     if (this.configService.TILES[this.config.tileId]) {
       this.image = this.configService.TILES[this.config.tileId].img;
     } else {
+      console.log(this.config.tileId, this.configService.TILES)
       this.image = 'default'
     }
   }

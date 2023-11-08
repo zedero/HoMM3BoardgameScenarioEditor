@@ -6,7 +6,7 @@
  </div>
 </div>
 
-<div id="tilesContainer" [style.height]="tileContainerHeight" [style.width]="tileContainerWidth">
+<div id="tilesContainer" [style.height]="tileContainerHeight" [style.width]="tileContainerWidth" *ngIf="loaded">
   <div *ngFor="let tile of tilesService.tileList" class="tileContainer">
     <app-tile [setConfig]="tile"></app-tile>
   </div>

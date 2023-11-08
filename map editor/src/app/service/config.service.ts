@@ -47,8 +47,10 @@ export class ConfigService {
   load() {
     return new Promise((resolve) => {
       this.http.get('assets/json/config.json').subscribe((res) => {
-        this.parseData(res);
-        resolve(true);
+        // setTimeout(() => {
+          this.parseData(res);
+          resolve(true);
+        // }, 5000)
       },(error) => {
         console.warn('Falling back to hardcoded data due to error: ', error)
         resolve(false);
@@ -61,6 +63,7 @@ export class ConfigService {
     this.GROUP = this.arrayToEnum(data.GROUP);
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
     this.TILES = this.tileJsonToData(data.TILES);
+    console.log('@', this.TILES, data.TILES)
   }
 
   arrayToEnum(arr: Array<any>) {

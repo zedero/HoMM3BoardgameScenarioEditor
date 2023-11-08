@@ -22,10 +22,11 @@ export class AppComponent implements OnInit {
   public columns = Array(this.tilesPerColumn * 3);
 
   public tileList:any = [];
+  public loaded = false;
 
   constructor(public tilesService: TilesService, public dialog: MatDialog, private configService: ConfigService) {
     configService.load().then(() => {
-      // console.log('@ INITIALIZED');
+      this.loaded = true;
     });
   }
 
