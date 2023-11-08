@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/cell-editor/cell-editor.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/cell-editor/cell-editor.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/cell-editor/cell-editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/cell-editor/cell-editor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/tile/tile.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/json/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +122,7 @@
       <updated>1697615893304</updated>
       <workItem from="1697615894601" duration="6605000" />
       <workItem from="1697725313891" duration="32745000" />
-      <workItem from="1698012056622" duration="153005000" />
+      <workItem from="1698012056622" duration="158859000" />
     </task>
     <servers />
   </component>

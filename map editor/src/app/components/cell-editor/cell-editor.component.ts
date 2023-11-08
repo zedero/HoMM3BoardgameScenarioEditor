@@ -20,7 +20,7 @@ export class CellEditorComponent  implements OnInit {
 
   selectedCube = 0;
   cubes: any[] = [
-    {value: '0', name: '- Cube -'},
+    {value: '0', name: '- No Cube -'},
     {value: '1', name: 'Black cube'},
     {value: '2', name: 'Necropolis cube'},
     {value: '3', name: 'Castle cube'},

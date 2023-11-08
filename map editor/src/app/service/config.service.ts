@@ -63,7 +63,6 @@ export class ConfigService {
     this.GROUP = this.arrayToEnum(data.GROUP);
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
     this.TILES = this.tileJsonToData(data.TILES);
-    console.log('@', this.TILES, data.TILES)
   }
 
   arrayToEnum(arr: Array<any>) {

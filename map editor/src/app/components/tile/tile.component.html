@@ -7,7 +7,7 @@
     <button (click)="delete()"><i class="fa-regular fa-trash-can"></i></button>
     <button class="rotate-button" (click)="rotate()"><i class="fa-solid fa-rotate-right"></i></button>
   </div>
-  <div class="game-components">
+  <div class="game-components" [style.rotate]="rotation">
     <div class="row">
       <div class="cell"><app-cube [cube]="config.cubes[0]"></app-cube></div>
       <div class="cell"><app-cube [cube]="config.cubes[1]"></app-cube></div>

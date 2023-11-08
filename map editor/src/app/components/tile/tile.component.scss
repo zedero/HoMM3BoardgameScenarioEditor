@@ -58,6 +58,7 @@
 .game-components {
   position: absolute;
   pointer-events: none;
+  height: 100%;
   z-index: 1;
 
   .row {
