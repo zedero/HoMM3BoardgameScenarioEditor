@@ -41,7 +41,7 @@
   "TILES": {
     "S1": {
       "id": "S1",
-      "img": "S1",
+      "img": "assets/tiles/S1.png",
       "desc": "Necropolis Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
@@ -49,7 +49,7 @@
     },
     "S2": {
       "id": "S2",
-      "img": "S2",
+      "img": "assets/tiles/S2.png",
       "desc": "Dungeon Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.SUBTERRAIN",
@@ -57,7 +57,7 @@
     },
     "S3": {
       "id": "S3",
-      "img": "S3",
+      "img": "assets/tiles/S3.png",
       "desc": "Castle Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.GRASS",
@@ -65,7 +65,7 @@
     },
     "#S1": {
       "id": "#S1",
-      "img": "S0",
+      "img": "assets/tiles/S0.png",
       "desc": "Tower Starting tile",
       "expansionID": "EXPANSION.TOWER",
       "groundType": "GROUNDTYPE.SNOW",
@@ -73,7 +73,7 @@
     },
     "S4": {
       "id": "S4",
-      "img": "S4",
+      "img": "assets/tiles/S4.png",
       "desc": "Rampart Starting tile",
       "expansionID": "EXPANSION.RAMPART",
       "groundType": "GROUNDTYPE.GRASS",
@@ -81,7 +81,7 @@
     },
     "S5": {
       "id": "S5",
-      "img": "S5",
+      "img": "assets/tiles/S5.png",
       "desc": "Fortress Starting tile",
       "expansionID": "EXPANSION.FORTRESS",
       "groundType": "GROUNDTYPE.SWAMP",
@@ -89,7 +89,7 @@
     },
     "S6": {
       "id": "S6",
-      "img": "S6",
+      "img": "assets/tiles/S6.png",
       "desc": "Inferno Starting tile",
       "expansionID": "EXPANSION.INFERNO",
       "groundType": "GROUNDTYPE.LAVA",
@@ -97,7 +97,7 @@
     },
     "S0": {
       "id": "S0",
-      "img": "random-1",
+      "img": "assets/tiles/random-1.png",
       "desc": "Random Starting tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
@@ -105,7 +105,7 @@
     },
     "F0": {
       "id": "F0",
-      "img": "random-2-3",
+      "img": "assets/tiles/random-2-3.png",
       "desc": "Random Far Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
@@ -113,7 +113,7 @@
     },
     "N0": {
       "id": "N0",
-      "img": "random-4-5",
+      "img": "assets/tiles/random-4-5.png",
       "desc": "Random Near Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
@@ -121,7 +121,7 @@
     },
     "C0": {
       "id": "C0",
-      "img": "random-6-7",
+      "img": "assets/tiles/random-6-7.png",
       "desc": "Random Center Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
@@ -129,7 +129,7 @@
     },
     "C1": {
       "id": "C1",
-      "img": "C1",
+      "img": "assets/tiles/C1.png",
       "desc": "Dragon Utopia",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
@@ -137,11 +137,19 @@
     },
     "C2": {
       "id": "C2",
-      "img": "C2",
+      "img": "assets/tiles/C2.png",
       "desc": "Grail",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.CENTER"
+    },
+    "0F3": {
+      "id": "0F3",
+      "img": "assets/tiles/0F3.png",
+      "desc": "#F3",
+      "expansionID": "EXPANSION.TOWER",
+      "groundType": "GROUNDTYPE.SNOW",
+      "group": "GROUP.FAR"
     }
   }
 }

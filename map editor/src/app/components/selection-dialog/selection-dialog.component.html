@@ -13,7 +13,7 @@
       <div class="title">{{config.GROUP_DESC[group]}}</div>
       <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP[group])">
         <div class="mini-tile">
-          <img src="assets/tiles/{{tile.img}}.png" alt="{{tile.desc}}">
+          <img src="{{tile.img}}" alt="{{tile.desc}}">
           <button (click)="close(tile.id)">Add {{tile.desc}}</button>
         </div>
       </div>

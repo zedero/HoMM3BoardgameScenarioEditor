@@ -16,6 +16,7 @@ export class TileComponent implements OnInit {
   }
 
   public image = '';
+  public desc = '';
 
   public dragPosition = {x: 0, y: 0};
 
@@ -36,14 +37,22 @@ export class TileComponent implements OnInit {
     this.config = configData;
     this.rotation = (this.config.rotation * 60) + 'deg';
     this.setImage();
+    this.setDesc();
+  }
+
+  private setDesc() {
+    if (this.configService.TILES[this.config.tileId]) {
+      this.desc = this.configService.TILES[this.config.tileId].desc;
+    } else {
+      this.desc = '';
+    }
   }
 
   private setImage() {
     if (this.configService.TILES[this.config.tileId]) {
       this.image = this.configService.TILES[this.config.tileId].img;
     } else {
-      console.log(this.config.tileId, this.configService.TILES)
-      this.image = 'default'
+      this.image = 'default';
     }
   }
 
@@ -127,7 +136,6 @@ export class TileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       if (result) {
         this.config = result;
         this.tilesService.updateTileData(this.config);
