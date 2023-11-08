@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   constructor(public tilesService: TilesService, public dialog: MatDialog, private configService: ConfigService) {
     configService.load().then(() => {
-      console.log('@ INITIALIZED');
+      // console.log('@ INITIALIZED');
     });
   }
 

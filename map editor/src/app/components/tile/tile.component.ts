@@ -1,8 +1,8 @@
 import { Component, Input, OnInit} from '@angular/core';
 import {TileData, TilesService} from "../../service/tiles.service";
-import { tilesConfiguration } from "../../config";
 import {MatDialog} from "@angular/material/dialog";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-tile',
@@ -11,7 +11,9 @@ import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 })
 export class TileComponent implements OnInit {
 
-  constructor(public tilesService: TilesService, public dialog: MatDialog) {}
+  constructor(public tilesService: TilesService, public dialog: MatDialog, public configService: ConfigService) {
+    this.configService = configService;
+  }
 
   public image = '';
 
@@ -37,8 +39,8 @@ export class TileComponent implements OnInit {
   }
 
   private setImage() {
-    if (tilesConfiguration[this.config.tileId]) {
-      this.image = tilesConfiguration[this.config.tileId].img;
+    if (this.configService.TILES[this.config.tileId]) {
+      this.image = this.configService.TILES[this.config.tileId].img;
     } else {
       this.image = 'default'
     }

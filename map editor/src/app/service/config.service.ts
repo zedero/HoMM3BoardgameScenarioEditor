@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {EXPANSION, GROUNDTYPE, GROUP} from "../config";
 
 @Injectable({
   providedIn: 'root'
@@ -62,9 +61,6 @@ export class ConfigService {
     this.GROUP = this.arrayToEnum(data.GROUP);
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
     this.TILES = this.tileJsonToData(data.TILES);
-
-
-    console.log('AFTER PARSE', this.TILES)
   }
 
   arrayToEnum(arr: Array<any>) {

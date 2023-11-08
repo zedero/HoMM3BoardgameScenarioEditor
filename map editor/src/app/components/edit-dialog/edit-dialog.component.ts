@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {tilesConfiguration} from "../../config";
 import {TilesService} from "../../service/tiles.service";
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-edit-dialog',
@@ -15,7 +16,8 @@ export class EditDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public tilesService: TilesService
+    public tilesService: TilesService,
+    public configService: ConfigService
   ) {
     this.config = data;
     this.setImage();
@@ -30,8 +32,8 @@ export class EditDialogComponent {
   }
 
   private setImage() {
-    if (tilesConfiguration[this.config.tileId]) {
-      this.image = tilesConfiguration[this.config.tileId].img;
+    if (this.configService.TILES[this.config.tileId]) {
+      this.image = this.configService.TILES[this.config.tileId].img;
     } else {
       this.image = 'default'
     }

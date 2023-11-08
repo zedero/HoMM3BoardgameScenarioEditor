@@ -1,9 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {tilesConfiguration} from "../../config";
-import { GROUP } from '../../config'
 import {FormBuilder} from '@angular/forms';
-import {EXPANSION} from '../../config'
 import {ConfigService} from "../../service/config.service";
 
 @Component({
@@ -12,8 +9,9 @@ import {ConfigService} from "../../service/config.service";
   styleUrls: ['./selection-dialog.component.scss'],
 })
 export class SelectionDialogComponent {
-  public tilesConfiguration = Object.values(tilesConfiguration);
+  public tilesConfiguration;
   public GROUP;
+  public EXPANSION;
   public sets = this._formBuilder.group({
     RANDOM: true,
     CORE: true,
@@ -22,9 +20,8 @@ export class SelectionDialogComponent {
     FORTRESS: true,
     INFERNO: true
   });
-  public EXPANSION;
 
-  private config: ConfigService;
+  public config: ConfigService;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -35,6 +32,7 @@ export class SelectionDialogComponent {
     this.config = config;
     this.GROUP = config.GROUP;
     this.EXPANSION = config.EXPANSION
+    this.tilesConfiguration = Object.values(this.config.TILES);
   }
 
   onNoClick(): void {
@@ -49,14 +47,14 @@ export class SelectionDialogComponent {
     const selectedExpansions = new Set();
     Object.entries(this.sets.value).map((entry) => {
       if (entry[1]) {
-        selectedExpansions.add(EXPANSION[entry[0]]);
+        selectedExpansions.add(this.EXPANSION[entry[0]]);
       }
     });
     return selectedExpansions;
   }
 
   getGroup(config: any, groupEnum: number) {
-    const selectedExpansionsIDs = this.getExpansionSelection()
+    const selectedExpansionsIDs = this.getExpansionSelection();
     return config.filter((item) => {
       return item.group === groupEnum && selectedExpansionsIDs.has(item.expansionID);
     });
