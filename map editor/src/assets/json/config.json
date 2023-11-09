@@ -15,6 +15,19 @@
     "NEAR",
     "CENTER"
   ],
+  "GROUP_DESC": {
+    "STARTINGTILE": "Starting Town Tiles",
+    "RANDOM": "Random Tiles",
+    "FAR": "Far Tiles",
+    "NEAR": "Near Tiles",
+    "CENTER": "Center Tiles"
+  },
+  "PORTRAITS": {
+    "CATHERINE": {
+      "image": "/assets/portraits/catherine.png",
+      "desc": "Catherine"
+    }
+  },
   "EXPANSION": [
     "RANDOM",
     "CORE",
@@ -23,13 +36,6 @@
     "FORTRESS",
     "INFERNO"
   ],
-  "GROUP_DESC": {
-    "STARTINGTILE": "Starting Town Tiles",
-    "RANDOM": "Random Tiles",
-    "FAR": "Far Tiles",
-    "NEAR": "Near Tiles",
-    "CENTER": "Center Tiles"
-  },
   "EXPANSION_FILTER_DESC": {
     "RANDOM": "Random",
     "CORE": "Core",

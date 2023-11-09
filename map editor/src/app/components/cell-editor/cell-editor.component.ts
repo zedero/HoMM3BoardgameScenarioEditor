@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ConfigService} from "../../service/config.service";
 
 @Component({
   selector: 'app-cell-editor',
@@ -11,11 +12,10 @@ export class CellEditorComponent  implements OnInit {
   @Input({ required: true }) index = -1;
   @Output() saveData = new EventEmitter<any>();
 
-  selectedHero = 0;
+
+  selectedHero = '';
   heroes: any[] = [
-    {value: '0', name: '- Hero -'},
-    {value: '1', name: 'Catherine'},
-    {value: '2', name: 'Solimyr'},
+    {value: '0', name: '- No Hero -'},
   ];
 
   selectedCube = 0;
@@ -31,13 +31,31 @@ export class CellEditorComponent  implements OnInit {
     {value: '8', name: 'Inferno cube'},
   ];
 
+  public configService: ConfigService;
+
+  constructor(configService: ConfigService) {
+    this.configService = configService;
+    this.createHeroesSelect();
+  }
+
+  createHeroesSelect() {
+    this.heroes = Object.entries(this.configService.PORTRAITS)
+      .map(([key, val]: any) => {
+        return {
+          value: key,
+          name: val.desc
+        }
+      })
+    this.heroes.unshift({value: '0', name: '- No Hero -'});
+  }
+
   ngOnInit() {
     this.selectedCube = this.config.cubes[this.index];
     this.selectedHero = this.config.hero[this.index];
   }
 
   selectHero(hero: any) {
-    this.config.hero[this.index] = parseInt(hero);
+    this.config.hero[this.index] = hero;
     this.saveData.next(this.config);
   }
 

@@ -81,4 +81,13 @@
     left: 33px;
     transform: scale(.7);
   }
+
+  app-portrait {
+    position: absolute;
+
+    left: 43px;
+    top: 50px;
+
+    transform: translateX(-50%) translateY(-50%);
+  }
 }

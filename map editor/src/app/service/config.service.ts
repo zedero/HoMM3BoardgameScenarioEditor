@@ -24,6 +24,13 @@ export class ConfigService {
     CORE: 0,
   }
 
+  public PORTRAITS: any = {
+    CATHERINE: {
+      image: "/assets/portraits/catherine.png",
+      desc: "Catherine"
+    }
+  }
+
   public EXPANSION_FILTER_DESC: any = {
     CORE: "Core",
   }
@@ -73,6 +80,7 @@ export class ConfigService {
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
     this.EXPANSION_FILTER_DESC = data.EXPANSION_FILTER_DESC;
     this.TILES = this.tileJsonToData(data.TILES);
+    this.PORTRAITS = data.PORTRAITS;
   }
 
   arrayToEnum(arr: Array<any>) {
