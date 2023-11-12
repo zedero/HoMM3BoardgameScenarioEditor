@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   public columns = Array(this.tilesPerColumn * 3);
 
   public tileList:any = [];
+  
   public loaded = false;
 
   constructor(public tilesService: TilesService, public dialog: MatDialog, private configService: ConfigService) {
@@ -130,4 +131,23 @@ export class AppComponent implements OnInit {
     }
     this.columns = Array(parseInt($event.target.value))
   }
+
+  placeRandomTile() {
+    console.log(this.random(1,10));
+
+    this.tilesService.registerNewTile({
+      row: this.random(1,9),
+      col: this.random(1,9),
+      id: this.generateGuid(),
+      tileId: "F0",
+      cubes: [0,0,0,0,0,0,0],
+      hero: [0,0,0,0,0,0,0],
+      rotation: 0,
+    });
+  }
+
+  random(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 }

@@ -19,6 +19,7 @@ export class TilesService {
 
   public storageKey = 'scenarioCreatorData';
   public tileList:any = [];
+  public blockedCells:any = new Set();
   public mapSelection = "default";
 
   public tilesUpdated: any = new BehaviorSubject('');
@@ -27,6 +28,7 @@ export class TilesService {
     const data = localStorage.getItem(this.storageKey);
     if (data) {
       this.tileList = JSON.parse(data)[this.mapSelection];
+      this.generateBlockedcellsList();
     } else {
       this.saveTileData();
     }
@@ -34,12 +36,14 @@ export class TilesService {
 
   public registerNewTile(tileData: TileData) {
     this.tileList.push(tileData);
+    this.generateBlockedcellsList();
   }
 
   public updateTileData(tileData:any) {
     const tileListIndex = this.tileList.findIndex((element: any) => {
       return element.id === tileData.id;
     })
+    this.generateBlockedcellsList();
 
     this.tileList[tileListIndex] = tileData;
     this.saveTileData();
@@ -61,6 +65,7 @@ export class TilesService {
     });
 
     this.tileList.splice(tileListIndex, 1);
+    this.generateBlockedcellsList();
     this.saveTileData();
   }
 
@@ -82,19 +87,47 @@ export class TilesService {
       blockedCells.add(`${tile.row}.${tile.col}`);
       blockedCells.add(`${tile.row}.${tile.col-1}`);
       blockedCells.add(`${tile.row}.${tile.col+1}`);
+
+      blockedCells.add(`${tile.row}.${tile.col-2}`);
+      blockedCells.add(`${tile.row}.${tile.col+2}`);
       if(this.isEven(tile.row)) {
         blockedCells.add(`${tile.row-1}.${tile.col-1}`);
         blockedCells.add(`${tile.row-1}.${tile.col}`);
         blockedCells.add(`${tile.row+1}.${tile.col-1}`);
         blockedCells.add(`${tile.row+1}.${tile.col}`);
+
+        blockedCells.add(`${tile.row-1}.${tile.col-2}`);
+        blockedCells.add(`${tile.row-1}.${tile.col+1}`);
+        blockedCells.add(`${tile.row+1}.${tile.col-2}`);
+        blockedCells.add(`${tile.row+1}.${tile.col+1}`);
+
+        blockedCells.add(`${tile.row-2}.${tile.col-1}`);
+        blockedCells.add(`${tile.row-2}.${tile.col}`);
+        blockedCells.add(`${tile.row-2}.${tile.col+1}`);
+        blockedCells.add(`${tile.row+2}.${tile.col-1}`);
+        blockedCells.add(`${tile.row+2}.${tile.col}`);
+        blockedCells.add(`${tile.row+2}.${tile.col+1}`);
+
       } else {
         blockedCells.add(`${tile.row-1}.${tile.col}`);
         blockedCells.add(`${tile.row-1}.${tile.col+1}`);
         blockedCells.add(`${tile.row+1}.${tile.col}`);
         blockedCells.add(`${tile.row+1}.${tile.col+1}`);
+
+        blockedCells.add(`${tile.row-1}.${tile.col-1}`);
+        blockedCells.add(`${tile.row-1}.${tile.col+2}`);
+        blockedCells.add(`${tile.row+1}.${tile.col-1}`);
+        blockedCells.add(`${tile.row+1}.${tile.col+2}`);
+
+        blockedCells.add(`${tile.row-2}.${tile.col-1}`);
+        blockedCells.add(`${tile.row-2}.${tile.col}`);
+        blockedCells.add(`${tile.row-2}.${tile.col+1}`);
+        blockedCells.add(`${tile.row+2}.${tile.col-1}`);
+        blockedCells.add(`${tile.row+2}.${tile.col}`);
+        blockedCells.add(`${tile.row+2}.${tile.col+1}`);
       }
     })
-
+    this.blockedCells = blockedCells;
     return blockedCells;
   }
 
@@ -103,7 +136,8 @@ export class TilesService {
     const pos = id.split('.').map((a)=>{return Number(a)});
     const row = pos[0];
     const col = pos[1];
-    console.log(this.generateBlockedcellsList(config.id).has(id))
+    // console.log(this.blockedCells.has(id))
+    return !this.blockedCells.has(id);
   }
 
   export() {

@@ -81,7 +81,10 @@ export class TileComponent implements OnInit {
       return
     }
 
-    // this.tilesService.isValidSnapSpace(target.id, this.config);
+    if (!this.tilesService.isValidSnapSpace(target.id, this.config)) {
+      this.snapToCell(this.generateId(this.config));
+      return;
+    }
 
     this.snapToCell(target.id);
 

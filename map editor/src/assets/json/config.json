@@ -26,6 +26,18 @@
     "CATHERINE": {
       "image": "/assets/portraits/catherine.png",
       "desc": "Catherine"
+    },
+    "SANDRO": {
+      "image": "/assets/portraits/sandro.png",
+      "desc": "Sandro"
+    },
+    "MUTARE": {
+      "image": "/assets/portraits/mutare.png",
+      "desc": "Mutare"
+    },
+    "SOLMYR": {
+      "image": "/assets/portraits/solmyr.png",
+      "desc": "Solmyr"
     }
   },
   "EXPANSION": [

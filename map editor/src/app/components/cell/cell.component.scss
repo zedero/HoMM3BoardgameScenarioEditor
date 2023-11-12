@@ -49,3 +49,21 @@ img {
   }
 
 }
+
+.cellNr {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.blocked {
+    background-color: rgba(255,0,0,.3);
+    clip-path: polygon(50% 0%, 100% 26%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    pointer-events: none;
+  }
+
+}
