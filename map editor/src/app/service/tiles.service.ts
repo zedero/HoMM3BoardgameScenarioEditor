@@ -71,6 +71,7 @@ export class TilesService {
 
   public clearGrid() {
     this.tileList = [];
+    this.generateBlockedcellsList();
     this.saveTileData();
   }
 
@@ -132,11 +133,10 @@ export class TilesService {
   }
 
   public isValidSnapSpace(id: string, config?: any) {
-    this.generateBlockedcellsList(config.id);
+    this.generateBlockedcellsList(config?.id);
     const pos = id.split('.').map((a)=>{return Number(a)});
     const row = pos[0];
     const col = pos[1];
-    // console.log(this.blockedCells.has(id))
     return !this.blockedCells.has(id);
   }
 
