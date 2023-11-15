@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { RandomMapGenerationService } from 'src/app/service/random-map-generation.service';
 import { TilesService } from 'src/app/service/tiles.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class CellComponent implements OnInit{
   @Input() colId = -1;
   @Output() addNewTile = new EventEmitter<any>();
 
-  constructor(public tilesService: TilesService) {
+  constructor(public tilesService: TilesService, public randomMapService: RandomMapGenerationService) {
 
   }
 
@@ -31,5 +32,9 @@ export class CellComponent implements OnInit{
 
   public isBlocked() {
     return !!this.tilesService.blockedCells.has(this.generateGuid());
+  }
+
+  public isConnected() {
+    return !!this.randomMapService.connected.has(this.generateGuid());
   }
 }
