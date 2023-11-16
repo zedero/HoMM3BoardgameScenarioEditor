@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ConfigService } from './config.service';
 import { TilesService } from './tiles.service';
 
 export type RandomMapSettings = {
@@ -17,7 +18,7 @@ export class RandomMapGenerationService {
 
   public connected = new Set();
 
-  constructor(public tilesService: TilesService,) {
+  constructor(public tilesService: TilesService, private config: ConfigService) {
     this.getConnectedTiles();
   }
 
@@ -35,7 +36,7 @@ export class RandomMapGenerationService {
     this.placeRandomTile();
     this.getConnectedTiles();
     let tilesPlaced = 0;
-    while(this.connected.size && tilesPlaced < 50) {
+    while(this.connected.size && tilesPlaced < 20) {
       tilesPlaced++;
       this.placeTileById([...this.connected][Math.floor(Math.random()*this.connected.size)]);
     }
@@ -52,7 +53,7 @@ export class RandomMapGenerationService {
     if (playerCount === 2) {
       // Sort tiles based on their flat distance.
       tiles.sort((a,b) => {
-        return (a.row + a.col)- (b.row + b.col);
+        return (a.row + a.col) - (b.row + b.col);
       });
 
       tiles[0].tileId = 'S0'
@@ -69,7 +70,16 @@ export class RandomMapGenerationService {
   }
 
   private connectToStartingTilePass() {
+    const tiles = [...this.tilesService.tileList];
+    tiles.sort((a,b) => {
+      return (a.row + a.col) - (b.row + b.col);
+    });
     // TODO create algorithm
+    const towns = tiles.filter((tile) => {
+      if (this.config.getGroupById(tile.tileId) === this.config.GROUP.STARTINGTILE || tile.tileId === "S0") {
+        return tile;
+      }
+    });
   }
 
   private flipTilesToFront() {
@@ -93,7 +103,7 @@ export class RandomMapGenerationService {
       row: row,
       col: col,
       id: this.generateGuid(),
-      tileId: "F0",
+      tileId: "C0",
       cubes: [0,0,0,0,0,0,0],
       hero: [0,0,0,0,0,0,0],
       rotation: 0,
@@ -209,7 +219,7 @@ export class RandomMapGenerationService {
       row: row,
       col: col,
       id: this.generateGuid(),
-      tileId: "F0",
+      tileId: "C0",
       cubes: [0,0,0,0,0,0,0],
       hero: [0,0,0,0,0,0,0],
       rotation: 0,

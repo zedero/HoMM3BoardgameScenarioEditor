@@ -103,4 +103,8 @@ export class ConfigService {
     return Object.fromEntries(result);
   }
 
+  public getGroupById(tileId: string) {
+     return this.TILES[tileId].group;
+  }
+
 }
