@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { TilesService } from './tiles.service';
+import { Helper } from '../utility/helper';
 
 export type RandomMapSettings = {
-  size?: 'SMALL' | 'MEDIUM' | 'LARGE',
+  size: string,
   playerCount?: number;
   selectedTowns?: Array<string>;
   flipFarTiles?: boolean;
@@ -18,32 +19,132 @@ export class RandomMapGenerationService {
 
   public connected = new Set();
 
-  constructor(public tilesService: TilesService, private config: ConfigService) {
+  constructor(public tilesService: TilesService, private config: ConfigService, private calc: Helper) {
     this.getConnectedTiles();
   }
 
-  generateRandomMap(settings: RandomMapSettings = {}) {
+  getGridSizeFromSetting(size: string) {
+    console.log('MAP SIZE: ', size);
+    if(size === "SMALL") {
+      return {
+        rows: 7,
+        cols: 7,
+        tiles: 7
+      }
+    }
+    if(size === "MEDIUM") {
+      return {
+        rows: 10,
+        cols: 10,
+        tiles: 10
+      }
+    }
+    if(size === "LARGE") {
+      return {
+        rows: 15,
+        cols: 15,
+        tiles: 15
+      }
+    }
+    return {
+      rows: 10,
+      cols: 10,
+      tiles: 10
+    };
+  }
+
+  generateRandomMap(settings: RandomMapSettings) {
     // TODO Get rows and cols based on defined map size
     this.clearGrid();
-    this.generateConnectedRandomMap();
+    const sizeData = this.getGridSizeFromSetting(settings.size);
+    this.generateConnectedRandomMap(sizeData.rows, sizeData.cols, sizeData.tiles);
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
-    this.placeStartingTownsPass();
+    this.placeStartingTownsPass(settings.playerCount);
     this.connectToStartingTilePass();
     this.flipTilesToFront();
   }
 
-  private generateConnectedRandomMap(maxRows = 10 , maxCols = 10) {
-    this.placeRandomTile();
-    this.getConnectedTiles();
-    let tilesPlaced = 0;
-    while(this.connected.size && tilesPlaced < 20) {
+  private generateConnectedRandomMap(maxRows , maxCols, maxTiles) {
+    this.placeRandomTile(maxRows , maxCols);
+    this.getConnectedTiles(maxRows , maxCols);
+    let tilesPlaced = 1;
+    while(this.connected.size && tilesPlaced < maxTiles) {
       tilesPlaced++;
-      this.placeTileById([...this.connected][Math.floor(Math.random()*this.connected.size)]);
+      this.placeTileById(
+        [...this.connected][Math.floor(Math.random()*this.connected.size)],
+        maxRows,
+        maxCols
+      );
     }
+    console.log('TILES PLACED: ', tilesPlaced)
+  }
+
+  private distance(x1, y1, x2, y2) {
+    const a = x1 - x2;
+    const b = y1 - y2;
+    return Math.sqrt( a*a + b*b );
+  }
+
+  // calculate a tiles total distance to all other tiles (lower is more central)
+  calculateReachability(tiles: any) {
+    tiles.forEach((tile) => {
+      tile.reachability = 0;
+      tiles.forEach((tileCompared) => {
+        const dist = this.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
+        if (dist > tile.reachability) {
+          tile.reachability = dist;
+        }
+        // tile.reachability += this.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
+      });
+    });
+    return tiles;
   }
 
   placeStartingTownsPass(playerCount = 2) {
-    const tiles = [...this.tilesService.tileList];
+    const tiles:any = [...this.tilesService.tileList];
+    const furthestPoints = this.calc.getFurthestTwoPoints(tiles);
+    const possibleTownTiles: any = [];
+    possibleTownTiles.push(furthestPoints.tileOne);
+    if (playerCount > 1) {
+      possibleTownTiles.push(furthestPoints.tileTwo);
+    }
+
+    const neighbourTiles = this.calc.getNeighbours(tiles, possibleTownTiles);
+
+    // const mid = this.calc.midPoint(furthestPoints.tileOne.row, furthestPoints.tileOne.col, furthestPoints.tileTwo.row, furthestPoints.tileTwo.col);
+    const tilesCleaned = this.calc.removeFromArray(tiles, [...possibleTownTiles,...neighbourTiles]);
+    const three = this.calc.getFurthestFromTwoPoint(
+      possibleTownTiles[0].row,
+      possibleTownTiles[0].col,
+      possibleTownTiles[1].row,
+      possibleTownTiles[1].col,
+      tilesCleaned
+    );
+    // const three = this.calc.getFurthestFromPoint(mid, tilesCleaned);
+    possibleTownTiles.push(three);
+
+    // calc center of 2 furthest points
+    // get tile furthest from that point
+
+
+
+
+
+
+
+
+
+
+    for (let i = 0; i < playerCount && i < possibleTownTiles.length; i++) {
+      possibleTownTiles[i].tileId = 'S0'
+      this.tilesService.updateTileData(possibleTownTiles[i]);
+    }
+    // possibleTownTiles[playerCount].tileId = 'C1'
+    // this.tilesService.updateTileData(possibleTownTiles[playerCount]);
+
+
+
+    return;
     if (playerCount === 1) {
       const tile = tiles[Math.floor(Math.random()*tiles.length)];
       tile.tileId = 'S1'
@@ -53,8 +154,12 @@ export class RandomMapGenerationService {
     if (playerCount === 2) {
       // Sort tiles based on their flat distance.
       tiles.sort((a,b) => {
-        return (a.row + a.col) - (b.row + b.col);
+        return b.reachability - a.reachability;
       });
+
+      console.log(tiles.map(tile => tile.reachability))
+
+      const possibleTownTiles = tiles.slice(0, 3);
 
       tiles[0].tileId = 'S0'
       this.tilesService.updateTileData(tiles[0]);
@@ -95,7 +200,7 @@ export class RandomMapGenerationService {
     // Flip others:
   }
 
-  private placeTileById(id: any) {
+  private placeTileById(id: any, maxRows:number, maxCols:number) {
     const pos = id.split('.').map((a)=>{return Number(a)});
     const row = pos[0];
     const col = pos[1];
@@ -108,10 +213,10 @@ export class RandomMapGenerationService {
       hero: [0,0,0,0,0,0,0],
       rotation: 0,
     });
-    this.getConnectedTiles();
+    this.getConnectedTiles(maxRows, maxCols);
   }
 
-  private getConnectedTiles(maxRows = 10 , maxCols = 10) {
+  private getConnectedTiles(maxRows = 100 , maxCols = 100) {
     this.connected = new Set();
     const addConnectedWithinBounds = (row, col, increasedChance: 0 | 1 = 0) => {
       if (row < 1 || row >= maxRows) {

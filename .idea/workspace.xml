@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,13 +34,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CaveHeroesSaveEditor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/map editor/src/app/utility" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\app\utility" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\assets" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\tile creator\src\assets" />
       <recent name="C:\DEV\scenario-creator\src\app" />
@@ -120,7 +121,7 @@
       <workItem from="1697615894601" duration="6605000" />
       <workItem from="1697725313891" duration="32745000" />
       <workItem from="1698012056622" duration="180968000" />
-      <workItem from="1699553215466" duration="48030000" />
+      <workItem from="1699553215466" duration="64835000" />
     </task>
     <servers />
   </component>

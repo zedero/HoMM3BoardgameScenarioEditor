@@ -138,8 +138,16 @@ export class AppComponent implements OnInit {
     this.columns = Array(parseInt($event.target.value))
   }
 
-  generateRandomMap(r = 10 , c = 10) {
-    this.randomMapGenerationService.generateRandomMap();
+  generateRandomMap() {
+    this.rows = Array(17);
+    this.columns = Array(17);
+    setTimeout(() => {
+      const settings = {
+        size: 'MEDIUM',
+        playerCount: 3
+      }
+      this.randomMapGenerationService.generateRandomMap(settings);
+    }, 100)
   }
 
 }
