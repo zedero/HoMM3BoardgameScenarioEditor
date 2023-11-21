@@ -137,6 +137,14 @@
       "groundType": "GROUNDTYPE.RANDOM",
       "group": "GROUP.RANDOM"
     },
+    "PLACEHOLDER": {
+      "id": "PLACEHOLDER",
+      "img": "assets/placeholder.png",
+      "desc": "Random Center Tile",
+      "expansionID": "EXPANSION.RANDOM",
+      "groundType": "GROUNDTYPE.RANDOM",
+      "group": "GROUP.RANDOM"
+    },
     "C0": {
       "id": "C0",
       "img": "assets/tiles/random-6-7.png",

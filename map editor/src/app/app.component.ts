@@ -5,7 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 import {ImportExportDialogComponent} from "./components/import-export-dialog/import-export-dialog.component";
 import {ConfigService} from "./service/config.service";
-import { RandomMapGenerationService } from './service/random-map-generation.service';
+import { RandomMapGenerationService, RandomMapSettings } from './service/random-map-generation.service';
 
 
 @Component({
@@ -139,13 +139,19 @@ export class AppComponent implements OnInit {
   }
 
   generateRandomMap() {
-    this.rows = Array(17);
-    this.columns = Array(17);
-    setTimeout(() => {
-      const settings = {
-        size: 'MEDIUM',
-        playerCount: 3
+    let settings:RandomMapSettings = {
+      size: 'SMALL',
+      playerCount: 2,
+      grid: {
+        rows: 10,
+        cols: 10,
+        tiles: 10
       }
+    }
+    settings = this.randomMapGenerationService.getGridSizeFromSetting(settings)
+    this.rows = Array(settings.grid.rows + 2);
+    this.columns = Array(settings.grid.cols + 2);
+    setTimeout(() => {
       this.randomMapGenerationService.generateRandomMap(settings);
     }, 100)
   }
