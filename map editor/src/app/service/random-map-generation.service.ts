@@ -78,27 +78,26 @@ export class RandomMapGenerationService {
     }
   }
 
-  private distance(x1, y1, x2, y2) {
-    const a = x1 - x2;
-    const b = y1 - y2;
-    console.log(a,b)
-    return Math.sqrt( a*a + b*b );
-  }
+  // private distance(x1, y1, x2, y2) {
+  //   const a = x1 - x2;
+  //   const b = y1 - y2;
+  //   return Math.sqrt( a*a + b*b );
+  // }
 
   // calculate a tiles total distance to all other tiles (lower is more central)
-  calculateReachability(tiles: any) {
-    tiles.forEach((tile) => {
-      tile.reachability = 0;
-      tiles.forEach((tileCompared) => {
-        const dist = this.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
-        if (dist > tile.reachability) {
-          tile.reachability = dist;
-        }
-        // tile.reachability += this.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
-      });
-    });
-    return tiles;
-  }
+  // calculateReachability(tiles: any) {
+  //   tiles.forEach((tile) => {
+  //     tile.reachability = 0;
+  //     tiles.forEach((tileCompared) => {
+  //       const dist = this.calc.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
+  //       if (dist > tile.reachability) {
+  //         tile.reachability = dist;
+  //       }
+  //       // tile.reachability += this.distance(tile.row, tileCompared.row, tile.col, tileCompared.col)
+  //     });
+  //   });
+  //   return tiles;
+  // }
 
   placeStartingTownsPass(playerCount = 2) {
     const tiles:any = [...this.tilesService.tileList];

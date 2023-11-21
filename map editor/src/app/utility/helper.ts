@@ -12,7 +12,7 @@ export class Helper {
       tiles.forEach((tile) => {
         if (town.id !== tile.id) {
           const distance = this.distance(town.row, tile.row, town.col, tile.col);
-          console.log(distance, tile)
+          // console.log(distance, tile)
           if (distance <= 3) {
             neighbours.push(tile);
           }
@@ -37,6 +37,21 @@ export class Helper {
   }
 
   distance(x1, x2, y1, y2) {
+    // calculate offset to cube and then convert that to distance
+
+    var q = y1 - (x1 - (x1&1)) / 2;
+    var r = x1;
+    const s = -q-r;
+
+    var q2 = y2 - (x2 - (x2&1)) / 2;
+    var r2 = x2;
+    const s2 = -q2-r2;
+
+    return (Math.abs(q - q2) + Math.abs(r - r2) + Math.abs(s - s2)) / 2;
+
+
+
+
     const ax = x1 - this.floor2(y1);
     const ay = x1 + this.ceil2(y1);
     const bx = x2 - this.floor2(y2);
