@@ -63,7 +63,8 @@
       "desc": "Necropolis Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [1,0,0,0,1,1,1]
     },
     "S2": {
       "id": "S2",
@@ -71,7 +72,8 @@
       "desc": "Dungeon Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.SUBTERRAIN",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "S3": {
       "id": "S3",
@@ -79,7 +81,8 @@
       "desc": "Castle Starting tile",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.GRASS",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "#S1": {
       "id": "#S1",
@@ -87,7 +90,8 @@
       "desc": "Tower Starting tile",
       "expansionID": "EXPANSION.TOWER",
       "groundType": "GROUNDTYPE.SNOW",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "S4": {
       "id": "S4",
@@ -95,7 +99,8 @@
       "desc": "Rampart Starting tile",
       "expansionID": "EXPANSION.RAMPART",
       "groundType": "GROUNDTYPE.GRASS",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "S5": {
       "id": "S5",
@@ -103,7 +108,8 @@
       "desc": "Fortress Starting tile",
       "expansionID": "EXPANSION.FORTRESS",
       "groundType": "GROUNDTYPE.SWAMP",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "S6": {
       "id": "S6",
@@ -111,7 +117,8 @@
       "desc": "Inferno Starting tile",
       "expansionID": "EXPANSION.INFERNO",
       "groundType": "GROUNDTYPE.LAVA",
-      "group": "GROUP.STARTINGTILE"
+      "group": "GROUP.STARTINGTILE",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "S0": {
       "id": "S0",
@@ -119,7 +126,8 @@
       "desc": "Random Starting tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
-      "group": "GROUP.RANDOM"
+      "group": "GROUP.RANDOM",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "F0": {
       "id": "F0",
@@ -127,7 +135,8 @@
       "desc": "Random Far Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
-      "group": "GROUP.RANDOM"
+      "group": "GROUP.RANDOM",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "N0": {
       "id": "N0",
@@ -135,7 +144,8 @@
       "desc": "Random Near Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
-      "group": "GROUP.RANDOM"
+      "group": "GROUP.RANDOM",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "PLACEHOLDER": {
       "id": "PLACEHOLDER",
@@ -143,7 +153,8 @@
       "desc": "Random Center Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
-      "group": "GROUP.RANDOM"
+      "group": "GROUP.RANDOM",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "C0": {
       "id": "C0",
@@ -151,7 +162,8 @@
       "desc": "Random Center Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",
-      "group": "GROUP.RANDOM"
+      "group": "GROUP.RANDOM",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "C1": {
       "id": "C1",
@@ -159,7 +171,8 @@
       "desc": "Dragon Utopia",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
-      "group": "GROUP.CENTER"
+      "group": "GROUP.CENTER",
+      "blocked": [0,0,0,0,0,0,0]
     },
     "C2": {
       "id": "C2",
@@ -167,7 +180,8 @@
       "desc": "Grail",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
-      "group": "GROUP.CENTER"
+      "group": "GROUP.CENTER",
+      "blocked": [0,0,0,0,0,0,0]
     }
   }
 }

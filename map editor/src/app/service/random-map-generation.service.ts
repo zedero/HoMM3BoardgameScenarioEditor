@@ -61,6 +61,7 @@ export class RandomMapGenerationService {
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
     this.placeStartingTownsPass(settings.playerCount);
     this.connectToStartingTilePass();
+    this.replacePlaceholderTilesPass(settings.playerCount)
     this.flipTilesToFront();
   }
 
@@ -109,9 +110,12 @@ export class RandomMapGenerationService {
     }
 
     const neighbourTiles = this.calc.getNeighbours(tiles, possibleTownTiles);
+    const tilesCleaned = this.calc.removeFromArray(tiles, [...possibleTownTiles,...neighbourTiles]);
 
     // const mid = this.calc.midPoint(furthestPoints.tileOne.row, furthestPoints.tileOne.col, furthestPoints.tileTwo.row, furthestPoints.tileTwo.col);
-    const tilesCleaned = this.calc.removeFromArray(tiles, [...possibleTownTiles,...neighbourTiles]);
+    // this.calc.getFurthestFromPoint(mid, tilesCleaned);
+    // possibleTownTiles.push(this.calc.getFurthestFromPoint(mid, tilesCleaned));
+
     const three = this.calc.getFurthestFromTwoPoint(
       possibleTownTiles[0].row,
       possibleTownTiles[0].col,
@@ -128,6 +132,41 @@ export class RandomMapGenerationService {
     }
   }
 
+  private replacePlaceholderTilesPass(playerCount) {
+    const count = (ID: string) => {
+      return this.tilesService.tileList.reduce((acc, current) => {
+        if (current.tileId === ID) {
+          acc++;
+        }
+        return acc;
+      },0);
+    }
+    const countPlaceholders = count("PLACEHOLDER");
+    const farArr = new Array(playerCount - count("F0")).fill("F0");
+    const nearArr = new Array(playerCount - count("N0")).fill("N0");
+    const remainder = count("PLACEHOLDER") - farArr.length - nearArr.length;
+    let randomArr = []
+    if (remainder > 0) {
+      // @ts-ignore
+      randomArr = new Array(remainder + 1).fill('C0');
+    }
+
+
+
+    const placeable = [...farArr, ...nearArr, ...randomArr];
+
+
+
+    this.tilesService.tileList.map((tile) => {
+      if (tile.tileId === "PLACEHOLDER") {
+        const pick = placeable.splice(this.random(0,placeable.length-1), 1);
+        tile.tileId = pick;
+        // const pick = tileList[this.random(0,tileList.length-1)];
+        // tile.tileId = pick;
+      }
+    });
+  }
+
   private connectToStartingTilePass() {
     const tiles = [...this.tilesService.tileList];
     tiles.sort((a,b) => {
@@ -140,14 +179,13 @@ export class RandomMapGenerationService {
       }
     });
 
-    return;
+
 
     towns.forEach((town) => {
       const neighbours = this.calc.getNeighbours(tiles, [town]);
       neighbours[0].tileId = "F0";
       this.tilesService.updateTileData(neighbours[0]);
     })
-
 
     const farTiles = tiles.filter((tile) => {
       if (tile.tileId === "F0") {
@@ -160,23 +198,21 @@ export class RandomMapGenerationService {
       const tile = neighbours.find((neightbour) => neightbour.tileId !== "S0" && neightbour.tileId !== "F0")
       if (!tile) {
         console.log(neighbours, tile)
+        return;
       }
       tile.tileId = "N0";
       this.tilesService.updateTileData(tile);
     })
-
   }
 
   private flipTilesToFront() {
     // Flip towns:
     const towns = ['#S1', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
+    const random = ["F0", "N0", "C0"]
     this.tilesService.tileList.map((tile) => {
       if (tile.tileId === "S0") {
         const pick = towns.splice(this.random(0,towns.length-1), 1);
         tile.tileId = pick;
-      }
-      if (tile.tileId === "PLACEHOLDER") {
-        tile.tileId = "C0";
       }
     });
 

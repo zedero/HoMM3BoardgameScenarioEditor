@@ -36,6 +36,59 @@ export class Helper {
     return newList;
   }
 
+  oddRToCube(row, col) {
+    const q = col - (row - (row&1)) / 2;
+    const r = row;
+    const s = -q-r;
+    return {
+      q,r,s
+    }
+  }
+
+  cubeToOddR(q,r) {
+    const col = q + (r - (r&1)) / 2
+    var row = r
+    return {
+      row, col
+    }
+  }
+
+  getCellNeighbours(row,col) {
+    const oddr_direction_differences = [
+      // even rows
+      [[+1,  0], [ 0, -1], [-1, -1],
+        [-1,  0], [-1, +1], [ 0, +1]],
+      // odd rows
+      [[+1,  0], [+1, -1], [ 0, -1],
+        [-1,  0], [ 0, +1], [+1, +1]],
+
+      // even rows
+      [[+1,  0], [ 0, -1], [-1, -1],
+        [-1,  0], [-1, +1], [ 0, +1]],
+      // odd rows
+      [[+1,  0], [+1, -1], [ 0, -1],
+        [-1,  0], [ 0, +1], [+1, +1]],
+
+    ]
+      // ['1.2', '0.2', '0.1', '1.0', '2.1', '2.2']
+
+
+    const parity = row & 1;
+    console.log(row & 1)
+    const neighbours: any = [];
+    oddr_direction_differences[parity].forEach((nb, index) => {
+      const diff = oddr_direction_differences[parity][index]
+      neighbours.push((row + diff[1]) + "." + (col + diff[0]))
+    });
+    return neighbours;
+  }
+
+  getCellPlusNeighbours(row,col) {
+    const neighbours: any = this.getCellNeighbours(row, col);
+    neighbours.push(row + "." + col);
+    return neighbours;
+  }
+
   distance(x1, x2, y1, y2) {
     // calculate offset to cube
     var q = y1 - (x1 - (x1&1)) / 2;
