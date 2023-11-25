@@ -99,3 +99,21 @@ input[type="number"] {
   height: 30px;
   width: 75px
 }
+
+.invalid-map {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s opacity;
+
+  &.show {
+    opacity: .75;
+  }
+}

@@ -24,6 +24,7 @@ export class TilesService {
   public blockedCells:any = new Set();
   public walkableCells:any = new Set();
   public mapSelection = "default";
+  public isValidMap:boolean = true;
 
   public tilesUpdated: any = new BehaviorSubject('');
 
@@ -80,7 +81,9 @@ export class TilesService {
 
   public updateLists() {
     this.generateBlockedCellsList();
-    this.isValid();
+    setTimeout(() => {
+      this.isValidMap = this.isValid();
+    })
   }
 
   isEven(n) {
@@ -89,18 +92,30 @@ export class TilesService {
 
   isValid() {
     const walkable = this.generateWalkableCellsList();
-    const start = '1.1'
+    if (!this.tileList.length) {
+      console.log('EMPTY LIST')
+      return true;
+    }
+    const start = this.tileList[0].row + '.' + this.tileList[0].col;
 
     const frontier: any = [];
     frontier.push(start);
     const reached = new Set();
     reached.add(start);
 
-    // while (frontier.length > 0) {
+    while (frontier.length > 0) {
       const current = frontier.shift();
-
-    // }
-
+      const pos = current.split('.').map((a)=>{return Number(a)});
+      const row = pos[0];
+      const col = pos[1];
+      this.calc.getCellNeighbours(row,col).forEach((next) => {
+        if(!reached.has(next) && walkable.has(next)) {
+          frontier.push(next);
+          reached.add(next);
+        }
+      });
+    }
+    return reached.size === walkable.size;
   }
 
   generateWalkableCellsList() {

@@ -1,3 +1,4 @@
+<div class="invalid-map" [class.show]="!tilesService.isValidMap">The current tile placement is invalid. Connect all tiles and make sure borders dont isolate tiles</div>
 <div class="grid" id="grid">
  <div class="row" *ngFor="let row of rows; index as rowIndex">
    <div class="column" *ngFor="let column of columns; index as colIndex">
