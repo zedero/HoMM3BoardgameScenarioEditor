@@ -212,11 +212,22 @@ export class RandomMapGenerationService {
     this.tilesService.tileList.map((tile) => {
       if (tile.tileId === "S0") {
         const pick = towns.splice(this.random(0,towns.length-1), 1);
-        tile.tileId = pick;
+        // tile.tileId = pick;
+        this.flipAndValidate(tile, pick);
       }
     });
 
     // Flip others:
+  }
+
+  private flipAndValidate(tile, tileId) {
+    tile.tileId = tileId;
+    for(let i = 1; i< 6; i++) {
+      if (this.tilesService.isValid()) {
+        break;
+      };
+      tile.rotation = i;
+    }
   }
 
   private placeTileById(id: any, maxRows:number, maxCols:number) {
