@@ -158,8 +158,8 @@ export class RandomMapGenerationService {
 
 
     this.tilesService.tileList.map((tile) => {
-      if (tile.tileId === "PLACEHOLDER") {
-        const pick = placeable.splice(this.random(0,placeable.length-1), 1);
+      if (tile.tileId === "PLACEHOLDER" && placeable.length) {
+        const pick = placeable.splice(this.random(0,placeable.length-1), 1)[0];
         tile.tileId = pick;
         // const pick = tileList[this.random(0,tileList.length-1)];
         // tile.tileId = pick;
