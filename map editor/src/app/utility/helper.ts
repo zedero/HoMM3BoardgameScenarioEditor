@@ -56,25 +56,14 @@ export class Helper {
   getCellNeighbours(row,col) {
     const oddr_direction_differences = [
       // even rows
-      [[+1,  0], [ 0, -1], [-1, -1],
-        [-1,  0], [-1, +1], [ 0, +1]],
+      [[ 0, -1], [+1,  0], [ 0, +1],
+        [-1, +1], [-1,  0], [-1, -1]],
       // odd rows
-      [[+1,  0], [+1, -1], [ 0, -1],
-        [-1,  0], [ 0, +1], [+1, +1]],
-
-      // even rows
-      [[+1,  0], [ 0, -1], [-1, -1],
-        [-1,  0], [-1, +1], [ 0, +1]],
-      // odd rows
-      [[+1,  0], [+1, -1], [ 0, -1],
-        [-1,  0], [ 0, +1], [+1, +1]],
-
-    ]
-      // ['1.2', '0.2', '0.1', '1.0', '2.1', '2.2']
-
+      [[+1, -1], [+1,  0], [+1, +1],
+        [ 0, +1], [-1,  0], [ 0, -1]],
+    ];
 
     const parity = row & 1;
-    console.log(row & 1)
     const neighbours: any = [];
     oddr_direction_differences[parity].forEach((nb, index) => {
       const diff = oddr_direction_differences[parity][index]

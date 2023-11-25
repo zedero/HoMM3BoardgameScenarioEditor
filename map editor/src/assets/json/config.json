@@ -64,7 +64,7 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [1,0,0,0,1,1,1]
+      "blocked": [0,1,1,1,0,1]
     },
     "S2": {
       "id": "S2",
@@ -73,7 +73,7 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.SUBTERRAIN",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [1,0,1,1,1,0]
     },
     "S3": {
       "id": "S3",
@@ -82,7 +82,7 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.GRASS",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [0,1,1,1,0,1]
     },
     "#S1": {
       "id": "#S1",
@@ -91,7 +91,7 @@
       "expansionID": "EXPANSION.TOWER",
       "groundType": "GROUNDTYPE.SNOW",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [1,0,1,1,1,0]
     },
     "S4": {
       "id": "S4",
@@ -100,7 +100,7 @@
       "expansionID": "EXPANSION.RAMPART",
       "groundType": "GROUNDTYPE.GRASS",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [0,1,0,1,1,1]
     },
     "S5": {
       "id": "S5",
@@ -109,7 +109,7 @@
       "expansionID": "EXPANSION.FORTRESS",
       "groundType": "GROUNDTYPE.SWAMP",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [1,1,1,0,1,0]
     },
     "S6": {
       "id": "S6",
@@ -118,7 +118,7 @@
       "expansionID": "EXPANSION.INFERNO",
       "groundType": "GROUNDTYPE.LAVA",
       "group": "GROUP.STARTINGTILE",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [0,1,0,1,1,1]
     },
     "S0": {
       "id": "S0",
@@ -172,7 +172,7 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.CENTER",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [0,1,0,0,0,0]
     },
     "C2": {
       "id": "C2",
@@ -181,7 +181,7 @@
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.CENTER",
-      "blocked": [0,0,0,0,0,0,0]
+      "blocked": [0,0,1,0,0,0]
     }
   }
 }

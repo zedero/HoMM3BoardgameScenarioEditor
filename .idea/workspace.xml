@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/cell/cell.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/cell/cell.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/service/tiles.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/tiles.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/assets/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/json/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/schoolbook" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/schoolbook" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +124,7 @@
       <workItem from="1697725313891" duration="32745000" />
       <workItem from="1698012056622" duration="180968000" />
       <workItem from="1699553215466" duration="75128000" />
-      <workItem from="1700554675633" duration="27995000" />
+      <workItem from="1700554675633" duration="32079000" />
     </task>
     <servers />
   </component>

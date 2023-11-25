@@ -80,27 +80,47 @@ export class TilesService {
 
   public updateLists() {
     this.generateBlockedCellsList();
-    this.generateWalkableCellsList();
+    this.isValid();
   }
 
   isEven(n) {
     return n % 2 == 0;
   }
 
+  isValid() {
+    const walkable = this.generateWalkableCellsList();
+    const start = '1.1'
+
+    const frontier: any = [];
+    frontier.push(start);
+    const reached = new Set();
+    reached.add(start);
+
+    // while (frontier.length > 0) {
+      const current = frontier.shift();
+
+    // }
+
+  }
+
   generateWalkableCellsList() {
-    console.log(this.calc.getCellNeighbours(1,1));
     const walkableCells = new Set();
     this.tileList.forEach((tile) => {
-      const blockedList = this.config.TILES[tile.tileId]?.blocked;
+      let blockedList = this.config.TILES[tile.tileId]?.blocked;
       if (!blockedList) {
         return
       }
+      // double the list for easier cell rotation calculation
+      blockedList = [...blockedList, ...blockedList];
       const cells = this.calc.getCellNeighbours(tile.row,tile.col);
-      cells.forEach((cell) => {
-        walkableCells.add(cell);
+      walkableCells.add(tile.row + '.' + tile.col);
+      cells.forEach((cell, index) => {
+        if (!blockedList[index + 6 - tile.rotation]) {
+          walkableCells.add(cell);
+        }
       });
     });
-    console.log(walkableCells);
+    return walkableCells;
   }
 
   generateBlockedCellsList(excludeGuid?: string) {

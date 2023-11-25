@@ -60,15 +60,15 @@ img {
   justify-content: center;
   align-items: center;
 
-  &.blocked {
-    background-color: rgba(255,0,0,.3);
-    clip-path: polygon(50% 0%, 100% 26%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    pointer-events: none;
-  }
-  &.connected {
-    background-color: rgba(0,255,0,.3);
-    clip-path: polygon(50% 0%, 100% 26%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    pointer-events: none;
-  }
+  //&.blocked {
+  //  background-color: rgba(255,0,0,.3);
+  //  clip-path: polygon(50% 0%, 100% 26%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  //  pointer-events: none;
+  //}
+  //&.connected {
+  //  background-color: rgba(0,255,0,.3);
+  //  clip-path: polygon(50% 0%, 100% 26%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  //  pointer-events: none;
+  //}
 
 }
