@@ -358,7 +358,7 @@ export class TilesService {
     });
     this.tileList = list;
   }
-  
+
   moveAllDownLeft() {
     const list = JSON.parse(JSON.stringify(this.tileList));
     const highestTopPos = list.reduce((acc, value) => {
