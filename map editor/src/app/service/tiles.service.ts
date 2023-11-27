@@ -263,15 +263,15 @@ export class TilesService {
       }
     }, -1)
 
-    const lowestLeftPos = list.reduce((acc, value) => {
-      if (acc === -1 || value.col < acc) {
+    const HighestRightPos = list.reduce((acc, value) => {
+      if (acc === -1 || value.col > acc) {
         return value.col;
       } else {
         return acc;
       }
-    }, -1)
+    }, -1);
 
-    if (lowestTopPos <= 1) { // TODO ADD RIGHT MAX CHECK
+    if (lowestTopPos <= 1 || HighestRightPos >= this.rows.length - 2) { // TODO ADD RIGHT MAX CHECK
       return
     }
 
@@ -308,20 +308,84 @@ export class TilesService {
 
   moveAllRight() {
     const list = JSON.parse(JSON.stringify(this.tileList));
-    // const lowestLeftPos = list.reduce((acc, value) => {
-    //   if (acc === -1 || value.col < acc) {
-    //     return value.col;
-    //   } else {
-    //     return acc;
-    //   }
-    // }, -1)
-    //
-    // if (lowestLeftPos <= 2) {
-    //   return
-    // }
+    const HighestRightPos = list.reduce((acc, value) => {
+      if (acc === -1 || value.col > acc) {
+        return value.col;
+      } else {
+        return acc;
+      }
+    }, -1);
+
+    if (HighestRightPos >= this.rows.length - 2) {
+      return
+    }
 
     list.map((tile) => {
       tile.col = tile.col + 1;
+      this.updateTileData(tile);
+    });
+    this.tileList = list;
+  }
+
+  moveAllDownRight() {
+    const list = JSON.parse(JSON.stringify(this.tileList));
+    const highestTopPos = list.reduce((acc, value) => {
+      if (acc === -1 || value.row > acc) {
+        return value.row;
+      } else {
+        return acc;
+      }
+    }, -1)
+
+    const HighestRightPos = list.reduce((acc, value) => {
+      if (acc === 0 || value.col > acc) {
+        return value.col;
+      } else {
+        return acc;
+      }
+    }, -1);
+
+    if (highestTopPos >= this.columns.length - 2 || HighestRightPos >= this.rows.length - 2) { // TODO ADD RIGHT MAX CHECK
+      return
+    }
+
+    list.map((tile: any) => {
+      if ((tile.row & 1)) {
+        tile.col = tile.col + 1;
+      }
+      tile.row = tile.row +1;
+      this.updateTileData(tile);
+    });
+    this.tileList = list;
+  }
+  
+  moveAllDownLeft() {
+    const list = JSON.parse(JSON.stringify(this.tileList));
+    const highestTopPos = list.reduce((acc, value) => {
+      if (acc === -1 || value.row > acc) {
+        return value.row;
+      } else {
+        return acc;
+      }
+    }, -1)
+
+    const lowestLeftPos = list.reduce((acc, value) => {
+      if (acc === -1 || value.col < acc) {
+        return value.col;
+      } else {
+        return acc;
+      }
+    }, -1);
+
+    if (highestTopPos >= this.columns.length - 2 || lowestLeftPos <=  2) { // TODO ADD RIGHT MAX CHECK
+      return
+    }
+
+    list.map((tile: any) => {
+      if (!(tile.row & 1)) {
+        tile.col = tile.col -1;
+      }
+      tile.row = tile.row + 1;
       this.updateTileData(tile);
     });
     this.tileList = list;

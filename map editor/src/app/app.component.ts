@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tilesService.rows = this.rows;
+    this.tilesService.columns = this.columns;
     this.tilesService.tilesUpdated.subscribe((val) => {
       this.setTileContainerDimensions();
     });
@@ -157,6 +159,12 @@ export class AppComponent implements OnInit {
   moveRight() {
     this.tilesService.moveAllRight();
   }
+  moveDownRight() {
+    this.tilesService.moveAllDownRight();
+  }
+  moveDownLeft() {
+    this.tilesService.moveAllDownLeft();
+  }
 
   generateRandomMap() {
     let settings:RandomMapSettings = {
@@ -168,9 +176,18 @@ export class AppComponent implements OnInit {
         tiles: 10
       }
     }
-    settings = this.randomMapGenerationService.getGridSizeFromSetting(settings)
-    this.rows = Array(settings.grid.rows + 2);
-    this.columns = Array(settings.grid.cols + 2);
+    settings = this.randomMapGenerationService.getGridSizeFromSetting(settings);
+    this.changeRows({
+      target: {
+        value: settings.grid.rows + 2
+      }
+    })
+    this.changeCols({
+      target: {
+        value: settings.grid.cols + 2
+      }
+    })
+
     setTimeout(() => {
       this.randomMapGenerationService.generateRandomMap(settings);
     }, 100)

@@ -130,23 +130,27 @@ input[type="number"] {
   position: fixed;
   top: 0;
   right: 30px;
-  background-color: white;
-  border: 1px solid black;
+  background-color: rgba(255,255,255,1);
+  filter: drop-shadow(0px 0px 3px #000000);
   padding: 10px;
-  background-image: url("/assets/single-tile.png");
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  opacity: .9;
 
   width: 150px;
+  z-index: 1;
 
 
   button {
     margin: 0;
+    height: 40px;
+    width: 40px;
   }
 
   & > div {
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 10px;
   }
 }
