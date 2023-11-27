@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {TilesService} from "./service/tiles.service";
 import * as htmlToImage from 'html-to-image';
 import {MatDialog} from "@angular/material/dialog";
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   public tileContainerWidth = '200px';
   public rows = Array(this.tilesPerRow * 3);
   public columns = Array(this.tilesPerColumn * 3);
+  public moveMenuVisible = true;
 
   public tileList:any = [];
 
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit {
     public tilesService: TilesService,
               public dialog: MatDialog,
               private configService: ConfigService,
-              private randomMapGenerationService: RandomMapGenerationService
+              private randomMapGenerationService: RandomMapGenerationService,
+              public zone: NgZone
   ) {
     configService.load().then(() => {
       this.loaded = true;
@@ -128,7 +130,8 @@ export class AppComponent implements OnInit {
     if (!$event.target.value) {
       return
     }
-    this.rows = Array(parseInt($event.target.value))
+    this.rows = Array(parseInt($event.target.value));
+    this.tilesService.rows = this.rows;
   }
 
   changeCols($event: any) {
@@ -136,6 +139,23 @@ export class AppComponent implements OnInit {
       return
     }
     this.columns = Array(parseInt($event.target.value))
+    this.tilesService.columns = this.columns;
+  }
+
+  toggleMoveMenu() {
+    this.moveMenuVisible = !this.moveMenuVisible;
+  }
+  moveUpLeft() {
+    this.tilesService.moveAllUpLeft();
+  }
+  moveUpRight() {
+    this.tilesService.moveAllUpRight();
+  }
+  moveLeft() {
+    this.tilesService.moveAllLeft();
+  }
+  moveRight() {
+    this.tilesService.moveAllRight();
   }
 
   generateRandomMap() {

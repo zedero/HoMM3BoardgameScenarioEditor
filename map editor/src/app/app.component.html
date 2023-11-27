@@ -13,6 +13,20 @@
   </div>
 </div>
 
+<div class="moveMenu" *ngIf="moveMenuVisible">
+  <div>
+    <button (click)="moveUpLeft()" class="toolbar-button rot-left"><i class="fa-solid fa-up-long"></i></button>
+    <button (click)="moveUpRight()" class="toolbar-button rot-right"><i class="fa-solid fa-up-long"></i></button>
+  </div>
+  <div>
+    <button (click)="moveLeft()" class="toolbar-button"><i class="fa-solid fa-left-long"></i></button>
+    <button (click)="moveRight()" class="toolbar-button"><i class="fa-solid fa-right-long"></i></button>
+  </div>
+  <div>
+    <button (click)="moveUpLeft()" class="toolbar-button rot-right"><i class="fa-solid fa-down-long"></i></button>
+    <button (click)="moveUpRight()" class="toolbar-button rot-left"><i class="fa-solid fa-down-long"></i></button>
+  </div>
+</div>
 <div class="toolbar">
 <!--  <div class="inputGroup">-->
 <!--    <label>Rows:</label>-->
@@ -23,6 +37,8 @@
 <!--    <label>Columns:</label>-->
 <!--    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">-->
 <!--  </div>-->
+
+  <button (click)="toggleMoveMenu()" class="toolbar-button"><i class="fa-solid fa-up-down-left-right"></i></button>
   <button (click)="generateRandomMap()" class="toolbar-button">RND</button>
   <button (click)="importExport()" class="toolbar-button">Import / Export Map</button>
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>

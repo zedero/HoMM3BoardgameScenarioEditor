@@ -63,6 +63,7 @@ export class RandomMapGenerationService {
     this.connectToStartingTilePass();
     this.replacePlaceholderTilesPass(settings.playerCount)
     this.flipTilesToFront();
+    this.moveAllToTopLeft();
   }
 
   private generateConnectedRandomMap(maxRows , maxCols, maxTiles) {
@@ -211,7 +212,7 @@ export class RandomMapGenerationService {
     const random = ["F0", "N0", "C0"]
     this.tilesService.tileList.map((tile) => {
       if (tile.tileId === "S0") {
-        const pick = towns.splice(this.random(0,towns.length-1), 1);
+        const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
         // tile.tileId = pick;
         this.flipAndValidate(tile, pick);
       }
@@ -379,6 +380,18 @@ export class RandomMapGenerationService {
 
   private clearGrid() {
     this.tilesService.clearGrid();
+  }
+
+  private moveAllToTopLeft() {
+    for (let i = 0; i < 10; i++) {
+      this.tilesService.moveAllUpRight();
+    }
+    for (let i = 0; i < 10; i++) {
+      this.tilesService.moveAllUpLeft();
+    }
+    for (let i = 0; i < 10; i++) {
+      this.tilesService.moveAllLeft();
+    }
   }
 
 }

@@ -58,6 +58,14 @@
   }
 }
 
+.rot-left {
+  rotate: -45deg;
+}
+
+.rot-right {
+  rotate: 45deg;
+}
+
 .toolbar {
   display: flex;
   justify-content: flex-end;
@@ -115,5 +123,30 @@ input[type="number"] {
 
   &.show {
     opacity: .75;
+  }
+}
+
+.moveMenu {
+  position: fixed;
+  top: 0;
+  right: 30px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  background-image: url("/assets/single-tile.png");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  width: 150px;
+
+
+  button {
+    margin: 0;
+  }
+
+  & > div {
+    display: flex;
+    justify-content: space-evenly;
   }
 }
