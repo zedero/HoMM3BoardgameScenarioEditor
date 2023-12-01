@@ -39,16 +39,16 @@ export class RandomMapGenerationService {
     }
     if(settings.size === "MEDIUM") {
       settings.grid =  {
-        rows: 15,
-        cols: 15,
-        tiles: 10
+        rows: 13,
+        cols: 13,
+        tiles: 15
       }
     }
     if(settings.size === "LARGE") {
       settings.grid =  {
         rows: 20,
         cols: 20,
-        tiles: 15
+        tiles: 30
       }
     }
     return settings;
@@ -59,6 +59,7 @@ export class RandomMapGenerationService {
     this.clearGrid();
     this.generateConnectedRandomMap(settings?.grid?.rows, settings?.grid?.cols, settings?.grid?.tiles);
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
+    this.test();
     this.placeStartingTownsPass(settings.playerCount);
     this.connectToStartingTilePass();
     this.replacePlaceholderTilesPass(settings.playerCount)
@@ -101,10 +102,27 @@ export class RandomMapGenerationService {
   //   return tiles;
   // }
 
+  test(playerCount = 2) {
+    const tiles:any = [...this.tilesService.tileList];
+    const solution: any[] = [];
+    const addToSolution = (tile: any) => {
+      const tileListIndex = tiles.findIndex((element: any) => {
+        return element.id === tile.id;
+      });
+      tiles.splice(tileListIndex, 1);
+      solution.push(tiles[tileListIndex]);
+    }
+
+    addToSolution(tiles[0]);
+
+
+
+  }
+
   placeStartingTownsPass(playerCount = 2) {
     const tiles:any = [...this.tilesService.tileList];
     const furthestPoints = this.calc.getFurthestTwoPoints(tiles);
-    const possibleTownTiles: any = [];
+    let possibleTownTiles: any = [];
     possibleTownTiles.push(furthestPoints.tileOne);
     if (playerCount > 1) {
       possibleTownTiles.push(furthestPoints.tileTwo);
@@ -112,10 +130,6 @@ export class RandomMapGenerationService {
 
     const neighbourTiles = this.calc.getNeighbours(tiles, possibleTownTiles);
     const tilesCleaned = this.calc.removeFromArray(tiles, [...possibleTownTiles,...neighbourTiles]);
-
-    // const mid = this.calc.midPoint(furthestPoints.tileOne.row, furthestPoints.tileOne.col, furthestPoints.tileTwo.row, furthestPoints.tileTwo.col);
-    // this.calc.getFurthestFromPoint(mid, tilesCleaned);
-    // possibleTownTiles.push(this.calc.getFurthestFromPoint(mid, tilesCleaned));
 
     const three = this.calc.getFurthestFromTwoPoint(
       possibleTownTiles[0].row,
@@ -126,6 +140,8 @@ export class RandomMapGenerationService {
     );
     possibleTownTiles.push(three);
 
+    const possibleTownLocation = this.calc.getKFurthestPoints(playerCount, tiles);
+    possibleTownTiles = possibleTownLocation;
 
     for (let i = 0; i < playerCount && i < possibleTownTiles.length; i++) {
       possibleTownTiles[i].tileId = 'S0'

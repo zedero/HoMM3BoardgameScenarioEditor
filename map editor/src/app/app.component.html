@@ -38,7 +38,12 @@
 <!--    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">-->
 <!--  </div>-->
 
-  <button (click)="toggleMoveMenu()" class="toolbar-button"><i class="fa-solid fa-up-down-left-right"></i></button>
+  <button
+    (click)="toggleMoveMenu()"
+    class="toolbar-button"
+    matTooltip="Toggle move all tiles menu"
+    [matTooltipPosition]="'above'"
+  ><i class="fa-solid fa-up-down-left-right"></i></button>
   <button (click)="generateRandomMap()" class="toolbar-button">RND</button>
   <button (click)="importExport()" class="toolbar-button">Import / Export Map</button>
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>

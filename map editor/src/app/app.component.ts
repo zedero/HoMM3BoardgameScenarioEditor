@@ -8,6 +8,7 @@ import {ConfigService} from "./service/config.service";
 import { RandomMapGenerationService, RandomMapSettings } from './service/random-map-generation.service';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   public tileContainerWidth = '200px';
   public rows = Array(this.tilesPerRow * 3);
   public columns = Array(this.tilesPerColumn * 3);
-  public moveMenuVisible = true;
+  public moveMenuVisible = false;
 
   public tileList:any = [];
 
@@ -169,7 +170,7 @@ export class AppComponent implements OnInit {
   generateRandomMap() {
     let settings:RandomMapSettings = {
       size: 'SMALL',
-      playerCount: 2,
+      playerCount: 3,
       grid: {
         rows: 10,
         cols: 10,

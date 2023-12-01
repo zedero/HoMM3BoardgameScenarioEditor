@@ -12,6 +12,7 @@ import {CommonModule} from "@angular/common";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -45,7 +46,8 @@ import { PortraitComponent } from './components/portrait/portrait.component';
     MatCheckboxModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule, MatFormFieldModule, MatInputModule,ClipboardModule
+    ReactiveFormsModule, MatFormFieldModule, MatInputModule,ClipboardModule,
+    MatTooltipModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent]
