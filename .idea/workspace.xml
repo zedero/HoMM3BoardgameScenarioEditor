@@ -4,8 +4,8 @@
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" afterDir="false" />
     </list>
@@ -137,7 +137,7 @@
       <workItem from="1698012056622" duration="180968000" />
       <workItem from="1699553215466" duration="75128000" />
       <workItem from="1700554675633" duration="48042000" />
-      <workItem from="1701184156614" duration="17348000" />
+      <workItem from="1701184156614" duration="26857000" />
     </task>
     <servers />
   </component>

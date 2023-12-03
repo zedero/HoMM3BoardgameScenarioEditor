@@ -48,7 +48,7 @@ export class RandomMapGenerationService {
       settings.grid =  {
         rows: 20,
         cols: 20,
-        tiles: 30
+        tiles: 20
       }
     }
     return settings;
@@ -123,25 +123,12 @@ export class RandomMapGenerationService {
     const tiles:any = [...this.tilesService.tileList];
     const furthestPoints = this.calc.getFurthestTwoPoints(tiles);
     let possibleTownTiles: any = [];
-    possibleTownTiles.push(furthestPoints.tileOne);
-    if (playerCount > 1) {
-      possibleTownTiles.push(furthestPoints.tileTwo);
+
+    if (playerCount === 1) {
+      possibleTownTiles.push(furthestPoints.tileOne);
+    } else {
+      possibleTownTiles = this.calc.getKFurthestPoints(playerCount, tiles);;
     }
-
-    const neighbourTiles = this.calc.getNeighbours(tiles, possibleTownTiles);
-    const tilesCleaned = this.calc.removeFromArray(tiles, [...possibleTownTiles,...neighbourTiles]);
-
-    const three = this.calc.getFurthestFromTwoPoint(
-      possibleTownTiles[0].row,
-      possibleTownTiles[0].col,
-      possibleTownTiles[1].row,
-      possibleTownTiles[1].col,
-      tilesCleaned
-    );
-    possibleTownTiles.push(three);
-
-    const possibleTownLocation = this.calc.getKFurthestPoints(playerCount, tiles);
-    possibleTownTiles = possibleTownLocation;
 
     for (let i = 0; i < playerCount && i < possibleTownTiles.length; i++) {
       possibleTownTiles[i].tileId = 'S0'

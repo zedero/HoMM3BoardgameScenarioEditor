@@ -49,3 +49,14 @@
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>
   <button (click)="generateImage()" class="toolbar-button">Generate Image</button>
 </div>
+
+<div class="loading" *ngIf="loading">
+  <div class="overlay"></div>
+  <div>
+    <i class="fa-solid fa-gear"></i>
+  </div>
+  <div class="repos">
+    <i class="fa-solid fa-gear reverse"></i>
+  </div>
+  <div class="txt">Generating Map</div>
+</div>

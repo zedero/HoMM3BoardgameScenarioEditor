@@ -15,14 +15,15 @@ import { RandomMapGenerationService, RandomMapSettings } from './service/random-
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public tilesPerRow = 5;
-  public tilesPerColumn = 5;
+  public tilesPerRow = 7;
+  public tilesPerColumn = 7;
 
   public tileContainerHeight = '200px';
   public tileContainerWidth = '200px';
   public rows = Array(this.tilesPerRow * 3);
   public columns = Array(this.tilesPerColumn * 3);
   public moveMenuVisible = false;
+  public loading: boolean = false;
 
   public tileList:any = [];
 
@@ -169,8 +170,8 @@ export class AppComponent implements OnInit {
 
   generateRandomMap() {
     let settings:RandomMapSettings = {
-      size: 'SMALL',
-      playerCount: 3,
+      size: 'LARGE',
+      playerCount: 4,
       grid: {
         rows: 10,
         cols: 10,
@@ -188,9 +189,10 @@ export class AppComponent implements OnInit {
         value: settings.grid.cols + 2
       }
     })
-
+    this.loading = true;
     setTimeout(() => {
       this.randomMapGenerationService.generateRandomMap(settings);
+      this.loading = false;
     }, 100)
   }
 

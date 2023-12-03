@@ -154,3 +154,50 @@ input[type="number"] {
     margin-bottom: 10px;
   }
 }
+
+.loading {
+  top: 40vh;
+  left: 50vw;
+  position: fixed;
+  z-index: 1000;
+
+  .txt {
+    color: #EEE;
+    font-weight: bold;
+    font-size: 2rem;
+    position: relative;
+    transform: translate(-25%, 0);
+  }
+
+  .overlay {
+    top: 0;
+    left: 0;
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  i {
+    animation:spin 1.5s linear infinite;
+    //color: #781296;
+    color: #EEE;
+    font-size: 4rem;
+    font-weight: bold;
+
+    &.reverse {
+      animation:spin 1.5s linear infinite reverse;
+    }
+  }
+
+  .repos {
+    transform: translate(2.5rem, -1.2rem);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform:rotate(360deg);
+  }
+}
