@@ -38,6 +38,11 @@
 <!--    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">-->
 <!--  </div>-->
 
+  <button (click)="openSettings()"
+          class="toolbar-button"
+          matTooltip="Random map generation settings"
+          [matTooltipPosition]="'above'"
+  ><i class="fa-solid fa-gear"></i></button>
   <button
     (click)="toggleMoveMenu()"
     class="toolbar-button"

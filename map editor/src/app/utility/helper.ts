@@ -4,7 +4,14 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 export class Helper {
-  constructor() {}
+  public randomMapGeneratorWorker: any;
+  constructor() {
+    this.randomMapGeneratorWorker = new Worker(new URL('../app.worker', import.meta.url));
+    this.randomMapGeneratorWorker.onmessage = ({ data }) => {
+      console.log(data)
+      console.log(`page got message: ${data}`);
+    };
+  }
 
   getNeighbours(tiles, towns) {
     const neighbours: any[] = [];
@@ -148,6 +155,15 @@ export class Helper {
   }
 
   getKFurthestPoints(k: number, tileList: any) {
+    const data = {
+      k,
+      tileList,
+      walkable: this.generateWalkableCellsList(tileList)
+    }
+
+    // CALL UPON WEBWORKER TO DO THE MATH
+    // this.randomMapGeneratorWorker.postMessage(data);
+
     console.time('Time Spend')
     const choose = function(arr, k, prefix: any=[]) {
       if (k == 0) return [prefix];

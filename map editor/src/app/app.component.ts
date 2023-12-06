@@ -6,6 +6,7 @@ import {SelectionDialogComponent} from "./components/selection-dialog/selection-
 import {ImportExportDialogComponent} from "./components/import-export-dialog/import-export-dialog.component";
 import {ConfigService} from "./service/config.service";
 import { RandomMapGenerationService, RandomMapSettings } from './service/random-map-generation.service';
+import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 
 
 
@@ -95,6 +96,13 @@ export class AppComponent implements OnInit {
     });
   }
 
+  openSettings() {
+    let dialogRef = this.dialog.open(SettingsDialogComponent, {
+      height: '400px',
+      width: '100%',
+    });
+  }
+
 
   private generateGuid() {
     let result, i, j;
@@ -170,8 +178,8 @@ export class AppComponent implements OnInit {
 
   generateRandomMap() {
     let settings:RandomMapSettings = {
-      size: 'LARGE',
-      playerCount: 4,
+      size: 'SMALL',
+      playerCount: 2,
       grid: {
         rows: 10,
         cols: 10,

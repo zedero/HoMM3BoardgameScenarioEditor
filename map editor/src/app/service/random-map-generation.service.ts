@@ -62,9 +62,9 @@ export class RandomMapGenerationService {
     this.test();
     this.placeStartingTownsPass(settings.playerCount);
     this.connectToStartingTilePass();
-    this.replacePlaceholderTilesPass(settings.playerCount)
+    this.replacePlaceholderTilesPass(settings.playerCount);
     this.flipTilesToFront();
-    this.moveAllToTopLeft();
+    // this.moveAllToTopLeft();
   }
 
   private generateConnectedRandomMap(maxRows , maxCols, maxTiles) {
@@ -127,7 +127,7 @@ export class RandomMapGenerationService {
     if (playerCount === 1) {
       possibleTownTiles.push(furthestPoints.tileOne);
     } else {
-      possibleTownTiles = this.calc.getKFurthestPoints(playerCount, tiles);;
+      possibleTownTiles = this.calc.getKFurthestPoints(playerCount, tiles);
     }
 
     for (let i = 0; i < playerCount && i < possibleTownTiles.length; i++) {
@@ -136,7 +136,78 @@ export class RandomMapGenerationService {
     }
   }
 
+  getMostCenterTileFromTowns() {
+    const tiles:any = [...this.tilesService.tileList];
+    const walkable = this.calc.generateWalkableCellsList(tiles);
+    const townTiles = tiles.filter((tile) => {
+      if (tile.tileId === "S0") {
+        return tile;
+      }
+    });
+    const remainingTiles = tiles.filter((tile) => {
+      if (tile.tileId === "PLACEHOLDER") {
+        return tile;
+      }
+    });
+
+    const calcDistanceToTowns = remainingTiles.map((tile) => {
+      const t = townTiles.reduce((acc, town) => {
+        const distance = this.calc.walkDistance(tile.row, town.row, tile.col, town.col, walkable);
+        acc.total = acc.total + distance;
+        if (distance > acc.max) acc.max = distance;
+        if (acc.minimum === -1 || distance < acc.minimum) {
+          acc.minimum = distance;
+        }
+        return acc;
+      }, {
+        total: 0,
+        minimum: -1,
+        max: 0,
+        id: tile.row + '.' + tile.col,
+        worth: 0,
+        tile: tile
+      });
+      return t
+    })
+
+    // asign worth based on minimum distance
+    calcDistanceToTowns.sort((a,b) => {
+      return a.minimum - b.minimum;
+    }).forEach((tile, index) => {
+      tile.worth += index
+    });
+
+    // asign worth based on max distance
+    calcDistanceToTowns.sort((a,b) => {
+      return b.max - a.max;
+    }).forEach((tile, index) => {
+      tile.worth += index;
+    });
+
+    // asign worth based on total distances
+    calcDistanceToTowns.sort((a,b) => {
+      return b.total - a.total;
+    }).forEach((tile, index) => {
+      tile.worth += index;
+    });
+
+    // sort by worth
+    calcDistanceToTowns.sort((a,b) => {
+      return b.worth - a.worth;
+    })
+
+    console.log(calcDistanceToTowns)
+
+    return calcDistanceToTowns[0];
+  }
+
   private replacePlaceholderTilesPass(playerCount) {
+    const mostMid = this.getMostCenterTileFromTowns();
+    if (mostMid) {
+      mostMid.tile.tileId = "C0"
+      this.tilesService.updateTileData(mostMid.tile)
+    }
+
     const count = (ID: string) => {
       return this.tilesService.tileList.reduce((acc, current) => {
         if (current.tileId === ID) {
@@ -149,12 +220,19 @@ export class RandomMapGenerationService {
     const farArr = new Array(playerCount - count("F0")).fill("F0");
     const nearArr = new Array(playerCount - count("N0")).fill("N0");
     const remainder = count("PLACEHOLDER") - farArr.length - nearArr.length;
-    let randomArr = []
+    let randomArr: any = []
     if (remainder > 0) {
+      const randomTile = function() {
+        const options = ['F0', 'N0']
+        return options[Math.floor(Math.random()*options.length)]
+      }
       // @ts-ignore
-      randomArr = new Array(remainder + 1).fill('C0');
-    }
+      // randomArr = new Array(remainder + 1).fill('C0');
+      for (let i = 0; i < remainder; i++) {
+        randomArr.push(randomTile());
+      }
 
+    }
 
 
     const placeable = [...farArr, ...nearArr, ...randomArr];
@@ -183,12 +261,11 @@ export class RandomMapGenerationService {
       }
     });
 
-
-
     towns.forEach((town) => {
       const neighbours = this.calc.getNeighbours(tiles, [town]);
-      neighbours[0].tileId = "F0";
-      this.tilesService.updateTileData(neighbours[0]);
+      const randomNeighbour = this.random(0, neighbours.length-1);
+      neighbours[randomNeighbour].tileId = "F0";
+      this.tilesService.updateTileData(neighbours[randomNeighbour]);
     })
 
     const farTiles = tiles.filter((tile) => {
@@ -218,6 +295,10 @@ export class RandomMapGenerationService {
         const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
         // tile.tileId = pick;
         this.flipAndValidate(tile, pick);
+      }
+
+      if (tile.tileId === "C0") {
+        this.flipAndValidate(tile, "C1")
       }
     });
 
