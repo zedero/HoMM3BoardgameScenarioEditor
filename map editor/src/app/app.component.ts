@@ -177,16 +177,7 @@ export class AppComponent implements OnInit {
   }
 
   generateRandomMap() {
-    let settings:RandomMapSettings = {
-      size: 'SMALL',
-      playerCount: 2,
-      grid: {
-        rows: 10,
-        cols: 10,
-        tiles: 10
-      }
-    }
-    settings = this.randomMapGenerationService.getGridSizeFromSetting(settings);
+    const settings = this.randomMapGenerationService.getGridSizeFromSetting();
     this.changeRows({
       target: {
         value: settings.grid.rows + 2
@@ -199,7 +190,7 @@ export class AppComponent implements OnInit {
     })
     this.loading = true;
     setTimeout(() => {
-      this.randomMapGenerationService.generateRandomMap(settings);
+      this.randomMapGenerationService.generateRandomMap();
       this.loading = false;
     }, 100)
   }

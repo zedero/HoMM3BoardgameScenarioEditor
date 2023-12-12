@@ -5,7 +5,7 @@ import { Helper } from '../utility/helper';
 
 export type RandomMapSettings = {
   size: string,
-  playerCount?: number;
+  playerCount: number;
   selectedTowns?: Array<string>;
   flipFarTiles?: boolean;
   flipNearTiles?: boolean;
@@ -21,14 +21,51 @@ export type RandomMapSettings = {
   providedIn: 'root'
 })
 export class RandomMapGenerationService {
-
+  public storageKey = 'scenarioCreatorGenerationSettings';
   public connected = new Set();
+  public settings: RandomMapSettings = {
+    playerCount: 2,
+    size: 'MEDIUM',
+    grid: {
+      rows: 10,
+      cols: 10,
+      tiles: 10
+    }
+  }
 
   constructor(public tilesService: TilesService, private config: ConfigService, private calc: Helper) {
     this.getConnectedTiles();
+    this.loadSettings();
   }
 
-  public getGridSizeFromSetting(settings) {
+  loadSettings() {
+    const data = localStorage.getItem(this.storageKey);
+    if (data) {
+      this.settings = {
+        ...this.settings,
+        ...JSON.parse(data)
+      }
+    } else {
+      this.saveSettings();
+    }
+  }
+
+  saveSettings() {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.settings));
+  }
+
+
+  public setSettings(settings) {
+    this.settings = settings;
+    this.saveSettings();
+  }
+
+  public getSettings() {
+    return this.settings;
+  }
+
+  public getGridSizeFromSetting() {
+    const settings = this.settings;
     const players = settings.playerCount;
     if(settings.size === "SMALL") {
       settings.grid =  {
@@ -41,20 +78,22 @@ export class RandomMapGenerationService {
       settings.grid =  {
         rows: 13,
         cols: 13,
-        tiles: 15
+        tiles: (players * 4) + this.random(0,2)
       }
     }
     if(settings.size === "LARGE") {
       settings.grid =  {
         rows: 20,
         cols: 20,
-        tiles: 20
+        tiles: (players * 4) + this.random(4,7)
       }
     }
+    console.log('S', settings.grid.tiles)
     return settings;
   }
 
-  generateRandomMap(settings: RandomMapSettings) {
+  generateRandomMap() {
+    const settings = this.settings;
     // TODO Get rows and cols based on defined map size
     this.clearGrid();
     this.generateConnectedRandomMap(settings?.grid?.rows, settings?.grid?.cols, settings?.grid?.tiles);
@@ -64,7 +103,7 @@ export class RandomMapGenerationService {
     this.connectToStartingTilePass();
     this.replacePlaceholderTilesPass(settings.playerCount);
     this.flipTilesToFront();
-    // this.moveAllToTopLeft();
+    this.moveAllToTopLeft();
   }
 
   private generateConnectedRandomMap(maxRows , maxCols, maxTiles) {

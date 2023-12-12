@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RandomMapGenerationService } from 'src/app/service/random-map-generation.service';
 
 @Component({
   selector: 'app-settings-dialog',
@@ -8,18 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./settings-dialog.component.scss']
 })
 export class SettingsDialogComponent {
-  constructor(
-    private _formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<SettingsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
-
-  }
-
-  public settings: any = {
-    nrOfPlayers: 2,
-    mapSize: 'MEDIUM'
-  }
+  private randomMapGenerationService: RandomMapGenerationService;
+  public settings: any = {}
 
   selectedMapSize = 'MEDIUM';
   mapSizeOptions: any[] = [
@@ -39,12 +30,30 @@ export class SettingsDialogComponent {
     {value: '7', name: '7 Players'},
   ];
 
-  selectMapSize($event) {
-    console.log($event)
+  constructor(
+    private _formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<SettingsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    randomMapGenerationService: RandomMapGenerationService
+  ) {
+    this.randomMapGenerationService = randomMapGenerationService;
+    this.settings = randomMapGenerationService.getSettings();
+    this.selectedMapSize = this.settings.size;
+    this.selectedPlayers = this.settings.playerCount;
   }
 
-  selectPlayerAmmount($event) {
-    console.log($event)
+  saveSettings() {
+    this.randomMapGenerationService.setSettings(this.settings);
+  }
+
+  selectMapSize(size) {
+    this.settings.size = size;
+    this.saveSettings();
+  }
+
+  selectPlayerAmmount(ammount) {
+    this.settings.playerCount = ammount;
+    this.saveSettings();
   }
 
   onNoClick(): void {
