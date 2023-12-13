@@ -1,22 +1,26 @@
-<div class="header">
-  <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
-  <div class="filter" [formGroup]="sets">
-    <span class="formTitle">Expansions:</span>
-    <ng-container *ngFor="let filter of expansionsFilter">
-      <mat-checkbox formControlName="{{filter.name}}">{{filter.desc}}</mat-checkbox>
-    </ng-container>
+<div class="dialog">
+  <div class="header">
+    <div class="title">Select tile</div>
+    <div class="filter" [formGroup]="sets">
+      <span class="formTitle">Expansions:</span>
+      <ng-container *ngFor="let filter of expansionsFilter">
+        <mat-checkbox formControlName="{{filter.name}}">{{filter.desc}}</mat-checkbox>
+      </ng-container>
+    </div>
+    <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
   </div>
-</div>
-<div class="scrollable">
-  <ng-container *ngFor="let group of enumToList(this.GROUP)">
-    <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP[group]).length">
-      <div class="title">{{config.GROUP_DESC[group]}}</div>
-      <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP[group])">
-        <div class="mini-tile">
-          <img src="{{tile.img}}" alt="{{tile.desc}}">
-          <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+  <div class="content">
+    <ng-container *ngFor="let group of enumToList(this.GROUP)">
+      <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP[group]).length">
+        <div class="title">{{config.GROUP_DESC[group]}}</div>
+        <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP[group])">
+          <div class="mini-tile">
+            <img src="{{tile.img}}" alt="{{tile.desc}}">
+            <button (click)="close(tile.id)">Add {{tile.desc}}</button>
+          </div>
         </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
+
 </div>

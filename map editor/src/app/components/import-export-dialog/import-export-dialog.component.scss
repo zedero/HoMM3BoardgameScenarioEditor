@@ -1,53 +1,10 @@
-::ng-deep {
-  .mat-mdc-dialog-container .mdc-dialog__surface {
-    background-color: white;
-  }
-}
+.container {
+  margin-bottom: 20px;
 
-.header {
-  background-color: #333;
-  padding: 5px 0 5px 10px;
-  min-height: 30px;
-}
-.scrollable {
-  height: 345px;
-  overflow-y: scroll;
-  position: relative;
-  padding: 10px;
-}
-
-.closeButton {
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 0;
-
-  cursor: pointer;
-  border-left: 3px solid #ccc;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 30px;
-  width: 30px;
-
-  transition: background-color .2s;
-
-  &:hover {
-    background-color: #ccc;
-  }
-}
-:host {
-  display: block;
-
-  .container {
-    margin-bottom: 20px;
-
-    label {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 5px;
-    }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
   }
 }
 
@@ -58,28 +15,33 @@ textarea {
   margin-bottom: 10px;
 }
 
-button {
-  background-color: white;
-  border: 2px solid #777777;
-  border-radius: 20px;
-
-  font-family: Roboto, serif;
-  padding: 5px 10px;
-
-  cursor: pointer;
-
-  transition: background-color .3s;
-
-  &.warn {
-    border-color: red;
-    color: red;
-  }
-
-  &:hover {
-    background-color: #eee;
-  }
-
-  &:active {
-    background-color: aliceblue;
-  }
+hr {
+  border: 2px solid #604c3c;
+  border-top-color: #0b0a08;
 }
+
+//button {
+//  background-color: white;
+//  border: 2px solid #777777;
+//  border-radius: 20px;
+//
+//  font-family: Roboto, serif;
+//  padding: 5px 10px;
+//
+//  cursor: pointer;
+//
+//  transition: background-color .3s;
+//
+//  &.warn {
+//    border-color: red;
+//    color: red;
+//  }
+//
+//  &:hover {
+//    background-color: #eee;
+//  }
+//
+//  &:active {
+//    background-color: aliceblue;
+//  }
+//}

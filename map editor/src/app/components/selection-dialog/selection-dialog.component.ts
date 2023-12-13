@@ -80,7 +80,7 @@ export class SelectionDialogComponent {
   getGroup(config: any, groupEnum: number) {
     const selectedExpansionsIDs = this.getExpansionSelection();
     return config.filter((item) => {
-      return item.group === groupEnum && selectedExpansionsIDs.has(item.expansionID);
+      return item.group === groupEnum && selectedExpansionsIDs.has(item.expansionID) && item.id !== "PLACEHOLDER";
     });
   }
 

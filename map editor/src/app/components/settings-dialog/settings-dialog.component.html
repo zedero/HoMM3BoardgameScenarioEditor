@@ -1,17 +1,21 @@
-<div class="header">
-  <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
-</div>
-<div class="scrollable">
-  <div class="formBlock">
-    <div class="formBlock-title">Map size</div>
-    <select name="mapsize" #mapsize (change)="selectMapSize(mapsize.value)" [(ngModel)]="selectedMapSize">
-      <option *ngFor="let map of mapSizeOptions" [value]="map.value">{{map.name}}</option>
-    </select>
+<div class="dialog">
+  <div class="header">
+    <div class="title">Random Map Generation Settings</div>
+    <button (click)="close()" class="closeButton"><i class="fa-solid fa-xmark"></i></button>
   </div>
-  <div class="formBlock">
-    <div class="formBlock-title">players</div>
-    <select name="players" #players (change)="selectPlayerAmmount(players.value)" [(ngModel)]="selectedPlayers">
-      <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
-    </select>
+  <div class="content">
+    <div class="formBlock">
+      <div class="formBlock-title">Map size</div>
+      <select name="mapsize" #mapsize (change)="selectMapSize(mapsize.value)" [(ngModel)]="selectedMapSize">
+        <option *ngFor="let map of mapSizeOptions" [value]="map.value">{{map.name}}</option>
+      </select>
+    </div>
+    <div class="formBlock">
+      <div class="formBlock-title">players</div>
+      <select name="players" #players (change)="selectPlayerAmmount(players.value)" [(ngModel)]="selectedPlayers">
+        <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
+      </select>
+    </div>
   </div>
+
 </div>

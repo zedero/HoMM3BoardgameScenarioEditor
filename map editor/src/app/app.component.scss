@@ -37,24 +37,54 @@
 
 .toolbar-button {
   background-color: white;
-  border: 2px solid #777777;
-  border-radius: 20px;
+  //border: 2px solid #777777;
+  //border-radius: 20px;
   margin-left: 10px;
 
-  font-family: Roboto, serif;
-  padding: 5px 10px;
+  font-family: "Times New Roman";
+  font-size: 16px;
+  padding: 7px 10px;
 
   cursor: pointer;
 
-  transition: background-color .3s;
+  transition: background-color .3s,
+            border-top-color    .2s,
+            border-bottom-color .2s,
+            border-left-color   .2s,
+            border-right-color  .2s
+;
+
+  background-image: url("../assets/UI/dialog-background.png");
+  background-repeat: repeat;
+  border-radius: 0;
+  color: #ffe98c;
+
+  $color-default: #0c0800;
+  $color-vertical: #a7a29a;
+  $color-horizon: #584738;
+
+  border: 2px solid #0c0800;
+  border-top-color: $color-vertical;
+  border-left-color: $color-horizon;
+
+  &:active {
+    border-top-color: $color-default;
+    border-left-color: $color-default;
+    border-bottom-color: $color-vertical;
+    border-right-color: $color-horizon;
+  }
 
   &.warn {
-    border-color: red;
-    color: red;
+    color: #fe6b6c;
   }
 
   &:hover {
     background-color: #eee;
+  }
+
+  & .toolbar-button {
+    margin: -8px -12px;
+    margin-left: 10px;
   }
 }
 
@@ -69,19 +99,26 @@
 .toolbar {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  row-gap: 7px;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 100;
 
-  //height: 30px;
-  padding: 10px;
-
   width: 100%;
   background-color: white;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,.3));
+  //filter: drop-shadow(0 0 2px rgba(0,0,0,.3));
 
+  background-image: url("../assets/UI/dialog-background.png");
 
+  background-repeat: repeat;
+
+  padding: 10px;
+
+  border-image-source: linear-gradient(to bottom, #b4a46d, #9e8236);
+  border-image-slice: 3;
+  border-image-width: 3px;
 }
 
 :host {
@@ -199,5 +236,33 @@ input[type="number"] {
 @keyframes spin {
   100% {
     transform:rotate(360deg);
+  }
+}
+
+:host {
+  background: lightgray;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: .1;
+  background: white;
+  background-image: url("../assets/UI/background.jpg");
+  background-position: center center;
+
+  &:after {
+    backdrop-filter: blur(2px);
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
   }
 }

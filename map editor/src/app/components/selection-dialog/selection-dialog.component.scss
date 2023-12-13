@@ -1,37 +1,3 @@
-::ng-deep {
-  .mat-mdc-dialog-container .mdc-dialog__surface {
-    background-color: white;
-  }
-}
-
-.closeButton {
-  background: white;
-  color: black;
-  border: none;
-
-  cursor: pointer;
-  border-left: 3px solid #ccc;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 30px;
-  width: 30px;
-
-  transition: background-color .2s;
-
-  &:hover {
-    background-color: #ccc;
-  }
-}
-:host {
-  display: block;
-}
-
-.header {
-  background-color: #333;
-  padding: 5px 0 5px 10px;
-}
 
 .scrollable {
   height: 345px;
@@ -84,13 +50,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 10px;
 }
 
-.title {
+.content .title {
   width: 100%;
-  margin: 0 0 10px 10px;
-  font-weight: bold;
+  margin: 0 0 10px 5px;
+  font-size: 16px;
 }
 
 .formTitle {

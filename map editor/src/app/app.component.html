@@ -1,3 +1,4 @@
+<div class="background"></div>
 <div class="invalid-map" [class.show]="!tilesService.isValidMap">The current tile placement is invalid. Connect all tiles and make sure borders dont isolate tiles</div>
 <div class="grid" id="grid">
  <div class="row" *ngFor="let row of rows; index as rowIndex">
@@ -38,18 +39,20 @@
 <!--    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">-->
 <!--  </div>-->
 
-  <button (click)="openSettings()"
-          class="toolbar-button"
-          matTooltip="Random map generation settings"
-          [matTooltipPosition]="'above'"
-  ><i class="fa-solid fa-gear"></i></button>
+
   <button
     (click)="toggleMoveMenu()"
     class="toolbar-button"
     matTooltip="Toggle move all tiles menu"
     [matTooltipPosition]="'above'"
   ><i class="fa-solid fa-up-down-left-right"></i></button>
-  <button (click)="generateRandomMap()" class="toolbar-button">RND</button>
+  <button (click)="generateRandomMap()" class="toolbar-button">
+    Generate Random Map
+    <button (click)="openSettings()"
+            class="toolbar-button"
+            matTooltip="Random map generation settings"
+            [matTooltipPosition]="'above'"
+    ><i class="fa-solid fa-gear"></i></button></button>
   <button (click)="importExport()" class="toolbar-button">Import / Export Map</button>
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>
   <button (click)="generateImage()" class="toolbar-button">Generate Image</button>
