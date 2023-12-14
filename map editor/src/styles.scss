@@ -76,6 +76,24 @@ body { margin: 0;
   }
 }
 
+.sub-header {
+  margin: 0 15px;
+  position: relative;
+  padding: 0 10px;
+
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    border: 2px solid #604c3c;
+    border-top-color: #0b0a08;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
 .closeButton {
   cursor: pointer;
   font-family: "Times New Roman";
@@ -201,4 +219,32 @@ body { margin: 0;
 hr {
   border: 2px solid #604c3c;
   border-top-color: #0b0a08;
+}
+
+//======================================
+
+select {
+  //font-family: "Times New Roman", serif;
+  font-family: "Times New Roman";
+  font-size: 16px;
+  font-weight: lighter;
+  color: var(--primary);
+  background: url("/assets/UI/dialog-background.png");
+
+  option {
+    font-size: 16px;
+    font-weight: lighter;
+    background: #482e16;
+
+    &.first {
+      font-size: 17px;
+      text-align: center;
+    }
+  }
+
+  optgroup {
+    background: #482e16;
+    font-weight: lighter;
+    font-size: 18px;;
+  }
 }

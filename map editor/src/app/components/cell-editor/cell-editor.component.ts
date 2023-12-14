@@ -12,10 +12,11 @@ export class CellEditorComponent  implements OnInit {
   @Input({ required: true }) index = -1;
   @Output() saveData = new EventEmitter<any>();
 
+  factions: any[] = [];
 
   selectedHero = '';
   heroes: any[] = [
-    {value: '0', name: '- No Hero -', faction: "CASTLE"},
+    {value: '0', name: '- No Hero -', faction: "NONE"},
   ];
 
   selectedCube = 0;
@@ -35,6 +36,7 @@ export class CellEditorComponent  implements OnInit {
 
   constructor(configService: ConfigService) {
     this.configService = configService;
+    this.factions = Object.keys(this.configService.FACTIONS);
     this.createHeroesSelect();
   }
 
@@ -54,7 +56,7 @@ export class CellEditorComponent  implements OnInit {
       .map(([key, val]: any) => {
         return {
           value: key,
-          name: val.desc + ' - ' + this.configService.FACTIONS[val.faction],
+          name: val.desc,
           faction: val.faction
         }
       })
@@ -75,5 +77,17 @@ export class CellEditorComponent  implements OnInit {
   selectCube(cube: any) {
     this.config.cubes[this.index] = parseInt(cube);
     this.saveData.next(this.config);
+  }
+
+  getFactionDesc(faction) {
+   return this.configService.FACTIONS[faction];
+  }
+
+  getHeroesByFaction(faction) {
+    return this.heroes.filter((hero) => {
+      if (hero.faction === faction) {
+        return hero;
+      }
+    });
   }
 }

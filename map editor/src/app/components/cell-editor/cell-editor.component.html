@@ -1,6 +1,9 @@
 <div class="container">
 <select name="hero" #hero (change)="selectHero(hero.value)" [(ngModel)]="selectedHero">
-  <option *ngFor="let hero of heroes" [value]="hero.value">{{hero.name}}</option>
+  <option class="first" [value]="0">- No Hero -</option>
+  <optgroup label="{{getFactionDesc(faction)}}" *ngFor="let faction of factions">
+    <option *ngFor="let hero of getHeroesByFaction(faction)" [value]="hero.value">{{hero.name}}</option>
+  </optgroup>
 </select>
 
 <select name="cube" #cube (change)="selectCube(cube.value)" [(ngModel)]="selectedCube">
