@@ -96,10 +96,19 @@ export class AppComponent implements OnInit {
     });
   }
 
-  openSettings() {
+  openSettings(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+
     let dialogRef = this.dialog.open(SettingsDialogComponent, {
       height: '400px',
       width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.generateRandomMap();
+      }
     });
   }
 

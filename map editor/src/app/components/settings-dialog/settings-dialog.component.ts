@@ -57,10 +57,14 @@ export class SettingsDialogComponent {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   close(id?: any): void {
-    this.dialogRef.close(id);
+    this.dialogRef.close(false);
+  }
+
+  generateRandomMap() {
+    this.dialogRef.close(true);
   }
 }

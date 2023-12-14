@@ -16,6 +16,9 @@
         <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
       </select>
     </div>
+    <hr>
+    <button class="button" (click)="generateRandomMap()">Generate Random Map</button>
   </div>
+
 
 </div>

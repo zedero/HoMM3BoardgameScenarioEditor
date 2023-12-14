@@ -15,7 +15,7 @@ export class CellEditorComponent  implements OnInit {
 
   selectedHero = '';
   heroes: any[] = [
-    {value: '0', name: '- No Hero -'},
+    {value: '0', name: '- No Hero -', faction: "CASTLE"},
   ];
 
   selectedCube = 0;
@@ -40,12 +40,25 @@ export class CellEditorComponent  implements OnInit {
 
   createHeroesSelect() {
     this.heroes = Object.entries(this.configService.PORTRAITS)
+      .sort((a: any,b: any) => {
+        const one = a[1].faction;
+        const two = b[1].faction;
+        if (one < two) {
+          return -1;
+        }
+        if (one > two) {
+          return 1;
+        }
+        return 0;
+      })
       .map(([key, val]: any) => {
         return {
           value: key,
-          name: val.desc
+          name: val.desc + ' - ' + this.configService.FACTIONS[val.faction],
+          faction: val.faction
         }
       })
+
     this.heroes.unshift({value: '0', name: '- No Hero -'});
   }
 

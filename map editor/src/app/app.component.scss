@@ -249,13 +249,14 @@ input[type="number"] {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: .1;
-  background: white;
+  opacity: 1;
+  //background: white;
   background-image: url("../assets/UI/background.jpg");
+  background-image: url("../assets/UI/void.png");
   background-position: center center;
 
   &:after {
-    backdrop-filter: blur(2px);
+    //backdrop-filter: blur(2px);
     bottom: 0;
     content: "";
     display: block;

@@ -31,6 +31,10 @@ export class ConfigService {
     }
   }
 
+  public FACTIONS: any = {
+
+  }
+
   public EXPANSION_FILTER_DESC: any = {
     CORE: "Core",
   }
@@ -81,6 +85,7 @@ export class ConfigService {
     this.EXPANSION_FILTER_DESC = data.EXPANSION_FILTER_DESC;
     this.TILES = this.tileJsonToData(data.TILES);
     this.PORTRAITS = data.PORTRAITS;
+    this.FACTIONS = data.FACTIONS;
   }
 
   arrayToEnum(arr: Array<any>) {
