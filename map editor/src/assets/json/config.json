@@ -292,7 +292,7 @@
     "F1": {
       "id": "F1",
       "img": "assets/tiles/F1.png",
-      "desc": "Far Tile",
+      "desc": "Far Tile F1",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.FAR",
@@ -301,7 +301,7 @@
     "F2": {
       "id": "F2",
       "img": "assets/tiles/F2.png",
-      "desc": "Far Tile",
+      "desc": "Far Tile F2",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.DIRT",
       "group": "GROUP.FAR",
@@ -310,7 +310,7 @@
     "F3": {
       "id": "F3",
       "img": "assets/tiles/F3.png",
-      "desc": "Far Tile",
+      "desc": "Far Tile F3",
       "expansionID": "EXPANSION.CORE",
       "groundType": "GROUNDTYPE.GRASS",
       "group": "GROUP.FAR",

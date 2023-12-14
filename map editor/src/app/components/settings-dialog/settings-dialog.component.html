@@ -11,7 +11,7 @@
       </select>
     </div>
     <div class="formBlock">
-      <div class="formBlock-title">players</div>
+      <div class="formBlock-title">Players</div>
       <select name="players" #players (change)="selectPlayerAmmount(players.value)" [(ngModel)]="selectedPlayers">
         <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
       </select>

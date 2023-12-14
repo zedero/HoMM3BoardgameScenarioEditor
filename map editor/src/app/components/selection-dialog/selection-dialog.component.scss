@@ -1,8 +1,7 @@
 
-.scrollable {
-  height: 345px;
-  overflow-y: scroll;
-}
+$color-default: #0c0800;
+$color-vertical: #a7a29a;
+$color-horizon: #584738;
 
 .mini-tile {
   height: 100px;
@@ -31,17 +30,34 @@
     $b-color-2: rgba(205,205,205,1);
 
     background-color: #eee;
-    border: 2px solid #777777;
+    background-image: url("../../../assets/UI/dialog-background-blue.png");
+    color: var(--primary);
+    background-repeat: repeat;
     filter: drop-shadow(0 0 2px rgba(0,0,0,.3));
 
-    font-weight: bold;
-    color: black;
+    //font-weight: bold;
+    //color: black;
     cursor: pointer;
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+
+
+    border: 2px solid #0c0800;
+    border-top-color: $color-vertical;
+    border-left-color: $color-horizon;
+
+    &:active {
+      border-top-color: $color-default;
+      border-left-color: $color-default;
+      border-bottom-color: $color-vertical;
+      border-right-color: $color-horizon;
+    }
   }
 
   &:hover {
     button  {
-      opacity: .85;
+      //opacity: .85;
+      opacity: 1;
     }
   }
 }
@@ -59,7 +75,7 @@
 }
 
 .formTitle {
-  color: white;
+  color: var(--primary);
   margin-right: 10px;
 }
 
@@ -71,4 +87,16 @@
 
 mat-checkbox {
   margin-right: 5px;
+}
+
+:host ::ng-deep .mdc-checkbox__background {
+  background: transparent !important;
+
+  border: 2px solid #0c0800 !important;
+  border-top-color: $color-vertical !important;
+  border-left-color: $color-horizon !important;
+
+  svg {
+    color: var(--primary) !important;
+  }
 }
