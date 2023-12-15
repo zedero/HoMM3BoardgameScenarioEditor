@@ -39,7 +39,7 @@ body { margin: 0;
   font-family: "Times New Roman";
   font-size: 16px;
 
-  background-image: url("/assets/UI/dialog-background.png");
+  background-image: url("/assets/UI/panelcoloredbg.jpg");
   background-repeat: repeat;
 
   border-image-repeat: round;
@@ -61,7 +61,7 @@ body { margin: 0;
     content: "";
     display: block;
     height: 0;
-    border: 2px solid #604c3c;
+    border: 2px solid #2b4289;
     border-top-color: #0b0a08;
     position: absolute;
     bottom: 0;
@@ -85,7 +85,7 @@ body { margin: 0;
     content: "";
     display: block;
     height: 0;
-    border: 2px solid #604c3c;
+    border: 2px solid #2b4289;
     border-top-color: #0b0a08;
     position: absolute;
     bottom: 0;
@@ -106,14 +106,14 @@ body { margin: 0;
   min-height: 32px;
   max-height: 32px;
 
-  background-image: url("/assets/UI/dialog-background.png");
+  background-image: url("/assets/UI/panelcoloredbg.jpg");
   background-repeat: repeat;
   border-radius: 0;
   color: var(--primary);
 
   $color-default: #0c0800;
   $color-vertical: #a7a29a;
-  $color-horizon: #584738;
+  $color-horizon: #2b4289;
 
   border: 2px solid #0c0800;
   border-top-color: $color-vertical;
@@ -181,13 +181,18 @@ body { margin: 0;
 ;
 
   background-image: url("/assets/UI/dialog-background.png");
+
+  .dialog & {
+    background-image: url("/assets/UI/panelcoloredbg.jpg");
+  }
+
   background-repeat: repeat;
   border-radius: 0;
   color: #ffe98c;
 
   $color-default: #0c0800;
   $color-vertical: #a7a29a;
-  $color-horizon: #584738;
+  $color-horizon: #2b4289;
 
   border: 2px solid #0c0800;
   border-top-color: $color-vertical;
@@ -218,6 +223,7 @@ body { margin: 0;
 
 hr {
   border: 2px solid #604c3c;
+  border: 2px solid #2b4289;
   border-top-color: #0b0a08;
 }
 
@@ -229,12 +235,12 @@ select {
   font-size: 16px;
   font-weight: lighter;
   color: var(--primary);
-  background: url("/assets/UI/dialog-background.png");
+  background: url("/assets/UI/panelcoloredbg.jpg");
 
   option {
     font-size: 16px;
     font-weight: lighter;
-    background: #482e16;
+    background: #2b4289;
 
     &.first {
       font-size: 17px;
@@ -243,7 +249,7 @@ select {
   }
 
   optgroup {
-    background: #482e16;
+    background: #2b4289;
     font-weight: lighter;
     font-size: 18px;;
   }
