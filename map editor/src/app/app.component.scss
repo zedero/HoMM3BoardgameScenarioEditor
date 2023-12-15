@@ -88,11 +88,11 @@
   }
 }
 
-.rot-left {
+.rot-left i {
   rotate: -45deg;
 }
 
-.rot-right {
+.rot-right i {
   rotate: 45deg;
 }
 
@@ -165,24 +165,36 @@ input[type="number"] {
 
 .moveMenu {
   position: fixed;
-  top: 0;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   background-color: rgba(255,255,255,1);
   filter: drop-shadow(0px 0px 3px #000000);
-  padding: 10px;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
+  padding: 20px;
   opacity: .9;
 
-  width: 150px;
+  width: 180px;
+  height: 180px;
   z-index: 1;
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: black;
+    opacity: .5;
+  }
 
 
   button {
     margin: 0;
     height: 40px;
     width: 40px;
+
+    &.move {
+      margin-right: 55px
+    }
   }
 
   & > div {

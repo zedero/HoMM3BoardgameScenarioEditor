@@ -11,6 +11,13 @@ import { RandomMapGenerationService } from 'src/app/service/random-map-generatio
 export class SettingsDialogComponent {
   private randomMapGenerationService: RandomMapGenerationService;
   public settings: any = {}
+  public flip = [
+    {name: "TOWN", desc: "town"},
+    // {name: "FAR", desc: "far"},
+    // {name: "NEAR", desc: "near"},
+    {name: "CENTER", desc: "center"},
+  ];
+  public flipGroup;
 
   selectedMapSize = 'MEDIUM';
   mapSizeOptions: any[] = [
@@ -40,6 +47,20 @@ export class SettingsDialogComponent {
     this.settings = randomMapGenerationService.getSettings();
     this.selectedMapSize = this.settings.size;
     this.selectedPlayers = this.settings.playerCount;
+    this.flipGroup = this._formBuilder.group({
+      TOWN: this.settings.flipTownTiles,
+      FAR: this.settings.flipFarTiles,
+      NEAR: this.settings.flipNearTiles,
+      CENTER: this.settings.flipCenterTiles,
+    });
+  }
+
+  toggleSetting(event) {
+    this.settings.flipTownTiles = this.flipGroup.value.TOWN;
+    this.settings.flipFarTiles = this.flipGroup.value.FAR;
+    this.settings.flipNearTiles = this.flipGroup.value.NEAR;
+    this.settings.flipCenterTiles = this.flipGroup.value.CENTER;
+    this.saveSettings();
   }
 
   saveSettings() {

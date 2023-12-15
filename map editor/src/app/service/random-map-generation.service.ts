@@ -7,6 +7,7 @@ export type RandomMapSettings = {
   size: string,
   playerCount: number;
   selectedTowns?: Array<string>;
+  flipTownTiles?: boolean;
   flipFarTiles?: boolean;
   flipNearTiles?: boolean;
   flipCenterTiles?: boolean;
@@ -26,6 +27,10 @@ export class RandomMapGenerationService {
   public settings: RandomMapSettings = {
     playerCount: 2,
     size: 'MEDIUM',
+    flipTownTiles: true,
+    flipFarTiles: false,
+    flipNearTiles: false,
+    flipCenterTiles: false,
     grid: {
       rows: 10,
       cols: 10,
@@ -55,7 +60,7 @@ export class RandomMapGenerationService {
   }
 
 
-  public setSettings(settings) {
+  public setSettings(settings: RandomMapSettings) {
     this.settings = settings;
     this.saveSettings();
   }
@@ -163,7 +168,7 @@ export class RandomMapGenerationService {
     const furthestPoints = this.calc.getFurthestTwoPoints(tiles);
     let possibleTownTiles: any = [];
 
-    if (playerCount === 1) {
+    if (playerCount == 1) {
       possibleTownTiles.push(furthestPoints.tileOne);
     } else {
       possibleTownTiles = this.calc.getKFurthestPoints(playerCount, tiles);
@@ -330,15 +335,21 @@ export class RandomMapGenerationService {
     const towns = ['#S1', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
     const random = ["F0", "N0", "C0"]
     this.tilesService.tileList.map((tile) => {
-      if (tile.tileId === "S0") {
-        const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
-        // tile.tileId = pick;
-        this.flipAndValidate(tile, pick);
+      if (this.settings.flipTownTiles) {
+        if (tile.tileId === "S0") {
+          const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
+          // tile.tileId = pick;
+          this.flipAndValidate(tile, pick);
+        }
       }
 
-      if (tile.tileId === "C0") {
-        this.flipAndValidate(tile, "C1")
+      if(this.settings.flipCenterTiles) {
+        if (tile.tileId === "C0") {
+          this.flipAndValidate(tile, "C1")
+        }
       }
+
+
     });
 
     // Flip others:

@@ -254,3 +254,25 @@ select {
     font-size: 18px;;
   }
 }
+
+
+///
+
+mat-checkbox {
+  margin-right: 5px;
+}
+
+.mdc-checkbox__background {
+  $color-default: #0c0800;
+  $color-vertical: #a7a29a;
+  $color-horizon: #2b4289;
+  background: transparent !important;
+
+  border: 2px solid #0c0800 !important;
+  border-top-color: $color-vertical !important;
+  border-left-color: $color-horizon !important;
+
+  svg {
+    color: var(--primary) !important;
+  }
+}

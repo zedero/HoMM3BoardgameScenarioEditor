@@ -14,13 +14,13 @@
   </div>
 </div>
 
-<div class="moveMenu" *ngIf="moveMenuVisible">
+<div class="moveMenu dialog" *ngIf="moveMenuVisible">
   <div>
     <button (click)="moveUpLeft()" class="toolbar-button rot-left"><i class="fa-solid fa-up-long"></i></button>
     <button (click)="moveUpRight()" class="toolbar-button rot-right"><i class="fa-solid fa-up-long"></i></button>
   </div>
   <div>
-    <button (click)="moveLeft()" class="toolbar-button"><i class="fa-solid fa-left-long"></i></button>
+    <button (click)="moveLeft()" class="toolbar-button move"><i class="fa-solid fa-left-long"></i></button>
     <button (click)="moveRight()" class="toolbar-button"><i class="fa-solid fa-right-long"></i></button>
   </div>
   <div>
@@ -45,14 +45,17 @@
     class="toolbar-button"
     matTooltip="Toggle move all tiles menu"
     [matTooltipPosition]="'above'"
-  ><i class="fa-solid fa-up-down-left-right"></i></button>
-  <button (click)="generateRandomMap()" class="toolbar-button">
-    Generate Random Map
-    <button (click)="openSettings($event)"
-            class="toolbar-button"
-            matTooltip="Random map generation settings"
-            [matTooltipPosition]="'above'"
-    ><i class="fa-solid fa-gear"></i></button></button>
+  >
+    <i class="fa-solid fa-up-down-left-right"></i>
+  </button>
+<!--  <button (click)="generateRandomMap()" class="toolbar-button">-->
+<!--    Generate Random Map-->
+<!--    <button (click)="openSettings($event)"-->
+<!--            class="toolbar-button"-->
+<!--            matTooltip="Random map generation settings"-->
+<!--            [matTooltipPosition]="'above'"-->
+<!--    ><i class="fa-solid fa-gear"></i></button>-->
+<!--  </button>-->
   <button (click)="importExport()" class="toolbar-button">Import / Export Map</button>
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>
   <button (click)="generateImage()" class="toolbar-button">Generate Image</button>
@@ -67,4 +70,9 @@
     <i class="fa-solid fa-gear reverse"></i>
   </div>
   <div class="txt">Generating Map</div>
+</div>
+
+
+<div class="preloader">
+  <img hidden *ngFor="let img of images;" [src]="img" />
 </div>

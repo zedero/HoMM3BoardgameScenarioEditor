@@ -16,6 +16,17 @@
         <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
       </select>
     </div>
+    <div class="formBlock" [formGroup]="flipGroup">
+      <div class="formBlock-title">Flip Tiles</div>
+      <ng-container *ngFor="let filter of flip">
+        <mat-checkbox (change)="toggleSetting($event)" formControlName="{{filter.name}}">{{filter.desc}}</mat-checkbox>
+        <br>
+      </ng-container>
+    </div>
+<!--    <div class="formBlock">-->
+<!--      <div class="formBlock-title">Generation precision</div>-->
+<!--      <mat-checkbox formControlName="tt">Slow but better</mat-checkbox>-->
+<!--    </div>-->
     <hr>
     <button class="button" (click)="generateRandomMap()">Generate Random Map</button>
   </div>
