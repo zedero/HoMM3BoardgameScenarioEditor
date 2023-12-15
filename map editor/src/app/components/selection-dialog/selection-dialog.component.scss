@@ -82,6 +82,7 @@ $color-horizon: #584738;
 ::ng-deep {
   .mdc-form-field > label {
     margin-left: -7px !important;
+    color: var(--primary);
   }
 }
 

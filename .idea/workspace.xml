@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/import-export-dialog/import-export-dialog.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/import-export-dialog/import-export-dialog.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/components/selection-dialog/selection-dialog.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/selection-dialog/selection-dialog.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/json/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/map editor/src/app/utility" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../h3-lod-extractor" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -140,7 +138,7 @@
       <workItem from="1701184156614" duration="27910000" />
       <workItem from="1701631656527" duration="175000" />
       <workItem from="1701631856061" duration="28857000" />
-      <workItem from="1701865743831" duration="35767000" />
+      <workItem from="1701865743831" duration="39449000" />
     </task>
     <servers />
   </component>
