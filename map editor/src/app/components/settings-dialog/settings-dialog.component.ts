@@ -21,20 +21,20 @@ export class SettingsDialogComponent {
 
   selectedMapSize = 'MEDIUM';
   mapSizeOptions: any[] = [
-    {value: 'SMALL', name: 'Small'},
-    {value: 'MEDIUM', name: 'Medium'},
-    {value: 'LARGE', name: 'Large'},
+    {value: 'SMALL', name: 'S'},
+    {value: 'MEDIUM', name: 'M'},
+    {value: 'LARGE', name: 'L'},
   ];
 
   selectedPlayers = '2';
   playerOptions: any[] = [
-    {value: '1', name: 'Solo'},
-    {value: '2', name: '2 Players'},
-    {value: '3', name: '3 Players'},
-    {value: '4', name: '4 Players'},
-    {value: '5', name: '5 Players'},
-    {value: '6', name: '6 Players'},
-    {value: '7', name: '7 Players'},
+    {value: '1', name: '1'},
+    {value: '2', name: '2'},
+    {value: '3', name: '3'},
+    {value: '4', name: '4'},
+    {value: '5', name: '5'},
+    {value: '6', name: '6'},
+    {value: '7', name: '7'},
   ];
 
   constructor(

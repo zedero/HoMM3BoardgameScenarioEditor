@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ConfigService {
+  public storageKey = 'scenarioCreatorFilterOptions';
+  public filterOptions: any;
 
   public GROUNDTYPE: any = {
     RANDOM: 0,
@@ -22,6 +24,15 @@ export class ConfigService {
 
   public EXPANSION: any = {
     CORE: 0,
+  }
+
+  public EXPANSION_CONTENTS: any = {
+    "RANDOM": {
+      "TOWN": 0,
+      "FAR": 0,
+      "NEAR": 0,
+      "CENTER": 0
+    },
   }
 
   public PORTRAITS: any = {
@@ -54,6 +65,23 @@ export class ConfigService {
     this.GROUNDTYPE = this.objToEnum(this.GROUNDTYPE);
     this.GROUP = this.objToEnum(this.GROUP);
     this.EXPANSION = this.objToEnum(this.EXPANSION);
+    this.loadFilterOptions();
+  }
+
+  loadFilterOptions() {
+    const data = localStorage.getItem(this.storageKey);
+    if (data) {
+      this.filterOptions = JSON.parse(data)
+    } else {
+      this.saveFilterOptions({});
+    }
+  }
+
+  saveFilterOptions(options) {
+    if (options) {
+      this.filterOptions = options;
+    }
+    localStorage.setItem(this.storageKey, JSON.stringify(this.filterOptions));
   }
 
   objToEnum(obj: any) {
@@ -86,6 +114,7 @@ export class ConfigService {
     this.TILES = this.tileJsonToData(data.TILES);
     this.PORTRAITS = data.PORTRAITS;
     this.FACTIONS = data.FACTIONS;
+    this.EXPANSION_CONTENTS = data.EXPANSION_CONTENTS;
   }
 
   arrayToEnum(arr: Array<any>) {

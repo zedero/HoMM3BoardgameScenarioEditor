@@ -6,15 +6,33 @@
   <div class="content">
     <div class="formBlock">
       <div class="formBlock-title">Map size</div>
-      <select name="mapsize" #mapsize (change)="selectMapSize(mapsize.value)" [(ngModel)]="selectedMapSize">
-        <option *ngFor="let map of mapSizeOptions" [value]="map.value">{{map.name}}</option>
-      </select>
+      <mat-radio-group
+        aria-labelledby="mapsize-group-label"
+        class="mapSize"
+        [(ngModel)]="selectedMapSize"
+      >
+        <mat-radio-button *ngFor="let map of mapSizeOptions" [value]="map.value" (change)="selectMapSize(map.value)">
+          {{map.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+<!--      <select name="mapsize" #mapsize (change)="selectMapSize(mapsize.value)" [(ngModel)]="selectedMapSize">-->
+<!--        <option *ngFor="let map of mapSizeOptions" [value]="map.value">{{map.name}}</option>-->
+<!--      </select>-->
     </div>
     <div class="formBlock">
       <div class="formBlock-title">Players</div>
-      <select name="players" #players (change)="selectPlayerAmmount(players.value)" [(ngModel)]="selectedPlayers">
-        <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>
-      </select>
+      <mat-radio-group
+        aria-labelledby="[players-group-label]"
+        class="players"
+        [(ngModel)]="selectedPlayers">
+        <mat-radio-button *ngFor="let player of playerOptions" [value]="player.value" (change)="selectPlayerAmmount(player.value)" >
+          {{player.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+<!--      <select name="players" #players (change)="selectPlayerAmmount(players.value)" [(ngModel)]="selectedPlayers">-->
+<!--        <option *ngFor="let player of playerOptions" [value]="player.value">{{player.name}}</option>-->
+<!--      </select>-->
     </div>
     <div class="formBlock" [formGroup]="flipGroup">
       <div class="formBlock-title">Flip Tiles</div>

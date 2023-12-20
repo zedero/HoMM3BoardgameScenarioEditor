@@ -60,10 +60,20 @@ export class TilesService {
     setTimeout(() => {
       this.tilesUpdated.next(new Date().toString());
     },10)
+    this.fixTileList();
     const save = {
       'default': this.tileList
     };
     localStorage.setItem(this.storageKey, JSON.stringify(save));
+  }
+
+  private fixTileList() {
+    this.tileList.forEach((tile) => {
+      if (Array.isArray(tile.tileId)) {
+        console.log('FIX', tile)
+        tile.tileId = tile.tileId[0];
+      }
+    })
   }
 
   public deleteTile(id: any) {

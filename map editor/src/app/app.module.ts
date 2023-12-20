@@ -8,6 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CellComponent } from './components/cell/cell.component';
 import { TileComponent } from './components/tile/tile.component';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { MatRadioModule } from '@angular/material/radio'
 import {CommonModule} from "@angular/common";
 import {SelectionDialogComponent} from "./components/selection-dialog/selection-dialog.component";
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
@@ -44,6 +45,7 @@ import { SettingsDialogComponent } from './components/settings-dialog/settings-d
     BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
+    MatRadioModule,
     CommonModule,
     MatCheckboxModule,
     FormsModule,

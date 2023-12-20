@@ -10,3 +10,43 @@
     margin-bottom: 5px;
   }
 }
+
+:host ::ng-deep .mapSize,
+:host ::ng-deep .players {
+  .mdc-radio {
+    display: none;
+  }
+
+  .mdc-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-right: 5px;
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+
+    width: 40px;
+    height: 40px;
+    color: #ffe98c;
+    border: 3px solid #0c0800;
+    border-top-color: #a7a29a;
+    border-left-color: #a7a29a;
+    transition: border .2s, background-color .2s;
+    background: rgba(0,0,0,.2);
+    cursor: pointer;
+  }
+
+  .mat-mdc-radio-checked .mdc-label {
+    color: var(--primary);
+    border-color: var(--primary);
+    border-top-color: #a7a29a;
+    border-left-color: darken(#a7a29a, 20%);
+    background: rgba(0,0,0,.4);
+  }
+}
+:host ::ng-deep .players .mdc-label{
+  font-family: "Times New Roman";
+  font-size: 24px;
+  font-weight: bold;
+}

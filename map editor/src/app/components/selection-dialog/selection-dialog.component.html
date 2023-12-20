@@ -7,7 +7,7 @@
     <div class="filter" [formGroup]="sets">
       <span class="formTitle">Expansions:</span>
       <ng-container *ngFor="let filter of expansionsFilter">
-        <mat-checkbox formControlName="{{filter.name}}">{{filter.desc}}</mat-checkbox>
+        <mat-checkbox formControlName="{{filter.name}}" (click)="saveFilterOptions()">{{filter.desc}}</mat-checkbox>
       </ng-container>
     </div>
   </div>
