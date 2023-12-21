@@ -133,6 +133,7 @@ body { margin: 0;
   overflow-y: scroll;
   width: calc(100% - 16px);
   margin-bottom: 15px;
+  position: relative;
 }
 
 /* ===== Scrollbar CSS ===== */

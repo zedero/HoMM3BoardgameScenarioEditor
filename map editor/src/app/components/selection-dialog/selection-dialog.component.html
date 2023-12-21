@@ -14,7 +14,7 @@
   <div class="content">
     <ng-container *ngFor="let group of enumToList(this.GROUP)">
       <div class="tileContainer" *ngIf="getGroup(tilesConfiguration, GROUP[group]).length">
-        <div class="title">{{config.GROUP_DESC[group]}}</div>
+        <div class="title">{{config.GROUP_DESC[group]}} <span class="tilesLeft">{{getLeft(group).current + '/' +  getLeft(group).total}}</span></div>
         <div *ngFor="let tile of getGroup(tilesConfiguration, GROUP[group])">
           <div class="mini-tile">
             <img src="{{tile.img}}" alt="{{tile.desc}}">

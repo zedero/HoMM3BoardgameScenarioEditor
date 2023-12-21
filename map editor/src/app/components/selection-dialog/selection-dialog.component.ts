@@ -17,6 +17,7 @@ export class SelectionDialogComponent {
   public expansionsFilter;
   public placedFilter;
   public config: ConfigService;
+  public tilesLeft: any;
 
   constructor(
     public tilesService: TilesService,
@@ -90,6 +91,38 @@ export class SelectionDialogComponent {
     return selectedExpansions;
   }
 
+  getLeft(group: any) {
+    if (group === "RANDOM") {
+      // const t = Object.entries(this.tilesLeft).filter(([key, val]) => {
+      //   return !key.includes('_MAX')
+      // }).reduce((acc: number, [key, val]) => {
+      //   // @ts-ignore
+      //   return acc += val
+      // }, 0)
+      // console.log(t)
+
+
+      return {
+        current: Object.entries(this.tilesLeft).filter(([key, val]) => {
+          return !key.includes('_MAX')
+        }).reduce((acc: number, [key, val]) => {
+          // @ts-ignore
+          return acc += val
+        }, 0),
+        total: Object.entries(this.tilesLeft).filter(([key, val]) => {
+          return key.includes('_MAX')
+        }).reduce((acc: number, [key, val]) => {
+          // @ts-ignore
+          return acc += val
+        }, 0)
+      }
+    }
+    return {
+      current: this.tilesLeft[group.replace('STARTINGTILE', 'TOWN')],
+      total: this.tilesLeft[group.replace('STARTINGTILE', 'TOWN') + '_MAX']
+    };
+  }
+
   getPlacedTiles() {
     this.getTilesLeft();
     const placed = new Set();
@@ -107,6 +140,10 @@ export class SelectionDialogComponent {
       FAR: 0,
       NEAR: 0,
       CENTER: 0,
+      TOWN_MAX: 0,
+      FAR_MAX: 0,
+      NEAR_MAX: 0,
+      CENTER_MAX: 0,
     }
     this.getExpansionSelection().forEach((selectedExpansion: any) => {
       const content = this.config.EXPANSION_CONTENTS[this.config.EXPANSION[selectedExpansion]];
@@ -114,7 +151,12 @@ export class SelectionDialogComponent {
       totals.FAR += content.FAR;
       totals.NEAR += content.NEAR;
       totals.CENTER += content.CENTER;
+      totals.TOWN_MAX += content.TOWN;
+      totals.FAR_MAX += content.FAR;
+      totals.NEAR_MAX += content.NEAR;
+      totals.CENTER_MAX += content.CENTER;
     });
+
     this.tilesService.tileList.forEach((tile) => {
       const groupId = this.config.GROUP[this.config.TILES[tile.tileId].group];
       if (this.config.GROUP[groupId] === this.config.GROUP.STARTINGTILE) {
@@ -144,6 +186,7 @@ export class SelectionDialogComponent {
         }
       }
     })
+    this.tilesLeft = totals;
    return totals;
   }
 
@@ -153,7 +196,7 @@ export class SelectionDialogComponent {
 
     if ( groupEnum === this.config.GROUP.RANDOM ) {
       return config.filter((item) => {
-        return item.group === groupEnum && item.id !== "PLACEHOLDER";
+        return item.group === groupEnum && selectedExpansionsIDs.has(item.expansionID) && item.id !== "PLACEHOLDER";
       }).filter((item) => {
         if (item.id === "S0" && left.TOWN > 0) {
           return true
