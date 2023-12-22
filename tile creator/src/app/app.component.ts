@@ -4,6 +4,8 @@ import * as htmlToImage from "html-to-image";
 
 export type StorageSaveData = {
   terrain: string;
+  group: string;
+  expansion: string;
   tileId: string;
   data: SaveData[];
   guid: string;
@@ -60,6 +62,8 @@ export class AppComponent {
   newTile() {
     const tile: StorageSaveData = {
       terrain: 'grass',
+      group: 'far',
+      expansion: 'core',
       tileId: '',
       guid: this.generateGuid(),
       data: this.getEmptyTileData()
@@ -151,7 +155,7 @@ export class AppComponent {
       let node:any = document.getElementById(tile.guid);
       htmlToImage.toPng(node)
         .then( (dataUrl) => {
-          this.download(dataUrl, `${tile.tileId}.png`)
+          this.download(dataUrl, `${tile.tileId.replace("#", "_")}.png`)
         })
         .catch(function (error) {
           console.error('oops, something went wrong!', error);

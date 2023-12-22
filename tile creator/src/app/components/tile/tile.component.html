@@ -7,6 +7,16 @@
   <option *ngFor="let terrain of terrains" [value]="terrain.value">{{terrain.name}}</option>
 </select>
 <br>
+<div>Type</div>
+<select name="type" #type (change)="selectTerrain(type.value)" [(ngModel)]="typeSelected">
+  <option *ngFor="let type of types" [value]="type.value">{{type.name}}</option>
+</select>
+<br>
+<div>Expansion</div>
+<select name="expansion" #expansion (change)="selectTerrain(expansion.value)" [(ngModel)]="expansionSelected">
+  <option *ngFor="let expansion of expansions" [value]="expansion.value">{{expansion.name}}</option>
+</select>
+<br>
 <br>
 
 
@@ -33,5 +43,7 @@
 
 <button (click)="generateImage()">Generate Image</button>
 <button (click)="delete()" class="warn">DELETE</button>
-
+<div>
+  {{getJson() | json}}
+</div>
 <br><br><hr><br>

@@ -11,14 +11,33 @@ export class TileComponent {
   elementId = this.generateGuid();
   terrains: any[] = [
     {value: 'grass', name: 'Grass'},
-    {value: 'dirt', name: 'Dirt'},
     {value: 'subterrain', name: 'Subterrain'},
     {value: 'snow', name: 'Snow'},
     {value: 'lava', name: 'Lava'},
     {value: 'cursed', name: 'Cursed'},
     {value: 'swamp', name: 'Swamp'},
   ];
+
+  types: any[] = [
+    {value: 'far', name: 'Far'},
+    {value: 'near', name: 'Near'},
+    {value: 'center', name: 'Center'},
+    {value: 'startingtile', name: 'Town'},
+  ];
+
+  expansions: any[] = [
+    {value: 'core', name: 'Core'},
+    {value: 'tower', name: 'Tower'},
+    {value: 'rampart', name: 'Rampart'},
+    {value: 'fortress', name: 'Fortress'},
+    {value: 'inferno', name: 'Inferno'},
+  ];
+
   @Input() terrainSelected: string = 'grass';
+
+  @Input() typeSelected: string = 'far';
+
+  @Input() expansionSelected: string = 'core';
 
   @Output() updateTile = new EventEmitter<any>();
 
@@ -97,7 +116,7 @@ export class TileComponent {
     console.log('@', node)
     htmlToImage.toPng(node)
       .then( (dataUrl) => {
-        this.download(dataUrl, `${this.id}.png`)
+        this.download(dataUrl, `${this.id.replace("#", "_")}.png`)
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
@@ -129,6 +148,8 @@ export class TileComponent {
   save() {
     this.updateTile.next({
       terrain: this.terrainSelected,
+      group: this.typeSelected,
+      expansion: this.expansionSelected,
       tileId: this.id,
       guid: this.guid,
       data: this.saveData
@@ -137,5 +158,38 @@ export class TileComponent {
 
   delete() {
     this.deleteTile.next(this.guid);
+  }
+
+  getJson() {
+    const generateBlockedList = () => {
+      // console.log(this.saveData)
+      const getBlockedFromCellData = (cellId: number) => {
+        return this.saveData[cellId].blocked || this.saveData[cellId].border ? 1 : 0;
+      }
+
+      return [
+        getBlockedFromCellData(1),
+        getBlockedFromCellData(4),
+        getBlockedFromCellData(6),
+        getBlockedFromCellData(5),
+        getBlockedFromCellData(2),
+        getBlockedFromCellData(0)
+      ]
+    }
+
+    const generateDesc = () => {
+      return this.typeSelected.charAt(0).toUpperCase() + this.typeSelected.slice(1) + " Tile " + this.id
+    }
+
+    const t = {
+      id: this.id,
+      img: "assets/tiles/" + this.id.replace("#", "_") + ".png",
+      desc: generateDesc(),
+      expansionID: "EXPANSION." + this.expansionSelected?.toUpperCase(),
+      groundType: "GROUNDTYPE." + this.terrainSelected.toUpperCase(),
+      group: "GROUP." + this.typeSelected?.toUpperCase(),
+      blocked: generateBlockedList()
+    }
+    return t;
   }
 }

@@ -10,6 +10,8 @@
       [guid]="tile.guid"
       [id]="tile.tileId"
       [terrainSelected]="tile.terrain"
+      [typeSelected]="tile.group"
+      [expansionSelected]="tile.expansion"
       (updateTile)="updateTile($event)"
       (deleteTile)="deleteTile($event)"
     ></app-tile>
