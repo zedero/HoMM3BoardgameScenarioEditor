@@ -45,6 +45,9 @@ export class AppComponent implements OnInit {
   ) {
     configService.load().then(() => {
       this.loaded = true;
+      Object.values(configService.TILES).forEach((tile: any) => {
+        this.images.push('/' + tile.img)
+      })
     });
   }
 

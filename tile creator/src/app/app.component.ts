@@ -22,6 +22,10 @@ export class AppComponent {
 
 
   constructor() {
+
+    // console.log(getStringValue("#S1"))
+    // const t = "S1"
+    // console.log("#S1".charCodeAt(0))
     this.load();
   }
 
@@ -164,9 +168,57 @@ export class AppComponent {
   }
 
   sort() {
-    console.log(this.tileList)
-    this.tileList = this.tileList.sort((tileA:StorageSaveData, tileB:StorageSaveData) => {
-      return tileA.tileId.replace('#', 'Z').localeCompare(tileB.tileId.replace('#', 'Z'))
+    const getStringValue = function(text: string) {
+      const charList = text.replace(/[0-9]/g, '').split("");
+      const number = text.replace(/\D/g, '');
+      const res = charList.map((letter: string) => {
+        if (/^\d+$/.test(letter)) {
+          return parseInt(letter);
+        }
+        return letter.charCodeAt(0) * 100;
+      }).reduce((acc: number, val: number) => {
+        return acc + val
+      }, 0) + parseInt(number);
+      return res;
+    }
+    this.tileList.sort((tileA:StorageSaveData, tileB:StorageSaveData) => {
+      return getStringValue(tileA.tileId) - getStringValue(tileB.tileId)
+    })
+    this.save();
+  }
+
+  test() {
+    const generateBlockedList = (tile: any) => {
+      const getBlockedFromCellData = (cellId: number) => {
+        return tile.data[cellId].blocked || tile.data[cellId].border ? 1 : 0;
+      }
+
+      return [
+        getBlockedFromCellData(1),
+        getBlockedFromCellData(4),
+        getBlockedFromCellData(6),
+        getBlockedFromCellData(5),
+        getBlockedFromCellData(2),
+        getBlockedFromCellData(0)
+      ]
+    }
+    const generateDesc = (tile: any) => {
+      return tile.group.charAt(0).toUpperCase() + tile.group.slice(1) + " Tile " + tile.tileId
+    }
+
+    const result: any = {}
+    this.tileList.map(tile => {
+      const t = {
+        id: tile.tileId,
+        img: "assets/tiles/" + tile.tileId.replace("#", "_") + ".png",
+        desc: generateDesc(tile),
+        expansionID: "EXPANSION." + tile.expansion?.toUpperCase(),
+        groundType: "GROUNDTYPE." + tile.terrain.toUpperCase(),
+        group: "GROUP." + tile.group?.toUpperCase(),
+        blocked: generateBlockedList(tile)
+      }
+      result[tile.tileId] = t;
     });
+    console.log(JSON.stringify(result))
   }
 }

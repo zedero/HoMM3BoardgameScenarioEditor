@@ -111,7 +111,7 @@ export class ConfigService {
     this.GROUP_DESC = data.GROUP_DESC;
     this.EXPANSION = this.arrayToEnum(data.EXPANSION);
     this.EXPANSION_FILTER_DESC = data.EXPANSION_FILTER_DESC;
-    this.TILES = this.tileJsonToData(data.TILES);
+    this.TILES = {...this.tileJsonToData(data.RANDOM_TILES), ...this.tileJsonToData(data.TILES)};
     this.PORTRAITS = data.PORTRAITS;
     this.FACTIONS = data.FACTIONS;
     this.EXPANSION_CONTENTS = data.EXPANSION_CONTENTS;
