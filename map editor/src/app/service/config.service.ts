@@ -141,4 +141,16 @@ export class ConfigService {
      return this.TILES[tileId].group;
   }
 
+  public getTilesByGroup(group: string) {
+    return Object.values((this.TILES)).filter((tile: any) => {
+      return tile.group === group;
+    });
+  }
+
+  public getTileIDByGroup(group: string) {
+    return this.getTilesByGroup(group).map((tile: any) => {
+      return tile.id;
+    });
+  }
+
 }

@@ -2,7 +2,9 @@
   <button (click)="newTile()">New Tile</button>
   <button (click)="generate()">Generate ALL images</button>
   <button (click)="sort()">Sort tiles</button>
-  <button (click)="test()">Console log JSON data</button>
+  <button (click)="export()">Export</button>
+  <textarea name="" id="">{{exportImport}}</textarea>
+  <button (click)="import()">Load</button>
 </div>
 <div class="tile-container">
   <ng-container *ngFor="let tile of tileList">

@@ -266,7 +266,7 @@
     },
     "PLACEHOLDER": {
       "id": "PLACEHOLDER",
-      "img": "assets/tiles/special/placeholder.png",
+      "img": "assets/tiles/special/placeholder-debug.png",
       "desc": "Random Center Tile",
       "expansionID": "EXPANSION.RANDOM",
       "groundType": "GROUNDTYPE.RANDOM",

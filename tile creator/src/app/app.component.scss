@@ -14,4 +14,12 @@
   z-index: 100;
   background: white;
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+
+  display: flex;
+
+  textarea {
+    height: 24px;
+    width: 200px;
+    margin-right: 10px;
+  }
 }

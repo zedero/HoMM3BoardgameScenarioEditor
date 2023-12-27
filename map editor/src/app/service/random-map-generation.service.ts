@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { TilesService } from './tiles.service';
 import { Helper } from '../utility/helper';
+import { TilePlacement } from './tile-placement'
 
 export type RandomMapSettings = {
   size: string,
@@ -22,6 +23,7 @@ export type RandomMapSettings = {
   providedIn: 'root'
 })
 export class RandomMapGenerationService {
+  public tilePlacement: TilePlacement;
   public storageKey = 'scenarioCreatorGenerationSettings';
   public connected = new Set();
   public settings: RandomMapSettings = {
@@ -39,6 +41,7 @@ export class RandomMapGenerationService {
   }
 
   constructor(public tilesService: TilesService, private config: ConfigService, private calc: Helper) {
+    this.tilePlacement = new TilePlacement(tilesService, config, calc);
     this.getConnectedTiles();
     this.loadSettings();
   }
@@ -103,7 +106,7 @@ export class RandomMapGenerationService {
     this.clearGrid();
     this.generateConnectedRandomMap(settings?.grid?.rows, settings?.grid?.cols, settings?.grid?.tiles);
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
-    this.test();
+
     this.placeStartingTownsPass(settings.playerCount);
     this.connectToStartingTilePass();
     this.replacePlaceholderTilesPass(settings.playerCount);
@@ -145,23 +148,6 @@ export class RandomMapGenerationService {
   //   });
   //   return tiles;
   // }
-
-  test(playerCount = 2) {
-    const tiles:any = [...this.tilesService.tileList];
-    const solution: any[] = [];
-    const addToSolution = (tile: any) => {
-      const tileListIndex = tiles.findIndex((element: any) => {
-        return element.id === tile.id;
-      });
-      tiles.splice(tileListIndex, 1);
-      solution.push(tiles[tileListIndex]);
-    }
-
-    addToSolution(tiles[0]);
-
-
-
-  }
 
   placeStartingTownsPass(playerCount = 2) {
     const tiles:any = [...this.tilesService.tileList];
@@ -253,16 +239,27 @@ export class RandomMapGenerationService {
     }
 
     const count = (ID: string) => {
-      return this.tilesService.tileList.reduce((acc, current) => {
+      const count = this.tilesService.tileList.reduce((acc, current) => {
         if (current.tileId === ID) {
           acc++;
         }
         return acc;
       },0);
+      return count;
     }
     const countPlaceholders = count("PLACEHOLDER");
-    const farArr = new Array(playerCount - count("F0")).fill("F0");
-    const nearArr = new Array(playerCount - count("N0")).fill("N0");
+    if (countPlaceholders === 0) {
+      console.log('EMTPY PLACEHOLDERS')
+      return;
+    }
+
+    const getArrLengthById = (ID: string) => {
+      const length = playerCount - count("F0");
+      return length > 0 ? length : 0;
+    }
+
+    const farArr = new Array(getArrLengthById("F0")).fill("F0");
+    const nearArr = new Array(getArrLengthById("N0")).fill("N0");
     const remainder = count("PLACEHOLDER") - farArr.length - nearArr.length;
     let randomArr: any = []
     if (remainder > 0) {
@@ -294,58 +291,27 @@ export class RandomMapGenerationService {
   }
 
   private connectToStartingTilePass() {
-    const tiles = [...this.tilesService.tileList];
-    tiles.sort((a,b) => {
-      return (a.row + a.col) - (b.row + b.col);
-    });
-    // TODO create algorithm
-    const towns = tiles.filter((tile) => {
-      if (this.config.getGroupById(tile.tileId) === this.config.GROUP.STARTINGTILE || tile.tileId === "S0") {
-        return tile;
-      }
-    });
-
-    towns.forEach((town) => {
-      const neighbours = this.calc.getNeighbours(tiles, [town]);
-      const randomNeighbour = this.random(0, neighbours.length-1);
-      neighbours[randomNeighbour].tileId = "F0";
-      this.tilesService.updateTileData(neighbours[randomNeighbour]);
-    })
-
-    const farTiles = tiles.filter((tile) => {
-      if (tile.tileId === "F0") {
-        return tile;
-      }
-    });
-
-    farTiles.forEach((town) => {
-      const neighbours = this.calc.getNeighbours(tiles, [town]);
-      const tile = neighbours.find((neightbour) => neightbour.tileId !== "S0" && neightbour.tileId !== "F0")
-      if (!tile) {
-        console.log(neighbours, tile)
-        return;
-      }
-      tile.tileId = "N0";
-      this.tilesService.updateTileData(tile);
-    })
+    this.tilePlacement.placeLayered();
+    // this.tilePlacement.placeFew();
   }
 
   private flipTilesToFront() {
     // Flip towns:
-    const towns = ['#S1', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
+    const towns = this.config.getTileIDByGroup(this.config.GROUP.STARTINGTILE);
     const random = ["F0", "N0", "C0"]
     this.tilesService.tileList.map((tile) => {
       if (this.settings.flipTownTiles) {
         if (tile.tileId === "S0") {
           const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
-          // tile.tileId = pick;
           this.flipAndValidate(tile, pick);
         }
       }
 
       if(this.settings.flipCenterTiles) {
         if (tile.tileId === "C0") {
-          this.flipAndValidate(tile, "C1")
+          const center = this.config.getTileIDByGroup(this.config.GROUP.CENTER);
+          const pick = center[this.random(0,center.length-1)];
+          this.flipAndValidate(tile, pick)
         }
       }
 
