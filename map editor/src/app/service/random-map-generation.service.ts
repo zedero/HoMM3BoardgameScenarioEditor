@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { TilesService } from './tiles.service';
 import { Helper } from '../utility/helper';
-import { TilePlacement } from './tile-placement'
+import { TilePlacement } from './tile-placement';
 
 export type RandomMapSettings = {
   size: string,
@@ -108,7 +108,7 @@ export class RandomMapGenerationService {
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
 
     this.placeStartingTownsPass(settings.playerCount);
-    this.connectToStartingTilePass();
+    this.connectToStartingTilePass(settings.playerCount);
     this.replacePlaceholderTilesPass(settings.playerCount);
     this.flipTilesToFront();
     this.moveAllToTopLeft();
@@ -290,9 +290,12 @@ export class RandomMapGenerationService {
     });
   }
 
-  private connectToStartingTilePass() {
-    this.tilePlacement.placeLayered();
-    // this.tilePlacement.placeFew();
+  private connectToStartingTilePass(playerCount = 2) {
+    if (playerCount <=2) {
+      this.tilePlacement.placeLayered();
+    } else {
+      this.tilePlacement.placeFew();
+    }
   }
 
   private flipTilesToFront() {

@@ -32,9 +32,9 @@ export class SettingsDialogComponent {
     {value: '2', name: '2'},
     {value: '3', name: '3'},
     {value: '4', name: '4'},
-    {value: '5', name: '5'},
-    {value: '6', name: '6'},
-    {value: '7', name: '7'},
+    // {value: '5', name: '5'},
+    // {value: '6', name: '6'},
+    // {value: '7', name: '7'},
   ];
 
   constructor(

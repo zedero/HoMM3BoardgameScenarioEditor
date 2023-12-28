@@ -7,8 +7,13 @@ import {ImportExportDialogComponent} from "./components/import-export-dialog/imp
 import {ConfigService} from "./service/config.service";
 import { RandomMapGenerationService, RandomMapSettings } from './service/random-map-generation.service';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
-
+declare global {
+  interface Window {
+    showNewFeatures: any;
+  }
+}
 
 @Component({
   selector: 'app-root',
@@ -16,6 +21,7 @@ import { SettingsDialogComponent } from './components/settings-dialog/settings-d
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public featureSwitchStorageKey = 'featureSwitch';
   public tilesPerRow = 7;
   public tilesPerColumn = 7;
 
@@ -25,6 +31,7 @@ export class AppComponent implements OnInit {
   public columns = Array(this.tilesPerColumn * 3);
   public moveMenuVisible = false;
   public loading: boolean = false;
+  public featureSwitch: boolean = false;
 
   public tileList:any = [];
 
@@ -41,17 +48,39 @@ export class AppComponent implements OnInit {
               public dialog: MatDialog,
               private configService: ConfigService,
               private randomMapGenerationService: RandomMapGenerationService,
-              public zone: NgZone
+              public zone: NgZone,
+              private route: ActivatedRoute
   ) {
+    if (localStorage.getItem(this.featureSwitchStorageKey)) {
+      this.featureSwitch = true;
+    }
     configService.load().then(() => {
       this.loaded = true;
       Object.values(configService.TILES).forEach((tile: any) => {
         this.images.push('/' + tile.img)
       })
     });
+    this.route.queryParams.subscribe((query) => {
+      // @ts-ignore
+      if (query.hasOwnProperty('featureSwitch') && query['featureSwitch']) {
+        this.featureSwitch = true;
+      }
+    })
+  }
+
+  showNewFeatures = (bool = true) => {
+    if(bool) {
+      localStorage.setItem(this.featureSwitchStorageKey, 'true');
+      if (!this.featureSwitch) {
+        location.reload();
+      }
+    } else {
+      localStorage.removeItem(this.featureSwitchStorageKey);
+    }
   }
 
   ngOnInit() {
+    window.showNewFeatures = this.showNewFeatures;
     this.tilesService.rows = this.rows;
     this.tilesService.columns = this.columns;
     this.tilesService.tilesUpdated.subscribe((val) => {
