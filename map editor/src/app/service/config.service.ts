@@ -153,4 +153,20 @@ export class ConfigService {
     });
   }
 
+  public getTileIDByGroupFilteredBySelectedExpansions(group: string) {
+    const list = Object.entries(this.filterOptions).filter(([key, value]) => {
+      if(key === 'RANDOM') {return false}
+      return value;
+    }).map(([key, value]) => {
+      return this.EXPANSION[key]
+    });
+    const selectedExpansions = new Set(list);
+    return this.getTilesByGroup(group)
+      .filter((tile: any) => {
+        return selectedExpansions.has(tile.expansionID);
+      })
+      .map((tile: any) => {
+        return tile.id;
+      });
+  }
 }

@@ -12,6 +12,13 @@ export type RandomMapSettings = {
   flipFarTiles?: boolean;
   flipNearTiles?: boolean;
   flipCenterTiles?: boolean;
+  totals: {
+    TOWN: number,
+    FAR: number,
+    NEAR: number,
+    CENTER: number,
+    TOTAL: number,
+  }
   grid: {
     rows: number,
     cols: number,
@@ -33,6 +40,13 @@ export class RandomMapGenerationService {
     flipFarTiles: false,
     flipNearTiles: false,
     flipCenterTiles: false,
+    totals: {
+      TOWN: 0,
+      FAR: 0,
+      NEAR: 0,
+      CENTER: 0,
+      TOTAL: 0,
+    },
     grid: {
       rows: 10,
       cols: 10,
@@ -96,22 +110,48 @@ export class RandomMapGenerationService {
         tiles: (players * 4) + this.random(4,7)
       }
     }
-    console.log('S', settings.grid.tiles)
     return settings;
   }
 
   generateRandomMap() {
-    const settings = this.settings;
+    const settings = this.limitBasedOnTiles(this.settings);
+    console.log('S', settings.grid.tiles)
     // TODO Get rows and cols based on defined map size
     this.clearGrid();
     this.generateConnectedRandomMap(settings?.grid?.rows, settings?.grid?.cols, settings?.grid?.tiles);
     // alternative that is based on predefined layouts: generatePredefinedRandomMap();
 
     this.placeStartingTownsPass(settings.playerCount);
-    this.connectToStartingTilePass(settings.playerCount);
-    this.replacePlaceholderTilesPass(settings.playerCount);
-    this.flipTilesToFront();
+    this.connectToStartingTilePass(settings);
+    this.replacePlaceholderTilesPass(settings);
+    this.flipTilesToFront(settings);
     this.moveAllToTopLeft();
+  }
+
+  limitBasedOnTiles(settings: any) {
+    const totals = {
+      TOWN: 0,
+      FAR: 0,
+      NEAR: 0,
+      CENTER: 0,
+      TOTAL: 0,
+    }
+    Object.entries(this.config.filterOptions).forEach(([key,val]) => {
+      if(!val) {
+        return
+      }
+      const content = this.config.EXPANSION_CONTENTS[key];
+      totals.TOWN += content.TOWN;
+      totals.FAR += content.FAR;
+      totals.NEAR += content.NEAR;
+      totals.CENTER += content.CENTER;
+      totals.TOTAL += (content.TOWN + content.FAR + content.NEAR + content.CENTER)
+    });
+    settings.totals = totals;
+    if(settings.grid.tiles > totals.TOTAL) {
+      settings.grid.tiles = totals.TOTAL;
+    }
+    return settings;
   }
 
   private generateConnectedRandomMap(maxRows , maxCols, maxTiles) {
@@ -226,12 +266,12 @@ export class RandomMapGenerationService {
       return b.worth - a.worth;
     })
 
-    console.log(calcDistanceToTowns)
+    // console.log(calcDistanceToTowns)
 
     return calcDistanceToTowns[0];
   }
 
-  private replacePlaceholderTilesPass(playerCount) {
+  private replacePlaceholderTilesPass(settings) {
     const mostMid = this.getMostCenterTileFromTowns();
     if (mostMid) {
       mostMid.tile.tileId = "C0"
@@ -249,82 +289,82 @@ export class RandomMapGenerationService {
     }
     const countPlaceholders = count("PLACEHOLDER");
     if (countPlaceholders === 0) {
-      console.log('EMTPY PLACEHOLDERS')
+      console.log('NO PLACEHOLDERS')
       return;
     }
-
-    const getArrLengthById = (ID: string) => {
-      const length = playerCount - count("F0");
-      return length > 0 ? length : 0;
-    }
-
-    const farArr = new Array(getArrLengthById("F0")).fill("F0");
-    const nearArr = new Array(getArrLengthById("N0")).fill("N0");
-    const remainder = count("PLACEHOLDER") - farArr.length - nearArr.length;
-    let randomArr: any = []
-    if (remainder > 0) {
-      const randomTile = function() {
-        const options = ['F0', 'N0']
-        return options[Math.floor(Math.random()*options.length)]
-      }
-      // @ts-ignore
-      // randomArr = new Array(remainder + 1).fill('C0');
-      for (let i = 0; i < remainder; i++) {
-        randomArr.push(randomTile());
-      }
-
-    }
-
-
-    const placeable = [...farArr, ...nearArr, ...randomArr];
-
-
+    const farArr = new Array(settings.totals.FAR - count('F0')).fill("F0");
+    const nearArr = new Array(settings.totals.NEAR - count('N0')).fill("N0");
+    const placeable = [...farArr, ...nearArr];
 
     this.tilesService.tileList.map((tile) => {
       if (tile.tileId === "PLACEHOLDER" && placeable.length) {
         const pick = placeable.splice(this.random(0,placeable.length-1), 1)[0];
         tile.tileId = pick;
-        // const pick = tileList[this.random(0,tileList.length-1)];
-        // tile.tileId = pick;
       }
     });
   }
 
-  private connectToStartingTilePass(playerCount = 2) {
-    if (playerCount <=2) {
+  private connectToStartingTilePass(settings) {
+    this.tilePlacement.placeFew(settings); return;
+    if (settings.playerCount <= 2) {
       this.tilePlacement.placeLayered();
     } else {
-      this.tilePlacement.placeFew();
+      this.tilePlacement.placeFew(settings);
     }
   }
 
-  private flipTilesToFront() {
+  private getRemainingTiles() {
+    const tiles = [...this.tilesService.tileList];
+    const set = new Set();
+    tiles.forEach((tile) => {
+      console.log(tile.tileId)
+    })
+  }
+
+
+
+  private flipTilesToFront(settings) {
     // Flip towns:
-    const towns = this.config.getTileIDByGroup(this.config.GROUP.STARTINGTILE);
-    const random = ["F0", "N0", "C0"]
+    const towns = this.config.getTileIDByGroupFilteredBySelectedExpansions(this.config.GROUP.STARTINGTILE);
+    const center = this.config.getTileIDByGroupFilteredBySelectedExpansions(this.config.GROUP.CENTER);
+    const far = this.config.getTileIDByGroupFilteredBySelectedExpansions(this.config.GROUP.FAR);
+    const near = this.config.getTileIDByGroupFilteredBySelectedExpansions(this.config.GROUP.NEAR);
+    const random = ["F0", "N0", "C0"];
     this.tilesService.tileList.map((tile) => {
-      if (this.settings.flipTownTiles) {
+      if (this.settings.flipTownTiles && towns.length > 0) {
         if (tile.tileId === "S0") {
           const pick = towns.splice(this.random(0,towns.length-1), 1)[0];
           this.flipAndValidate(tile, pick);
         }
       }
 
-      if(this.settings.flipCenterTiles) {
+      if(this.settings.flipCenterTiles && center.length > 0) {
         if (tile.tileId === "C0") {
-          const center = this.config.getTileIDByGroup(this.config.GROUP.CENTER);
-          const pick = center[this.random(0,center.length-1)];
+          const pick = center.splice(this.random(0,center.length-1), 1)[0];
+          this.flipAndValidate(tile, pick)
+        }
+      }
+      if (this.settings.flipFarTiles) {
+        if (tile.tileId === "F0" && far.length > 0) {
+          const pick = far.splice(this.random(0,center.length-1), 1)[0];
           this.flipAndValidate(tile, pick)
         }
       }
 
-
+      if (this.settings.flipNearTiles) {
+        if (tile.tileId === "N0" && near.length > 0) {
+          const pick = near.splice(this.random(0,center.length-1), 1)[0];
+          this.flipAndValidate(tile, pick)
+        }
+      }
     });
-
-    // Flip others:
   }
 
   private flipAndValidate(tile, tileId) {
+    if (!tileId) {
+      console.log('ERROR FLIPPING', tile, tileId)
+      return;
+    }
     tile.tileId = tileId;
     for(let i = 1; i< 6; i++) {
       if (this.tilesService.isValid()) {

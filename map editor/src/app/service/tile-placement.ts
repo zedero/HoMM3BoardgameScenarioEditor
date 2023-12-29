@@ -60,7 +60,7 @@ export class TilePlacement {
     test();
   }
 
-  placeFew() {
+  placeFew(settings) {
     const tiles = [...this.tilesService.tileList];
     const towns = tiles.filter((tile) => {
       if (this.config.getGroupById(tile.tileId) === this.config.GROUP.STARTINGTILE || tile.tileId === "S0") {

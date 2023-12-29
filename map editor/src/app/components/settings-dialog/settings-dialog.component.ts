@@ -13,8 +13,8 @@ export class SettingsDialogComponent {
   public settings: any = {}
   public flip = [
     {name: "TOWN", desc: "town"},
-    // {name: "FAR", desc: "far"},
-    // {name: "NEAR", desc: "near"},
+    {name: "FAR", desc: "far"},
+    {name: "NEAR", desc: "near"},
     {name: "CENTER", desc: "center"},
   ];
   public flipGroup;
