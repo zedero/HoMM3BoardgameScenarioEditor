@@ -222,6 +222,7 @@ export class Helper {
 
 
     console.timeEnd('Time Spend')
+    console.log(k, tileList, pairsWithHighestMinimumDistance)
 
     return  pairsWithHighestMinimumDistance[0].set.map((index) => {
       return tileList[index]

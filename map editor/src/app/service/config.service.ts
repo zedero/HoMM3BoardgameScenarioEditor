@@ -61,6 +61,15 @@ export class ConfigService {
     },
   }
 
+  public defaultFilterOptions = {
+    "RANDOM": true,
+    "CORE": true,
+    "TOWER": true,
+    "RAMPART": true,
+    "FORTRESS": true,
+    "INFERNO": true
+  }
+
   constructor(private http: HttpClient) {
     this.GROUNDTYPE = this.objToEnum(this.GROUNDTYPE);
     this.GROUP = this.objToEnum(this.GROUP);
@@ -71,9 +80,9 @@ export class ConfigService {
   loadFilterOptions() {
     const data = localStorage.getItem(this.storageKey);
     if (data) {
-      this.filterOptions = JSON.parse(data)
+      this.filterOptions = {...this.defaultFilterOptions, ...JSON.parse(data)}
     } else {
-      this.saveFilterOptions({});
+      this.saveFilterOptions(this.defaultFilterOptions);
     }
   }
 

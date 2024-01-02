@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/config.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/random-map-generation.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/service/tile-placement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/service/tile-placement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/utility/helper.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +139,7 @@
       <workItem from="1701631656527" duration="175000" />
       <workItem from="1701631856061" duration="28857000" />
       <workItem from="1701865743831" duration="50676000" />
-      <workItem from="1702853452664" duration="99145000" />
+      <workItem from="1702853452664" duration="102298000" />
     </task>
     <servers />
   </component>
