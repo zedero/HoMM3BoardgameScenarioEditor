@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfigService } from 'src/app/service/config.service';
 import { RandomMapGenerationService } from 'src/app/service/random-map-generation.service';
 
 @Component({
@@ -10,6 +11,9 @@ import { RandomMapGenerationService } from 'src/app/service/random-map-generatio
 })
 export class SettingsDialogComponent {
   private randomMapGenerationService: RandomMapGenerationService;
+  public config: ConfigService;
+  public sets;
+  public expansionsFilter;
   public settings: any = {}
   public flip = [
     {name: "TOWN", desc: "town"},
@@ -41,8 +45,10 @@ export class SettingsDialogComponent {
     private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<SettingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    randomMapGenerationService: RandomMapGenerationService
+    randomMapGenerationService: RandomMapGenerationService,
+    config: ConfigService
   ) {
+    this.config = config;
     this.randomMapGenerationService = randomMapGenerationService;
     this.settings = randomMapGenerationService.getSettings();
     this.selectedMapSize = this.settings.size;
@@ -53,6 +59,8 @@ export class SettingsDialogComponent {
       NEAR: this.settings.flipNearTiles,
       CENTER: this.settings.flipCenterTiles,
     });
+    this.sets = this._formBuilder.group(this.generateFormBuilderGroup(config.EXPANSION_FILTER_DESC));
+    this.expansionsFilter = this.generateFilterList(config.EXPANSION, config.EXPANSION_FILTER_DESC);
   }
 
   toggleSetting(event) {
@@ -87,5 +95,36 @@ export class SettingsDialogComponent {
 
   generateRandomMap() {
     this.dialogRef.close(true);
+  }
+
+  saveFilterOptions() {
+    this.config.saveFilterOptions(this.sets.value);
+  }
+
+  generateFormBuilderGroup(descObj: any) {
+    const group = {}
+    Object.keys(descObj).forEach((val: any) => {
+      group[val] = true;
+    })
+
+    Object.entries(this.config.filterOptions).forEach(([key,val]) => {
+      if (group[key]) {
+        group[key] = val;
+      }
+    })
+    return group;
+  }
+
+  generateFilterList(filterObj: any, descObj: any) {
+    // change enum obj to string list of keys
+    const filterList = Object.keys(filterObj).filter((val) => {
+      return isNaN(parseInt(val))
+    });
+    return filterList.map((val: any) => {
+      return {
+        name: val,
+        desc: descObj[val]
+      }
+    });
   }
 }
