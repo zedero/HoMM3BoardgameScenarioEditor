@@ -5,14 +5,27 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/icons.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/icons.psd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/town.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/town.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/settings-dialog/settings-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_S1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_S1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/campfire.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/campfire.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/pandora.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/pandora.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/sawmill.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/sawmill.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/tower.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/tower.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/wagon.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/wagon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/castle.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/castle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/chest.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/chest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/dragon-utopia.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/dragon-utopia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/dungeon.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/dungeon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/fortress.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/fortress.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/fountain-of-youth.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/fountain-of-youth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/grail.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/grail.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/inferno.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/inferno.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/mystical-garden.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/mystical-garden.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/necropolis.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/necropolis.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/observatory.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/observatory.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/orepit.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/orepit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/rampart.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/rampart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/shrine-gesture.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/shrine-gesture.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/skeleton.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/skeleton.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/stables.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/stables.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/temple.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/temple.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/tradingpost.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/tradingpost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/tree-of-knowledge.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/tree-of-knowledge.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/warriors-tomb.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/warriors-tomb.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +161,7 @@
       <workItem from="1701631856061" duration="28857000" />
       <workItem from="1701865743831" duration="50676000" />
       <workItem from="1702853452664" duration="103200000" />
-      <workItem from="1704273458547" duration="286000" />
+      <workItem from="1704273458547" duration="5057000" />
     </task>
     <servers />
   </component>

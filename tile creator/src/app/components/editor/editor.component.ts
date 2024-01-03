@@ -32,6 +32,9 @@ export class EditorComponent {
   icons: any = [
     {value: '', name: '- Locations -'},
     {value: 'orepit', name: 'Ore pit'},
+    {value: 'orepit-grass', name: 'Ore pit (Grass)'},
+    {value: 'orepit-lava', name: 'Ore pit (Lava)'},
+    {value: 'orepit-swamp', name: 'Ore pit (Swamp)'},
     {value: 'sawmill', name: 'Sawmill'},
     {value: 'gempond', name: 'Gem Pond'},
     {value: 'campfire', name: 'Campfire'},
@@ -48,6 +51,7 @@ export class EditorComponent {
     {value: 'dragon-utopia', name: 'Dragon Utopia'},
     {value: 'stables', name: 'Stables'},
     {value: 'observatory', name: 'Observatory'},
+    {value: 'observatory-snow', name: 'Observatory (Snow)'},
     {value: 'tradingpost', name: 'Tradingpost'},
     {value: 'skeleton', name: 'Skeleton'},
     {value: 'windmill', name: 'Windmill'},
