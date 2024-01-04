@@ -103,6 +103,8 @@ export class EditorComponent {
 
   @Input({ required: true }) tileName = '';
 
+  @Input({ required: true }) terrain = '';
+
   @Input({ required: true }) set cellData(value: SaveData) {
     if(!value) {
       return
@@ -148,6 +150,10 @@ export class EditorComponent {
       blocked: this.blockedSpace,
       border: this.blockedBorder
     })
+  }
+
+  getBlockedVisualImage() {
+    return '-' + this.terrain;
   }
 
 }

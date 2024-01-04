@@ -22,7 +22,8 @@
 <!--  <div class="tileId" *ngIf="blockedSpace && id" ></div>-->
   <div class="tileId" *ngIf="blockedSpace && tileName" >
     <span>{{tileName}}</span>
-    <img src="assets/tiles/blocked-test.png" alt="">
+    <img src="assets/tiles/blocked-test.png" alt="" class="blockBorder-cell">
+    <img src="assets/tiles/blocked-visual{{getBlockedVisualImage()}}.png" alt="" class="blockBorder-visual">
   </div>
   <div class="tileId" *ngIf="blockedBorder && !blockedSpace">
     <img src="assets/tiles/blocked-test.png" alt="" [class]="getBorderClass()">

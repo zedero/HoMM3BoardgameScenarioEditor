@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-$textcolor: #ddd;
+$textcolor: #eee;
 
 .container {
   box-sizing: border-box;
@@ -53,6 +53,7 @@ input[type=checkbox] {
   //color: rgb(250,236,175);
   filter: drop-shadow(0px 0px 2px rgba(0,0,0,.9));
   color: $textcolor;
+  z-index: 1;
 }
 
 .tileEnemy {
@@ -113,4 +114,16 @@ input[type=checkbox] {
 
 .border_6 {
   clip-path: polygon(100% 22%, 100% 100%, 0 100%, 0 76%);
+}
+
+.blockBorder-cell {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.blockBorder-visual {
+  position: absolute;
+  left: 0;
+  z-index: 0;
 }

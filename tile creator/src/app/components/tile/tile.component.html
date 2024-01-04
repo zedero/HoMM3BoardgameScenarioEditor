@@ -23,17 +23,17 @@
 <div class="container" [id]="guid">
   <div class="ui-container">
     <div class="row">
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[0]" (saveData)="saveCell($event)"></app-editor></div>
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[1]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[0]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[1]" (saveData)="saveCell($event)"></app-editor></div>
     </div>
     <div class="row">
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[2]" (saveData)="saveCell($event)"></app-editor></div>
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[3]" (saveData)="saveCell($event)"></app-editor></div>
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[4]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[2]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[3]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[4]" (saveData)="saveCell($event)"></app-editor></div>
     </div>
     <div class="row">
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[5]" (saveData)="saveCell($event)"></app-editor></div>
-      <div class="cell"><app-editor [tileName]="id" [cellData]="saveData[6]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[5]" (saveData)="saveCell($event)"></app-editor></div>
+      <div class="cell"><app-editor [terrain]="terrainSelected" [tileName]="id" [cellData]="saveData[6]" (saveData)="saveCell($event)"></app-editor></div>
     </div>
   </div>
   <div class="background-container">

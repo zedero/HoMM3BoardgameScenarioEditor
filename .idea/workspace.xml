@@ -3,22 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/icons.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/icons.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/blocked.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/blocked.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/C1 (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/C5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/C5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F14.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F16.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F2.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F3.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F6.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F7.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F8.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N12.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N4.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N6.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F2.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F3.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_N1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_N1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/alchemistlab.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/alchemistlab.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/gempond.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/gempond.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/goldmine.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/goldmine.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/learning-stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/learning-stone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/magicshrine.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/magicshrine.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/magicspring.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/magicspring.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/obelisk.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/obelisk.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/random-tower.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/random-tower.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/random-town.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/random-town.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/sanctuary.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/sanctuary.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/staraxis.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/staraxis.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/waterwheel.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/waterwheel.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/windmill.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/windmill.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/assets/icons/witchhut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/assets/icons/witchhut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +72,7 @@
       <recent name="C:\DEV\scenario-creator\src\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.start (1)">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -128,9 +138,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build (1)" />
-        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.build (2)" />
         <item itemvalue="npm.build" />
       </list>
@@ -154,7 +164,7 @@
       <workItem from="1701631856061" duration="28857000" />
       <workItem from="1701865743831" duration="50676000" />
       <workItem from="1702853452664" duration="103200000" />
-      <workItem from="1704273458547" duration="6746000" />
+      <workItem from="1704273458547" duration="10369000" />
     </task>
     <servers />
   </component>
