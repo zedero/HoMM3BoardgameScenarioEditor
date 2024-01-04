@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/blocked.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/blocked.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/C1 (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/C5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/C5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F14.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F16.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F2.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F3.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F6.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F7.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/F8.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/F8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N12.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N4.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/N6.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/N6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F2.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F3.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_F5.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_F5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map editor/src/assets/tiles/_N1.png" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/tiles/_N1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" afterDir="false" />
-    </list>
+    <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,7 +136,7 @@
       <workItem from="1701631856061" duration="28857000" />
       <workItem from="1701865743831" duration="50676000" />
       <workItem from="1702853452664" duration="103200000" />
-      <workItem from="1704273458547" duration="10369000" />
+      <workItem from="1704273458547" duration="10433000" />
     </task>
     <servers />
   </component>
