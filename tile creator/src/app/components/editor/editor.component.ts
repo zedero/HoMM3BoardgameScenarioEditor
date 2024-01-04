@@ -37,6 +37,7 @@ export class EditorComponent {
     {value: 'orepit-swamp', name: 'Ore pit (Swamp)'},
     {value: 'sawmill', name: 'Sawmill'},
     {value: 'gempond', name: 'Gem Pond'},
+    {value: 'gempond-snow', name: 'Gem Pond (Snow)'},
     {value: 'campfire', name: 'Campfire'},
     {value: 'wagon', name: 'Wagon'},
     {value: 'fountain-of-youth', name: 'Fountain of Youth'},
@@ -69,6 +70,7 @@ export class EditorComponent {
     {value: 'random-castle', name: 'Random Town Castle'},
     {value: 'random-tower', name: 'Random Town Tower'},
     {value: 'random-dungeon', name: 'Random Town Dungeon'},
+    {value: 'random-inferno', name: 'Random Town Inferno'},
     {value: 'random-town', name: 'Random Town'},
     {value: 'necropolis', name: 'Necropolis'},
     {value: 'dungeon', name: 'Dungeon'},
@@ -79,8 +81,11 @@ export class EditorComponent {
     {value: 'inferno', name: 'Inferno'},
     {value: 'crystalcavern', name: 'Crystal Caverns'},
     {value: 'alchemistlab', name: "Alchemist's Lab"},
+    {value: 'alchemistlab-snow', name: "Alchemist's Lab (Snow)"},
     {value: 'sulfurdune', name: 'Sulfur Dune'},
     {value: 'goldmine', name: 'Gold Mine'},
+    {value: 'goldmine-snow', name: 'Gold Mine (Snow)'},
+    {value: 'goldmine-barren', name: 'Gold Mine (Barren)'},
   ];
   iconSelected: string = '';
 
