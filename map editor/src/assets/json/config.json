@@ -738,6 +738,10 @@
         1,
         0
       ]
-    }
+    },
+    "F4": { "id": "F4", "img": "assets/tiles/F4.png", "desc": "Far Tile F4", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.CURSED", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 0, 0 ] },
+    "F9": { "id": "F9", "img": "assets/tiles/F9.png", "desc": "Far Tile F9", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "N2": { "id": "N2", "img": "assets/tiles/N2.png", "desc": "Far Tile N2", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.SUBTERRAIN", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "N3": { "id": "N3", "img": "assets/tiles/N3.png", "desc": "Near Tile N3", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.NEAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] }
   }
 }
