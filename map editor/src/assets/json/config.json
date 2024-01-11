@@ -741,7 +741,16 @@
     },
     "F4": { "id": "F4", "img": "assets/tiles/F4.png", "desc": "Far Tile F4", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.CURSED", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 0, 0 ] },
     "F9": { "id": "F9", "img": "assets/tiles/F9.png", "desc": "Far Tile F9", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
-    "N2": { "id": "N2", "img": "assets/tiles/N2.png", "desc": "Far Tile N2", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.SUBTERRAIN", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
-    "N3": { "id": "N3", "img": "assets/tiles/N3.png", "desc": "Near Tile N3", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.NEAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] }
+    "N2": { "id": "N2", "img": "assets/tiles/N2.png", "desc": "Near Tile N2", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.SUBTERRAIN", "group": "GROUP.NEAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "N3": { "id": "N3", "img": "assets/tiles/N3.png", "desc": "Near Tile N3", "expansionID": "EXPANSION.CORE", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.NEAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "#N2": { "id": "#N2", "img": "assets/tiles/_N2.png", "desc": "Far Tile #N2", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.SNOW", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "#N3": { "id": "#N3", "img": "assets/tiles/_N3.png", "desc": "Far Tile #N3", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "#C1": { "id": "#C1", "img": "assets/tiles/_C1.png", "desc": "Center Tile #C1", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.SNOW", "group": "GROUP.CENTER", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "#F4": { "id": "#F4", "img": "assets/tiles/_F4.png", "desc": "Far Tile #F4", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 1, 0, 0, 0, 0 ] },
+    "#F6": { "id": "#F6", "img": "assets/tiles/_F6.png", "desc": "Far Tile #F6", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.CURSED", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "#F7": { "id": "#F7", "img": "assets/tiles/_F7.png", "desc": "Far Tile #F7", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.SNOW", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 1, 0, 0 ] },
+    "#F8": { "id": "#F8", "img": "assets/tiles/_F8.png", "desc": "Far Tile #F8", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "#F9": { "id": "#F9", "img": "assets/tiles/_F9.png", "desc": "Far Tile #F9", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "#F10": { "id": "#F10", "img": "assets/tiles/_F10.png", "desc": "Far Tile #F10", "expansionID": "EXPANSION.TOWER", "groundType": "GROUNDTYPE.LAVA", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 0, 0 ] }
   }
 }
