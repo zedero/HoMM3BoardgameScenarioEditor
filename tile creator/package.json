@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --port 4300",
     "build": "ng build",
+    "buildsub": "ng build --base-href=/tile-editor/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

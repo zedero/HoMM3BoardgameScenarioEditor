@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/icons.psd" beforeDir="false" afterPath="$PROJECT_DIR$/images/icons.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map editor/src/app/components/import-export-dialog/import-export-dialog.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/app/components/import-export-dialog/import-export-dialog.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map editor/src/assets/json/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/map editor/src/assets/json/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tile creator/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/editor/editor.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/tile creator/src/app/components/tile/tile.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,20 +31,25 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2WvbErGyVfy4L5SOm6rd6cPBYjk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/map editor/src/app/service" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\app\service" />
@@ -50,7 +59,7 @@
       <recent name="C:\DEV\scenario-creator\src\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build (1)">
+  <component name="RunManager" selected="npm.buildsub">
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -84,11 +93,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
+    <configuration name="buildsub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/tile creator/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build" />
+        <script value="buildsub" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -116,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.buildsub" />
         <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build (2)" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +151,10 @@
       <workItem from="1701631856061" duration="28857000" />
       <workItem from="1701865743831" duration="50676000" />
       <workItem from="1702853452664" duration="103200000" />
-      <workItem from="1704273458547" duration="20731000" />
+      <workItem from="1704273458547" duration="25020000" />
+      <workItem from="1705408068240" duration="1207000" />
+      <workItem from="1705478869623" duration="1266000" />
+      <workItem from="1706090318528" duration="596000" />
     </task>
     <servers />
   </component>
