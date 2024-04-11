@@ -153,7 +153,7 @@ export class TilesService {
 
   generateBlockedCellsList(excludeGuid?: string) {
     const blockedCells = new Set();
-    this.tileList.forEach((tile) => {
+    this.tileList?.forEach((tile) => {
       if (tile.id === excludeGuid) {
         return;
       }

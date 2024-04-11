@@ -499,6 +499,23 @@
         0
       ]
     },
+    "F10": { "id": "F10", "img": "assets/tiles/F10.png", "desc": "Far Tile F10", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "F11": { "id": "F11", "img": "assets/tiles/F11.png", "desc": "Far Tile F11", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "F12": { "id": "F12", "img": "assets/tiles/F12.png", "desc": "Far Tile F12", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "F13": { "id": "F13", "img": "assets/tiles/F13.png", "desc": "Far Tile F13", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "F14": { "id": "F14", "img": "assets/tiles/F14.png", "desc": "Far Tile F14", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 0, 0, 0 ] },
+    "F15": { "id": "F15", "img": "assets/tiles/F15.png", "desc": "Far Tile F15", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.FAR", "blocked": [ 0, 0, 0, 1, 0, 0 ] },
+    "F17": { "id": "F17", "img": "assets/tiles/F17.png", "desc": "Far Tile F17", "expansionID": "EXPANSION.INFERNO", "groundType": "GROUNDTYPE.LAVA", "group": "GROUP.FAR", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "F18": { "id": "F18", "img": "assets/tiles/F18.png", "desc": "Far Tile F18", "expansionID": "EXPANSION.INFERNO", "groundType": "GROUNDTYPE.LAVA", "group": "GROUP.FAR", "blocked": [ 1, 0, 0, 0, 0, 0 ] },
+    "C3": { "id": "C3", "img": "assets/tiles/C3.png", "desc": "Center Tile C3", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.CENTER", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "C4": { "id": "C4", "img": "assets/tiles/C4.png", "desc": "Center Tile C4", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.CENTER", "blocked": [ 0, 0, 0, 0, 1, 0 ] },
+    "N7": { "id": "N7", "img": "assets/tiles/N7.png", "desc": "Near Tile N7", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.NEAR", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "N8": { "id": "N8", "img": "assets/tiles/N8.png", "desc": "Near Tile N8", "expansionID": "EXPANSION.RAMPART", "groundType": "GROUNDTYPE.GRASS", "group": "GROUP.NEAR", "blocked": [ 0, 0, 1, 0, 0, 0 ] },
+    "N9": { "id": "N9", "img": "assets/tiles/N9.png", "desc": "Near Tile N9", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.NEAR", "blocked": [ 0, 0, 0, 0, 0, 1 ] },
+    "N10":{ "id": "N10", "img": "assets/tiles/N10.png", "desc": "Near Tile N10", "expansionID": "EXPANSION.FORTRESS", "groundType": "GROUNDTYPE.SWAMP", "group": "GROUP.NEAR", "blocked": [ 0, 0, 0, 1, 0, 0 ] },
+    "N11": { "id": "N11", "img": "assets/tiles/N11.png", "desc": "Near Tile N11", "expansionID": "EXPANSION.INFERNO", "groundType": "GROUNDTYPE.LAVA", "group": "GROUP.NEAR", "blocked": [ 0, 0, 0, 0, 0, 1 ] },
+
+
     "#S1": {
       "id": "#S1",
       "img": "assets/tiles/_S1.png",
@@ -704,22 +721,6 @@
         0,
         0,
         1,
-        0
-      ]
-    },
-    "F14": {
-      "id": "F14",
-      "img": "assets/tiles/F14.png",
-      "desc": "Far Tile F14",
-      "expansionID": "EXPANSION.CORE",
-      "groundType": "GROUNDTYPE.SWAMP",
-      "group": "GROUP.FAR",
-      "blocked": [
-        0,
-        0,
-        0,
-        0,
-        0,
         0
       ]
     },

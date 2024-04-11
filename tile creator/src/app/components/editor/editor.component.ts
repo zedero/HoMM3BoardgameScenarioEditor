@@ -71,6 +71,8 @@ export class EditorComponent {
     {value: 'obelisk', name: 'Obelisk'},
     {value: 'magicspring', name: 'Magic Spring'},
     {value: 'staraxis', name: 'Star Axis'},
+    {value: 'scholar', name: 'Scholar'},
+    {value: 'warmachine', name: 'War Machine Factory'},
 
 
     {value: 'random-necro', name: 'Random Town Necro'},
@@ -78,6 +80,8 @@ export class EditorComponent {
     {value: 'random-tower', name: 'Random Town Tower'},
     {value: 'random-dungeon', name: 'Random Town Dungeon'},
     {value: 'random-inferno', name: 'Random Town Inferno'},
+    {value: 'random-rampart', name: 'Random Town Rampart'},
+    {value: 'random-fortress', name: 'Random Town Fortress'},
     {value: 'random-town', name: 'Random Town'},
     {value: 'necropolis', name: 'Necropolis'},
     {value: 'dungeon', name: 'Dungeon'},

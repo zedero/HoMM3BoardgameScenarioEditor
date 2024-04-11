@@ -271,7 +271,7 @@ export class Helper {
 
   generateWalkableCellsList(tileList) {
     const walkableCells = new Set();
-    tileList.forEach((tile) => {
+    tileList?.forEach((tile) => {
       const cells = this.getCellNeighbours(tile.row,tile.col);
       walkableCells.add(tile.row + '.' + tile.col);
       cells.forEach((cell, index) => {

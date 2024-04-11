@@ -413,7 +413,7 @@ export class RandomMapGenerationService {
     }
 
 
-    this.tilesService.tileList.forEach((tile) => {
+    this.tilesService?.tileList?.forEach((tile) => {
       if(this.isEven(tile.row)) {
         addConnectedWithinBounds(tile.row-3, tile.col-2);
         addConnectedWithinBounds(tile.row-3, tile.col-1, 1);
