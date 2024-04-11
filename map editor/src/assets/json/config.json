@@ -359,7 +359,7 @@
       "id": "#F5",
       "img": "assets/tiles/_F5.png",
       "desc": "Far Tile #F5",
-      "expansionID": "EXPANSION.CORE",
+      "expansionID": "EXPANSION.TOWER",
       "groundType": "GROUNDTYPE.SUBTERRAIN",
       "group": "GROUP.FAR",
       "blocked": [
