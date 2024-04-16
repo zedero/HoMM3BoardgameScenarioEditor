@@ -1,0 +1,34 @@
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-option {
+  color: black;
+}
+
+$primary: rgb(250,236,175);
+
+
+
+button {
+  background-color: white;
+  border: 2px solid #777777;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-family: Roboto, serif;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &.warn {
+    border-color: red;
+    color: red;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}
