@@ -20,9 +20,9 @@ enum SPECIALS {
   "PARALYZE_ON_RETALIATION", // TODO
   "IGNORE_DEFENCE",
   "IGNORE_DAMAGE_FROM_SPECIALS", // TODO but not yet needed
-  "DOUBLE_ATTACK_NON_ADJACENT", // TODO
+  "DOUBLE_ATTACK_NON_ADJACENT",
   "REROLL_ZERO_ON_DICE",
-  "REROLL_ON_OTHER_SPACE", // TODO
+  "REROLL_ON_OTHER_SPACE",
 }
 
 @Component({
@@ -31,7 +31,7 @@ enum SPECIALS {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public score: [string, number][] = [];
+  public score: [string, number, number?][] = [];
 
   public units: Unit[] = [{
     id: 'TROGLODYTES',
@@ -162,7 +162,7 @@ export class AppComponent {
     ranged: false,
     special: [],
     upgradeFrom: "",
-    costs: [19,2],
+    costs: [19,1],
   },{
     id: 'BLACK_DRAGONS_#PACK',
     attack: 8,
@@ -338,8 +338,25 @@ export class AppComponent {
     const arr = Object.entries(score)
     // @ts-ignore
     const sorted = arr.sort((a, b) => b[1] - a[1]);
-    console.log(sorted)
+
+    const newScores = sorted.map((data) => {
+      const unit = this.getUnitById(data[0]) as Unit;
+      const downgrade = this.findDowngrade(unit) as Unit;
+      console.log(unit,downgrade)
+      const downgradeCost = downgrade ? this.calculateGoldCosts(downgrade.costs) : 0;
+      // @ts-ignore
+      const gC = this.calculateGoldCosts(unit.costs) + downgradeCost;
+      // console.log(unit, )
+      return [...data,...[gC]]
+    })
+    console.log(newScores)
     this.score = sorted as [string, number][];
+  }
+  private getUnitById(id: string) {
+    return this.units.find((unit) => unit.id === id)
+  }
+  private calculateGoldCosts(costs:[number,number]) {
+    return costs[0] + (costs[1] * 6)
   }
 
   private addScore(winnerData: any, score: any) {
@@ -374,8 +391,6 @@ export class AppComponent {
     let attackerWon = 0;
     let defenderWon = 0;
     const itterations = 10000;
-
-
 
     for(let i = 0; i<itterations; i++) {
       const winner = this.startCombat({...attacker}, {...defender});
