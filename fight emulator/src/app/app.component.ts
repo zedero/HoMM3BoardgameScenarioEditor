@@ -8,12 +8,21 @@ export type Unit = {
   initiative: number;
   ranged: boolean;
   special: number[];
+  upgradeFrom?: string;
+  costs?: [number,number];
 }
 
 enum SPECIALS {
   "IGNORE_RETALIATION",
-  "IGNORE_COMBAT_PENALTY_ADJACENT",// TODO Implement this special
-  "IGNORE_PARALYSIS"// TODO Implement this special
+  "IGNORE_COMBAT_PENALTY_ADJACENT",
+  "IGNORE_PARALYSIS",// TODO
+  "CHANCE_TO_PARALYZE_ON_RETALIATION", // TODO
+  "PARALYZE_ON_RETALIATION", // TODO
+  "IGNORE_DEFENCE",
+  "IGNORE_DAMAGE_FROM_SPECIALS", // TODO but not yet needed
+  "DOUBLE_ATTACK_NON_ADJACENT", // TODO
+  "REROLL_ZERO_ON_DICE",
+  "REROLL_ON_OTHER_SPACE",
 }
 
 @Component({
@@ -22,6 +31,8 @@ enum SPECIALS {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public score: [string, number][] = [];
+
   public units: Unit[] = [{
     id: 'TROGLODYTES',
     attack: 2,
@@ -70,6 +81,182 @@ export class AppComponent {
     initiative: 7,
     ranged: true,
     special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
+  },{
+    id: 'MEDUSAS',
+    attack: 3,
+    defence: 1,
+    health: 4,
+    initiative: 5,
+    ranged: true,
+    special: [SPECIALS.CHANCE_TO_PARALYZE_ON_RETALIATION],
+  },{
+    id: 'MEDUSAS_#PACK',
+    attack: 4,
+    defence: 1,
+    health: 4,
+    initiative: 6,
+    ranged: true,
+    special: [SPECIALS.PARALYZE_ON_RETALIATION, SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
+  },{
+    id: 'MINOTAURS',
+    attack: 4,
+    defence: 2,
+    health: 4,
+    initiative: 6,
+    ranged: false,
+    special: [],
+  },{
+    id: 'MINOTAURS_#PACK',
+    attack: 5,
+    defence: 2,
+    health: 4,
+    initiative: 8,
+    ranged: false,
+    special: [],
+  },{
+    id: 'MANTICORES',
+    attack: 5,
+    defence: 1,
+    health: 6,
+    initiative: 7,
+    ranged: false,
+    special: [],
+  },{
+    id: 'MANTICORES_#PACK',
+    attack: 5,
+    defence: 1,
+    health: 6,
+    initiative: 11,
+    ranged: false,
+    special: [SPECIALS.IGNORE_DEFENCE],
+  },{
+    id: 'BLACK_DRAGONS',
+    attack: 6,
+    defence: 3,
+    health: 8,
+    initiative: 11,
+    ranged: false,
+    special: [],
+  },{
+    id: 'BLACK_DRAGONS_#PACK',
+    attack: 8,
+    defence: 3,
+    health: 8,
+    initiative: 15,
+    ranged: false,
+    special: [SPECIALS.IGNORE_DAMAGE_FROM_SPECIALS],
+  },{
+    id: 'HALBERDIERS',
+    attack: 2,
+    defence: 1,
+    health: 2,
+    initiative: 4,
+    ranged: false,
+    special: [],
+  },{
+    id: 'HALBERDIERS_#PACK',
+    attack: 3,
+    defence: 1,
+    health: 2,
+    initiative: 5,
+    ranged: false,
+    special: [],
+  },{
+    id: 'MARKSMEN',
+    attack: 2,
+    defence: 0,
+    health: 2,
+    initiative: 4,
+    ranged: true,
+    special: [],
+  },{
+    id: 'MARKSMEN_#PACK',
+    attack: 2,
+    defence: 0,
+    health: 2,
+    initiative: 6,
+    ranged: true,
+    special: [SPECIALS.DOUBLE_ATTACK_NON_ADJACENT],
+  },{
+    id: 'GRIFFINS',
+    attack: 2,
+    defence: 0,
+    health: 4,
+    initiative: 6,
+    ranged: false,
+    special: [],
+  },{
+    id: 'GRIFFINS_#PACK',
+    attack: 3,
+    defence: 0,
+    health: 4,
+    initiative: 9,
+    ranged: false,
+    special: [],
+  },{
+    id: 'CRUSADERS',
+    attack: 3,
+    defence: 2,
+    health: 4,
+    initiative: 5,
+    ranged: false,
+    special: [],
+  },{
+    id: 'CRUSADERS_#PACK',
+    attack: 4,
+    defence: 2,
+    health: 4,
+    initiative: 6,
+    ranged: false,
+    special: [SPECIALS.REROLL_ZERO_ON_DICE],
+  },{
+    id: 'ZEALOTS',
+    attack: 3,
+    defence: 1,
+    health: 4,
+    initiative: 4,
+    ranged: true,
+    special: [],
+  },{
+    id: 'ZEALOTS_#PACK',
+    attack: 4,
+    defence: 1,
+    health: 5,
+    initiative: 7,
+    ranged: true,
+    special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
+  },{
+    id: 'CHAMPIONS',
+    attack: 5,
+    defence: 2,
+    health: 7,
+    initiative: 7,
+    ranged: false,
+    special: [],
+  },{
+    id: 'CHAMPIONS_#PACK',
+    attack: 6,
+    defence: 2,
+    health: 7,
+    initiative: 9,
+    ranged: false,
+    special: [SPECIALS.REROLL_ON_OTHER_SPACE],
+  },{
+    id: 'ARCHANGELS',
+    attack: 6,
+    defence: 3,
+    health: 8,
+    initiative: 12,
+    ranged: false,
+    special: [],
+  },{
+    id: 'ARCHANGELS_#PACK',
+    attack: 7,
+    defence: 3,
+    health: 10,
+    initiative: 18,
+    ranged: false,
+    special: [],
   }]
   constructor() {
 
@@ -77,24 +264,34 @@ export class AppComponent {
 
   public start() {
     // test match
-//3,5
-
-    //this.doBattle(this.units[5], this.units[4]);
+    // this.doBattle(this.units[5], this.units[3]);
+    // return;
 
     const matches = this.setupBattleMatches();
     const score = {};
+    console.time("Simulation time")
     matches.forEach((match: [Unit, Unit]) => {
-      const winner = this.doBattle(match[0], match[1]);
-      this.addScore(winner, score);
+      const winnerData = this.doBattle(match[0], match[1]);
+      this.addScore(winnerData, score);
     })
-    console.log(score);
+    console.timeEnd("Simulation time")
+    this.showScore(score);
   }
 
-  private addScore(unit: Unit, score: any) {
+  private showScore(score: any) {
+    const arr = Object.entries(score)
+    // @ts-ignore
+    const sorted = arr.sort((a, b) => b[1] - a[1]);
+    console.log(sorted)
+    this.score = sorted as [string, number][];
+  }
+
+  private addScore(winnerData: any, score: any) {
+    const unit = winnerData.winner;
     if (!score[unit.id]) {
-      score[unit.id] = 1;
+      score[unit.id] = winnerData.percentage; // or just add one win???
     } else {
-      score[unit.id]++;
+      score[unit.id] += winnerData.percentage;
     }
 
   }
@@ -107,7 +304,7 @@ export class AppComponent {
           matches.push([unitA, unitB]);
         }
       })
-    })
+    });
     return matches;
   }
 
@@ -135,10 +332,16 @@ export class AppComponent {
 
     if (attackerWon > defenderWon) {
       console.log(`${this.name(attacker.id)} has won (${attackerWon}/${itterations}) agains ${this.name(defender.id)}`)
-      return attacker;
+      return {
+        winner: attacker,
+        percentage: Math.round((attackerWon/itterations) * 100)
+      };
     } else {
       console.log(`${this.name(defender.id)} has won (${defenderWon}/${itterations}) agains ${this.name(attacker.id)}`)
-      return defender;
+      return {
+        winner: defender,
+        percentage: Math.round((defenderWon/itterations) * 100)
+      };
     }
 
   }
@@ -177,18 +380,42 @@ export class AppComponent {
 
   private doDamage(source: Unit, target: Unit, isAdjacent: boolean) {
     const isRangedVsRanged = source.ranged && target.ranged && !isAdjacent;
-    const attackRoll = this.attackRoll(isRangedVsRanged)
+    const isRangedVsAdjacent = source.ranged && isAdjacent;
+    const combatPenalty = isRangedVsRanged || (isRangedVsAdjacent && !this.hasSkill(source, SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT));
+    const attackRoll = () => {
+      return this.attackRoll(combatPenalty, this.hasSkill(source, SPECIALS.REROLL_ZERO_ON_DICE));
+    };
 
-    const damage = (source.attack + attackRoll) - target.defence;
+    const attack = () => {
+      // SPECIALS.DOUBLE_ATTACK_NON_ADJACENT
+      if (this.hasSkill(source, SPECIALS.DOUBLE_ATTACK_NON_ADJACENT) && !isAdjacent) {
+        return (source.attack + attackRoll()) + (source.attack + attackRoll());
+      }
+
+      return (source.attack + attackRoll());
+    }
+
+    const targetDefence = () => {
+      //SPECIALS.IGNORE_DEFENCE
+      if (this.hasSkill(source, SPECIALS.IGNORE_DEFENCE)) {
+        return 0;
+      }
+      return target.defence;
+    }
+
+    const damage = attack() - targetDefence();
     target.health -= damage;
-    //console.log(`${this.name(source.id)} deals ${damage} damage to ${this.name(target.id)}`)
+    //console.log(`${this.name(source.id)} deals ${damage} damage to ${this.name(target.id)} (${combatPenalty})`)
   }
 
-  private attackRoll(isRangedVsRanged: boolean) {
+  private attackRoll(combatPenalty: boolean, reRollOnZero: boolean) {
+    if (reRollOnZero) {
+      return Math.random() < 0.5 ? -1 : 1;
+    }
     const roll = function () {
       return Math.floor(Math.random() * 3) - 1
     }
-    if (isRangedVsRanged) {
+    if (combatPenalty) {
       return Math.min(roll(),roll());
     }
     return roll();
