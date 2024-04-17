@@ -38,6 +38,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "last_opened_file_path": "C:/DEV/Github/HoMM3BoardgameScenarioEditor/fight emulator/src/app/config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,11 +54,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\fight emulator\src\app\config" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\app\service" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\app\utility" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\map editor\src\assets" />
       <recent name="C:\DEV\Github\HoMM3BoardgameScenarioEditor\tile creator\src\assets" />
-      <recent name="C:\DEV\scenario-creator\src\app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start (2)">
@@ -163,7 +164,7 @@
       <workItem from="1709128229393" duration="502000" />
       <workItem from="1712438656135" duration="714000" />
       <workItem from="1712759856091" duration="5034000" />
-      <workItem from="1713267584935" duration="31900000" />
+      <workItem from="1713267584935" duration="32279000" />
     </task>
     <servers />
   </component>

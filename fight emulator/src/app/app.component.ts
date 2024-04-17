@@ -342,12 +342,13 @@ export class AppComponent {
     const newScores = sorted.map((data) => {
       const unit = this.getUnitById(data[0]) as Unit;
       const downgrade = this.findDowngrade(unit) as Unit;
-      console.log(unit,downgrade)
       const downgradeCost = downgrade ? this.calculateGoldCosts(downgrade.costs) : 0;
+
+      const goldCosts = this.calculateGoldCosts(unit.costs) + downgradeCost;
       // @ts-ignore
-      const gC = this.calculateGoldCosts(unit.costs) + downgradeCost;
-      // console.log(unit, )
-      return [...data,...[gC]]
+      const scorePerCoin = Math.ceil(data[1] / goldCosts);
+
+      return [...data,...[scorePerCoin]]
     })
     console.log(newScores)
     this.score = sorted as [string, number][];
