@@ -1,12 +1,31 @@
-export enum SPECIALS {
-  "IGNORE_RETALIATION",
-  "IGNORE_COMBAT_PENALTY_ADJACENT",
-  "IGNORE_PARALYSIS",// TODO
-  "CHANCE_TO_PARALYZE_ON_RETALIATION", // TODO
-  "PARALYZE_ON_RETALIATION", // TODO
-  "IGNORE_DEFENCE",
-  "IGNORE_DAMAGE_FROM_SPECIALS", // TODO but not yet needed
-  "DOUBLE_ATTACK_NON_ADJACENT",
-  "REROLL_ZERO_ON_DICE",
-  "REROLL_ON_OTHER_SPACE",
+import { DUNGEON } from "./dungeon";
+import { CASTLE } from "./castle";
+import { NECROPOLIS } from "./necropolis";
+import {NEUTRAL} from "./neutral";
+import {TOWER} from "./tower";
+import {RAMPART} from "./rampart";
+import {FORTRESS} from "./fortress";
+import {INFERNO} from "./inferno";
+
+export type Unit = {
+  id: string;
+  attack: number;
+  defence: number;
+  health: number;
+  initiative: number;
+  ranged: boolean;
+  special: number[];
+  upgradeFrom: string;
+  costs: [number,number];
 }
+
+export const UNITS: Unit[] = [
+  ...DUNGEON,
+  ...CASTLE,
+  ...NECROPOLIS,
+  ...TOWER,
+  ...RAMPART,
+  ...FORTRESS,
+  ...INFERNO,
+  ...NEUTRAL
+]

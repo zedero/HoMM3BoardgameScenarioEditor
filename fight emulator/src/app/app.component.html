@@ -1,1 +1,25 @@
 <button (click)="start()">START</button>
+
+<table mat-table matSort  [dataSource]="sortedData" class="mat-elevation-z8" (matSortChange)="sortChange($event)">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by name"> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="score">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by score"> Score </th>
+    <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="resourceEfficiency">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by resourceEfficiency"> Efficiency </th>
+    <td mat-cell *matCellDef="let element"> {{element.resourceEfficiency}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

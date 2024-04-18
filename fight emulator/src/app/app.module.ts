@@ -9,6 +9,8 @@ import {NgFor} from "@angular/common";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     MatSelectModule,
-    MatFormFieldModule, NgFor, MatInputModule, FormsModule, BrowserAnimationsModule
+    MatFormFieldModule, NgFor, MatInputModule, FormsModule, BrowserAnimationsModule, MatTableModule, MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
