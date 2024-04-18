@@ -1,9 +1,9 @@
 export enum SPECIALS {
   "IGNORE_RETALIATION",
   "IGNORE_COMBAT_PENALTY_ADJACENT",
-  "IGNORE_PARALYSIS",// TODO but not yet needed
-  "CHANCE_TO_PARALYZE_ON_RETALIATION", // way to situational at the moment.
-  "PARALYZE_ON_RETALIATION", // way to situational at the moment.
+  "IGNORE_PARALYSIS",
+  "CHANCE_TO_PARALYZE_ON_RETALIATION", // way to situational at the moment. perhaps set adjacency to false??
+  "PARALYZE_ON_RETALIATION", // way to situational at the moment.perhaps set adjacency to false??
   "IGNORE_DEFENCE",
   "IGNORE_DAMAGE_FROM_SPECIALS_AND_MAGIC", // TODO but not yet needed
   "DOUBLE_ATTACK_NON_ADJACENT",
@@ -16,11 +16,11 @@ export enum SPECIALS {
   "CURSE_AFTER_ATTACK", // TODO
   "DEATH_BLOW", // TODO
   "STRONGER_ATTACK_DICE", // TODO
-  "FEAR", // TODO
+  "FEAR",
   "NOT_ADJACENT_CHANCE_DOUBLE_ATTACK",// TODO
-  "LOWER_RETALIATION_DAMAGE",// TODO
+  "LOWER_RETALIATION_DAMAGE",
   "CHANCE_TO_PARALYZE_MINUS_ONE",// TODO
-  "DEATH_STARE",// TODO
+  "DEATH_STARE",
   "POISON",// TODO
   "MIGHTY_POISON",// TODO
 }

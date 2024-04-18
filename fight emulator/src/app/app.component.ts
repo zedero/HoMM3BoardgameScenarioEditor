@@ -1,8 +1,16 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {Unit, UNITS} from "./config/data";
 import {SPECIALS} from "./config/specials";
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {Sort} from '@angular/material/sort';
+
+type UnitState = {
+  paralyzed: boolean;
+  lastThrow: number | undefined;
+}
+type CombatState = {
+  attacker: UnitState;
+  defender: UnitState;
+}
 
 @Component({
   selector: 'app-root',
@@ -149,7 +157,17 @@ export class AppComponent implements AfterViewInit {
     const itterations = 100;
 
     for(let i = 0; i<itterations; i++) {
-      const winner = this.startCombat({...attacker}, {...defender});
+      const initialState: CombatState = {
+        attacker: {
+          paralyzed: false,
+          lastThrow: undefined
+        },
+        defender: {
+          paralyzed: false,
+          lastThrow: undefined
+        }
+      }
+      const winner = this.startCombat({...attacker}, {...defender}, false, initialState);
       if (winner.id === attacker.id) {
         attackerWon++;
       } else {
@@ -183,7 +201,17 @@ export class AppComponent implements AfterViewInit {
     return isAdjacent || !unit.ranged
   }
 
-  private startCombat(attacker: Unit, defender: Unit, isAdjacent = false): Unit {
+  private startCombat(attacker: Unit, defender: Unit, isAdjacent:boolean, state: CombatState): Unit {
+    const deathStare = () => {
+      if(this.hasSkill(attacker, SPECIALS.DEATH_STARE)) {
+        // if both rolls are -1, set health to 0
+        if ((new Set([this.roll(),this.roll(),-1])).size === 1) {
+          defender.health = 0;
+        }
+      }
+    }
+
+
     isAdjacent = this.checkAdjacency(attacker, isAdjacent);
     // ACTIVATION
     if (this.hasSkill(attacker, SPECIALS.HEAL_ONE_ON_ACTIVATION)) {
@@ -192,42 +220,83 @@ export class AppComponent implements AfterViewInit {
         attacker.health++;
       }
     }
-    // ATTACK
-    this.doDamage(attacker, defender, isAdjacent, false);
-    if (this.isDead(defender)) {
-      const downgrade = this.findDowngrade(defender)
-      if (!downgrade) {
-        return attacker;
+
+    if (state.attacker.paralyzed) {
+      state.attacker.paralyzed = false;
+    } else {
+      // ATTACK (if not paralyzed
+      this.doDamage(attacker, defender, isAdjacent, false);
+      if (this.isDead(defender)) {
+        const downgrade = this.findDowngrade(defender)
+        if (!downgrade) {
+          return attacker;
+        } else {
+          defender = this.doDowngrade(defender, downgrade);
+          deathStare();
+          if (this.isDead(defender)) {
+            return attacker;
+          }
+        }
       } else {
-        defender = this.doDowngrade(defender, downgrade);
+        deathStare();
         if (this.isDead(defender)) {
           return attacker;
         }
       }
-    }
-    // RETALIATE
-    if (this.hasSkill(attacker, SPECIALS.IGNORE_RETALIATION) || (attacker.ranged && !isAdjacent)) {
-      // Don't retaliate if the attacker ignores it
-      // or if the attacker is ranged but not adjacent to the defender
-    } else {
-      // console.log(defender.id, 'RETALLIATE')
-      this.doDamage(defender, attacker, isAdjacent, true);
-    }
 
-    if (this.isDead(attacker)) {
-      const downgrade = this.findDowngrade(attacker)
-      if (!downgrade) {
-        return defender;
+      // RETALIATE
+      if (this.hasSkill(attacker, SPECIALS.IGNORE_RETALIATION) || (attacker.ranged && !isAdjacent)) {
+        // Don't retaliate if the attacker ignores it
+        // or if the attacker is ranged but not adjacent to the defender
       } else {
-        attacker = this.doDowngrade(attacker, downgrade);
-        if (this.isDead(attacker)) {
-          return defender;
+        // console.log(defender.id, 'RETALLIATE')
+        let damageModifier = 0;
+        if (this.hasSkill(attacker, SPECIALS.LOWER_RETALIATION_DAMAGE)) {
+          damageModifier = -1;
         }
+        this.doDamage(defender, attacker, isAdjacent, true, damageModifier);
+      }
+
+      if (this.isDead(attacker)) {
+        const downgrade = this.findDowngrade(attacker)
+        if (!downgrade) {
+          return defender;
+        } else {
+          attacker = this.doDowngrade(attacker, downgrade);
+          if (this.isDead(attacker)) {
+            return defender;
+          }
+        }
+      }
+
+      if (this.hasSkill(attacker, SPECIALS.FEAR) && this.roll() === -1) {
+        state.defender.paralyzed = true;
       }
     }
 
+
+    if (this.hasSkill(attacker, SPECIALS.IGNORE_PARALYSIS)) {
+      state.attacker.paralyzed = false;
+    }
+    if (this.hasSkill(defender, SPECIALS.IGNORE_PARALYSIS)) {
+      state.defender.paralyzed = false;
+    }
+
     // CONTINUE FIGHT BY SWAPPING ATTACKER AND DEFENDER
-    return this.startCombat(defender, attacker, isAdjacent);
+    state = this.switchState(state)
+    return this.startCombat(defender, attacker, isAdjacent, state);
+  }
+
+  private switchState(state: CombatState) {
+    const newState: CombatState = {
+      attacker: {...state.defender},
+      defender: {...state.attacker}
+    }
+    return newState;
+  }
+
+  private roll = function () {
+    return Math.floor(Math.random() * 3) - 1
   }
 
   private doDowngrade(upgrade: Unit, downgrade: Unit) {
@@ -252,7 +321,7 @@ export class AppComponent implements AfterViewInit {
     return target.health <= 0;
   }
 
-  private doDamage(source: Unit, target: Unit, isAdjacent: boolean, retalliation: boolean) {
+  private doDamage(source: Unit, target: Unit, isAdjacent: boolean, retalliation: boolean, damageModifier = 0) {
     if(this.hasSkill(source, SPECIALS.HEAL_TWO_ON_ATTACK)) {
       const data = this.getUnitById(source.id) as Unit;
       if (source.health < data.health) {
@@ -273,12 +342,20 @@ export class AppComponent implements AfterViewInit {
     };
 
     const attack = () => {
-      // SPECIALS.DOUBLE_ATTACK_NON_ADJACENT
-      if (this.hasSkill(source, SPECIALS.DOUBLE_ATTACK_NON_ADJACENT) && !isAdjacent) {
-        return (source.attack + attackRoll()) + (source.attack + attackRoll());
+      const isNotNegative = function(damage: number) {
+        return damage < 0 ? 0 : damage;
       }
 
-      return (source.attack + attackRoll());
+      const strike = () => {
+        return isNotNegative(source.attack + attackRoll() + damageModifier)
+      }
+
+      // SPECIALS.DOUBLE_ATTACK_NON_ADJACENT
+      if (this.hasSkill(source, SPECIALS.DOUBLE_ATTACK_NON_ADJACENT) && !isAdjacent) {
+        return strike() + strike();
+      }
+
+      return strike();
     }
 
     const targetDefence = () => {

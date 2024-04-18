@@ -58,7 +58,7 @@ export const INFERNO: Unit[] = [{
   health: 5,
   initiative: 8,
   ranged: false,
-  special: [SPECIALS.IGNORE_RETALIATION],
+  special: [],
   upgradeFrom: "",
   costs: [7,0],
 },{
