@@ -11,6 +11,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [2,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'SKELETONS_#PACK',
   attack: 3,
@@ -21,6 +23,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [],
   upgradeFrom: "SKELETONS",
   costs: [3,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'ZOMBIES',
   attack: 2,
@@ -31,6 +35,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.DEFENCE_ON_ATTACK_ONE],
   upgradeFrom: "",
   costs: [3,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'ZOMBIES_#PACK',
   attack: 2,
@@ -41,6 +47,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.DEFENCE_ON_ATTACK_ZERO_ONE],
   upgradeFrom: "ZOMBIES",
   costs: [4,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'WRAITHS',
   attack: 3,
@@ -51,6 +59,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.HEAL_ONE_ON_ACTIVATION],
   upgradeFrom: "",
   costs: [4,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'WRAITHS_#PACK',
   attack: 3,
@@ -61,6 +71,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.HEAL_ONE_ON_ACTIVATION],
   upgradeFrom: "WRAITHS",
   costs: [6,0],
+  faction: "Necropolis",
+  tier: "Bronze"
 },{
   id: 'VAMPIRES',
   attack: 4,
@@ -71,6 +83,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.IGNORE_RETALIATION],
   upgradeFrom: "",
   costs: [8,0],
+  faction: "Necropolis",
+  tier: "Silver"
 },{
   id: 'VAMPIRES_#PACK',
   attack: 5,
@@ -81,6 +95,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.IGNORE_RETALIATION, SPECIALS.HEAL_TWO_ON_ATTACK],
   upgradeFrom: "VAMPIRES",
   costs: [12,0],
+  faction: "Necropolis",
+  tier: "Silver"
 },{
   id: 'LICHES',
   attack: 3,
@@ -91,6 +107,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [8,0],
+  faction: "Necropolis",
+  tier: "Silver"
 },{
   id: 'LICHES_#PACK',
   attack: 4,
@@ -101,6 +119,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [],
   upgradeFrom: "LICHES",
   costs: [14,0],
+  faction: "Necropolis",
+  tier: "Silver"
 },{
   id: 'DREAD_KNIGHTS',
   attack: 5,
@@ -111,6 +131,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.CURSE_AFTER_ATTACK],
   upgradeFrom: "",
   costs: [12,0],
+  faction: "Necropolis",
+  tier: "Gold"
 },{
   id: 'DREAD_KNIGHTS_#PACK',
   attack: 6,
@@ -121,6 +143,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.DEATH_BLOW],
   upgradeFrom: "DREAD_KNIGHTS",
   costs: [20,1],
+  faction: "Necropolis",
+  tier: "Gold"
 },{
   id: 'GHOST_DRAGON',
   attack: 6,
@@ -131,6 +155,8 @@ export const NECROPOLIS: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [19,1],
+  faction: "Necropolis",
+  tier: "Gold"
 },{
   id: 'GHOST_DRAGON_#PACK',
   attack: 7,
@@ -141,5 +167,7 @@ export const NECROPOLIS: Unit[] = [{
   special: [SPECIALS.STRONGER_ATTACK_DICE],
   upgradeFrom: "GHOST_DRAGON",
   costs: [32,2],
+  faction: "Necropolis",
+  tier: "Gold"
 },
 ]

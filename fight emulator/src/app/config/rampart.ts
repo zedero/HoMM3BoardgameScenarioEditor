@@ -11,6 +11,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [2,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'CENTAURS_#PACK',
   attack: 3,
@@ -21,6 +23,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "CENTAURS",
   costs: [3,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'DWARVES',
   attack: 2,
@@ -31,6 +35,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [3,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'DWARVES_#PACK',
   attack: 3,
@@ -41,6 +47,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [4,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'ELVES',
   attack: 2,
@@ -51,6 +59,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [4,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'ELVES_#PACK',
   attack: 3,
@@ -61,6 +71,8 @@ export const RAMPART: Unit[] = [{
   special: [SPECIALS.NOT_ADJACENT_CHANCE_DOUBLE_ATTACK],
   upgradeFrom: "ELVES",
   costs: [7,0],
+  faction: "Rampart",
+  tier: "Bronze"
 },{
   id: 'PEGASI',
   attack: 3,
@@ -71,6 +83,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [6,0],
+  faction: "Rampart",
+  tier: "Silver"
 },{
   id: 'PEGASI_#PACK',
   attack: 4,
@@ -81,6 +95,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "PEGASI",
   costs: [10,0],
+  faction: "Rampart",
+  tier: "Silver"
 },{
   id: 'DENDROIDS',
   attack: 4,
@@ -91,6 +107,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [8,0],
+  faction: "Rampart",
+  tier: "Silver"
 },{
   id: 'DENDROIDS_#PACK',
   attack: 4,
@@ -101,6 +119,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "DENDROIDS",
   costs: [15,0],
+  faction: "Rampart",
+  tier: "Silver"
 },{
   id: 'UNICORNS',
   attack: 5,
@@ -111,6 +131,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [11,0],
+  faction: "Rampart",
+  tier: "Gold"
 },{
   id: 'UNICORNS_#PACK',
   attack: 6,
@@ -121,6 +143,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "UNICORNS",
   costs: [18,1],
+  faction: "Rampart",
+  tier: "Gold"
 },{
   id: 'GOLD_DRAGONS',
   attack: 5,
@@ -131,6 +155,8 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [22,1],
+  faction: "Rampart",
+  tier: "Gold"
 },{
   id: 'GOLD_DRAGONS_#PACK',
   attack: 6,
@@ -141,4 +167,6 @@ export const RAMPART: Unit[] = [{
   special: [],
   upgradeFrom: "GOLD_DRAGONS",
   costs: [30,2],
+  faction: "Rampart",
+  tier: "Gold"
 },]

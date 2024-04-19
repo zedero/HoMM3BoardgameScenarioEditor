@@ -12,6 +12,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [0,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'GREMLINS_#PACK',
   attack: 2,
@@ -22,6 +24,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "GREMLINS",
   costs: [2,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'GARGOYLES',
   attack: 2,
@@ -32,6 +36,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [3,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'GARGOYLES_#PACK',
   attack: 3,
@@ -42,6 +48,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "GARGOYLES",
   costs: [4,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'IRON_GOLEMS',
   attack: 3,
@@ -52,6 +60,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [4,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'IRON_GOLEMS_#PACK',
   attack: 3,
@@ -62,6 +72,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "GOLEMS",
   costs: [7,0],
+  faction: "Tower",
+  tier: "Bronze"
 },{
   id: 'MAGI',
   attack: 3,
@@ -72,6 +84,8 @@ export const TOWER: Unit[] = [{
   special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
   upgradeFrom: "",
   costs: [6,0],
+  faction: "Tower",
+  tier: "Silver"
 },{
   id: 'MAGI_#PACK',
   attack: 4,
@@ -82,6 +96,8 @@ export const TOWER: Unit[] = [{
   special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
   upgradeFrom: "MAGI",
   costs: [11,0],
+  faction: "Tower",
+  tier: "Silver"
 },{
   id: 'GENIES',
   attack: 3,
@@ -92,6 +108,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [8,0],
+  faction: "Tower",
+  tier: "Silver"
 },{
   id: 'GENIES_#PACK',
   attack: 4,
@@ -102,6 +120,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "GENIES",
   costs: [12,0],
+  faction: "Tower",
+  tier: "Silver"
 },{
   id: 'NAGAS',
   attack: 5,
@@ -112,6 +132,8 @@ export const TOWER: Unit[] = [{
   special: [SPECIALS.IGNORE_RETALIATION],
   upgradeFrom: "",
   costs: [13,0],
+  faction: "Tower",
+  tier: "Gold"
 },{
   id: 'NAGAS_#PACK',
   attack: 6,
@@ -122,6 +144,8 @@ export const TOWER: Unit[] = [{
   special: [SPECIALS.IGNORE_RETALIATION],
   upgradeFrom: "NAGAS",
   costs: [18,1],
+  faction: "Tower",
+  tier: "Gold"
 },{
   id: 'TITANS',
   attack: 6,
@@ -132,6 +156,8 @@ export const TOWER: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [18,1],
+  faction: "Tower",
+  tier: "Gold"
 },{
   id: 'TITANS_#PACK',
   attack: 6,
@@ -142,4 +168,6 @@ export const TOWER: Unit[] = [{
   special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
   upgradeFrom: "TITANS",
   costs: [32,2],
+  faction: "Tower",
+  tier: "Gold"
 },]

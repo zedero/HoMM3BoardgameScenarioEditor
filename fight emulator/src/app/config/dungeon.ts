@@ -12,6 +12,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [2,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'TROGLODYTES_#PACK',
   attack: 3,
@@ -22,6 +24,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.IGNORE_PARALYSIS],
   upgradeFrom: "TROGLODYTES",
   costs: [3,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'HARPIES',
   attack: 2,
@@ -32,6 +36,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [3,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'HARPIES_#PACK',
   attack: 3,
@@ -42,6 +48,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.IGNORE_RETALIATION],
   upgradeFrom: "HARPIES",
   costs: [5,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'EVIL_EYES',
   attack: 3,
@@ -52,6 +60,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [4,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'EVIL_EYES_#PACK',
   attack: 3,
@@ -62,6 +72,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
   upgradeFrom: "EVIL_EYES",
   costs: [6,0],
+  faction: "Dungeon",
+  tier: "Bronze"
 },{
   id: 'MEDUSAS',
   attack: 3,
@@ -72,6 +84,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.CHANCE_TO_PARALYZE_ON_RETALIATION],
   upgradeFrom: "",
   costs: [6,0],
+  faction: "Dungeon",
+  tier: "Silver"
 },{
   id: 'MEDUSAS_#PACK',
   attack: 4,
@@ -82,6 +96,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.PARALYZE_ON_RETALIATION, SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT],
   upgradeFrom: "MEDUSAS",
   costs: [12,0],
+  faction: "Dungeon",
+  tier: "Silver"
 },{
   id: 'MINOTAURS',
   attack: 4,
@@ -92,6 +108,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [8,0],
+  faction: "Dungeon",
+  tier: "Silver"
 },{
   id: 'MINOTAURS_#PACK',
   attack: 5,
@@ -102,6 +120,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "MINOTAURS",
   costs: [14,0],
+  faction: "Dungeon",
+  tier: "Silver"
 },{
   id: 'MANTICORES',
   attack: 5,
@@ -112,6 +132,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [10,0],
+  faction: "Dungeon",
+  tier: "Gold"
 },{
   id: 'MANTICORES_#PACK',
   attack: 5,
@@ -122,6 +144,8 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.IGNORE_DEFENCE],
   upgradeFrom: "MANTICORES",
   costs: [18,1],
+  faction: "Dungeon",
+  tier: "Gold"
 },{
   id: 'BLACK_DRAGONS',
   attack: 6,
@@ -132,6 +156,8 @@ export const DUNGEON: Unit[] = [{
   special: [],
   upgradeFrom: "",
   costs: [19,1],
+  faction: "Dungeon",
+  tier: "Gold"
 },{
   id: 'BLACK_DRAGONS_#PACK',
   attack: 8,
@@ -142,4 +168,6 @@ export const DUNGEON: Unit[] = [{
   special: [SPECIALS.IGNORE_DAMAGE_FROM_SPECIALS_AND_MAGIC],
   upgradeFrom: "BLACK_DRAGONS",
   costs: [33,2],
+  faction: "Dungeon",
+  tier: "Gold"
 }]

@@ -18,7 +18,7 @@ type CombatState = {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['name', 'score', 'resourceEfficiency'];
+  public displayedColumns: string[] = ['name', 'score', 'resourceEfficiency', 'faction', 'tier'];
   public sortedData: any = [];
   public score = [{
     name: "A",
@@ -72,20 +72,46 @@ export class AppComponent implements AfterViewInit {
       // @ts-ignore
       const scorePerCoin = Math.ceil(data[1] / goldCosts);
 
-      return [...data,...[scorePerCoin]]
+      return [...data,...[scorePerCoin],unit.faction, unit.tier]
     })
-    console.log(this.convertToTableStructure(newScores))
+    console.log(this.convertToTableStructure(newScores), newScores)
     this.score = this.convertToTableStructure(newScores);
     this.sortedData = this.score.slice();
+    this.analyzeData(this.score)
+  }
+
+  analyzeData(data: any) {
+    const townPower = new Map();
+    const townefficiency = new Map();
+    data.forEach((entry: any) => {
+      if (entry.faction === "Neutral") {
+        return
+      }
+      if (townPower.has(entry.faction)) {
+        townPower.set(entry.faction,  townPower.get(entry.faction) + entry.score)
+      } else {
+        townPower.set(entry.faction, entry.score)
+      }
+
+      if (townefficiency.has(entry.faction) && isFinite(entry.resourceEfficiency)) {
+        townefficiency.set(entry.faction,  townefficiency.get(entry.faction) + entry.resourceEfficiency)
+      } else if(isFinite(entry.resourceEfficiency)) {
+        townefficiency.set(entry.faction, entry.score)
+      }
+
+    });
+    console.log(townPower)
+    console.log(townefficiency)
   }
 
   sortChange(sort: Sort) {
-    const data = this.score.slice();
+    const data = this.sortedData.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
     }
 
+    // @ts-ignore
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
@@ -95,6 +121,12 @@ export class AppComponent implements AfterViewInit {
           return compare(a.score, b.score, isAsc);
         case 'resourceEfficiency':
           return compare(a.resourceEfficiency, b.resourceEfficiency, isAsc);
+        case 'faction':
+          // @ts-ignore
+          return compare(a.faction, b.faction, isAsc);
+        case 'tier':
+          // @ts-ignore
+          return compare(a.tier, b.tier, isAsc);
         default:
           return 0;
       }
@@ -112,6 +144,8 @@ export class AppComponent implements AfterViewInit {
         name: this.name(entry[0]),
         score: entry[1],
         resourceEfficiency: entry[2],
+        faction: entry[3],
+        tier: entry[4],
       }
     })
   }

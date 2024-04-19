@@ -7,6 +7,15 @@ import {RAMPART} from "./rampart";
 import {FORTRESS} from "./fortress";
 import {INFERNO} from "./inferno";
 
+export enum TIER {
+  "BRONZE",
+  "SILVER",
+  "GOLD",
+  "AZURE"
+}
+
+
+
 export type Unit = {
   id: string;
   attack: number;
@@ -17,6 +26,8 @@ export type Unit = {
   special: number[];
   upgradeFrom: string;
   costs: [number,number];
+  faction: string;
+  tier: string;
 }
 
 export const UNITS: Unit[] = [

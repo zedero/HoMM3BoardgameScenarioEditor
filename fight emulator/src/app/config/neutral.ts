@@ -11,4 +11,6 @@ export const NEUTRAL: Unit[] = [{
   special: [SPECIALS.IGNORE_DAMAGE_FROM_SPECIALS_AND_MAGIC, SPECIALS.FEAR],
   upgradeFrom: "",
   costs: [45,2],
+  faction: "Neutral",
+  tier: "Azure"
 }]
