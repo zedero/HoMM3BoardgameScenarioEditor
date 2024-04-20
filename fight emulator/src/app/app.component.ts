@@ -4,6 +4,7 @@ import {SPECIALS} from "./config/specials";
 import {Sort} from '@angular/material/sort';
 
 type UnitState = {
+  id: string
   paralyzed: boolean;
   poison: number;
   lastThrow: number[];
@@ -216,11 +217,13 @@ export class AppComponent implements AfterViewInit {
     for(let i = 0; i<this.itterations; i++) {
       const initialState: CombatState = {
         attacker: {
+          id: attacker.id,
           paralyzed: false,
           lastThrow: [],
           poison: 0,
         },
         defender: {
+          id: defender.id,
           paralyzed: false,
           lastThrow: [],
           poison: 0,
@@ -289,7 +292,20 @@ export class AppComponent implements AfterViewInit {
     }
 
     if (this.hasSkill(attacker, SPECIALS.FAERIE_SPELL_ATTACK)) {
-      defender.health-=2;
+      let baseDamage = 2;
+      if (
+        this.hasSkill(defender, SPECIALS.IGNORE_DAMAGE_FROM_SPECIALS_AND_MAGIC)
+        && this.hasSkill(defender, SPECIALS.SPELL_REDUCTION_TWO)
+        && this.hasSkill(defender, SPECIALS.SPELL_REDUCTION_THREE)
+      ) {
+        baseDamage = 0;
+      }
+      if (this.hasSkill(defender, SPECIALS.SPELL_REDUCTION_ONE)) {
+        baseDamage = 1;
+      }
+
+
+      defender.health-=baseDamage;
       if (this.isDead(defender)) {
         const downgrade = this.findDowngrade(defender)
         if (!downgrade) {
@@ -436,7 +452,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   private doDamage(source: Unit, target: Unit, isAdjacent: boolean, retalliation: boolean, state: CombatState, damageModifier = 0) {
-    if(this.hasSkill(source, SPECIALS.HEAL_TWO_ON_ATTACK)) {
+    if(this.hasSkill(source, SPECIALS.HEAL_TWO_ON_ATTACK) && !retalliation) {
       const data = this.getUnitById(source.id) as Unit;
       if (source.health < data.health) {
         source.health += 2;
@@ -445,16 +461,25 @@ export class AppComponent implements AfterViewInit {
         }
       }
     }
-    const isRangedVsRanged = source.ranged && target.ranged && !isAdjacent;
+    const isRangedVsRanged = source.ranged && target.ranged && !isAdjacent && !this.hasSkill(source, SPECIALS.IGNORE_COMBAT_PENALTY);
     const isRangedVsAdjacent = source.ranged && isAdjacent;
     const combatPenalty = isRangedVsRanged || (isRangedVsAdjacent && !this.hasSkill(source, SPECIALS.IGNORE_COMBAT_PENALTY_ADJACENT));
     const attackRoll = () => {
+      if (this.hasSkill(source, SPECIALS.NO_ROLL_FOR_ATTACK) && !retalliation) {
+        return 0;
+      }
+      if (this.hasSkill(target, SPECIALS.CURSE)) {
+        return -1;
+      }
+      if (this.hasSkill(target, SPECIALS.RETALIATION_CURSE) && retalliation) {
+        return Math.min(this.roll(), this.roll());
+      }
       return this.attackRoll(
         combatPenalty,
-        this.hasSkill(source, SPECIALS.REROLL_ZERO_ON_DICE),
+        (this.hasSkill(source, SPECIALS.REROLL_ZERO_ON_DICE) && !retalliation),
         (this.hasSkill(source, SPECIALS.REROLL_ON_OTHER_SPACE) && !retalliation),
-        this.hasSkill(source, SPECIALS.LUCK),
-        this.hasSkill(source, SPECIALS.ADD_ONE_TO_ATTACK_DICE),
+        (this.hasSkill(source, SPECIALS.LUCK) && !retalliation),
+        (this.hasSkill(source, SPECIALS.ADD_ONE_TO_ATTACK_DICE) && !retalliation),
       );
     };
 
@@ -477,28 +502,39 @@ export class AppComponent implements AfterViewInit {
         return strike() + strike();
       }
 
-      // NOT_ADJACENT_CHANCE_DOUBLE_ATTACK // TODO might need fix
-      if (this.hasSkill(source, SPECIALS.NOT_ADJACENT_CHANCE_DOUBLE_ATTACK) && !isAdjacent && this.roll() !== 1) {
-        return strike() + strike();
+      // NOT_ADJACENT_CHANCE_DOUBLE_ATTACK
+      if (this.hasSkill(source, SPECIALS.NOT_ADJACENT_CHANCE_DOUBLE_ATTACK) && !isAdjacent) {
+        const firstStrike = strike();
+        if (this.containsRoll(state.attacker.lastThrow, 0) || this.containsRoll(state.attacker.lastThrow, -1)) {
+          return firstStrike + strike();
+        }
+        return strike();
       }
 
       return strike();
     }
 
     const targetDefence = () => {
+      let modifier = 0;
       //SPECIALS.IGNORE_DEFENCE
       if (this.hasSkill(source, SPECIALS.IGNORE_DEFENCE)) {
         return 0;
       }
-      if (this.hasSkill(source, SPECIALS.DEFENCE_ON_ATTACK_ONE)) {
-        // return 0;
+      if (this.hasSkill(target, SPECIALS.DEFENCE_ON_ATTACK_ONE) && this.containsRoll(state.attacker.lastThrow, 1)) {
+        modifier++;
       }
-      return target.defence;
+      if (this.hasSkill(target, SPECIALS.DEFENCE_ON_ATTACK_ZERO_ONE)
+        && (this.containsRoll(state.attacker.lastThrow, 0) || this.containsRoll(state.attacker.lastThrow, 1))) {
+        modifier++;
+      }
+      if (this.hasSkill(source, SPECIALS.RUST_ATTACK) && this.containsRoll(state.attacker.lastThrow, -1)) {
+        modifier -= 2;
+      }
+      return target.defence + modifier <= 0 ? 0 : target.defence + modifier;
     }
 
     const damage = attack() - targetDefence();
     target.health -= damage;
-    // console.log(`${this.name(source.id)} deals ${damage} damage to ${this.name(target.id)}(${target.health}) (${combatPenalty})`)
   }
 
   private attackRoll(combatPenalty: boolean, reRollOnZero: boolean, reRollOnNewSpace: boolean, luck: boolean, increaseRollOne: boolean) {

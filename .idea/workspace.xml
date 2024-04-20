@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8ad20c54-11c8-4d2f-b969-283943a26dac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/necropolis.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/necropolis.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/neutral.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/neutral.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/specials.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/specials.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/tower.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/tower.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +165,7 @@
       <workItem from="1709128229393" duration="502000" />
       <workItem from="1712438656135" duration="714000" />
       <workItem from="1712759856091" duration="5034000" />
-      <workItem from="1713267584935" duration="70234000" />
+      <workItem from="1713267584935" duration="75669000" />
     </task>
     <servers />
   </component>
