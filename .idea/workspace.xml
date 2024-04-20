@@ -8,14 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/castle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/castle.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/dungeon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/dungeon.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/fortress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/fortress.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/inferno.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/inferno.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/necropolis.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/necropolis.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/neutral.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/neutral.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/rampart.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/rampart.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/specials.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/specials.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fight emulator/src/app/config/tower.ts" beforeDir="false" afterPath="$PROJECT_DIR$/fight emulator/src/app/config/tower.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +169,7 @@
       <workItem from="1709128229393" duration="502000" />
       <workItem from="1712438656135" duration="714000" />
       <workItem from="1712759856091" duration="5034000" />
-      <workItem from="1713267584935" duration="61987000" />
+      <workItem from="1713267584935" duration="70234000" />
     </task>
     <servers />
   </component>

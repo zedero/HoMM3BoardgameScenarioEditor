@@ -1,4 +1,5 @@
-<button (click)="start()">START</button>
+<button (click)="start()">Free for All</button>
+<button (click)="start('PvN')">Faction vs Neutrals</button>
 
 <table mat-table matSort  [dataSource]="sortedData" class="mat-elevation-z8" (matSortChange)="sortChange($event)">
   <!-- Name Column -->

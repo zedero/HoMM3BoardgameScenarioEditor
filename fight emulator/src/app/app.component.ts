@@ -5,7 +5,8 @@ import {Sort} from '@angular/material/sort';
 
 type UnitState = {
   paralyzed: boolean;
-  lastThrow: number | undefined;
+  poison: number;
+  lastThrow: number[];
 }
 type CombatState = {
   attacker: UnitState;
@@ -20,6 +21,7 @@ type CombatState = {
 export class AppComponent implements AfterViewInit {
   public displayedColumns: string[] = ['name', 'score', 'resourceEfficiency', 'faction', 'tier'];
   public sortedData: any = [];
+  public itterations = 100;
   public score = [{
     name: "A",
     score: 1,
@@ -42,12 +44,17 @@ export class AppComponent implements AfterViewInit {
     // this.score.sort = this.sort;
   }
 
-  public start() {
+  public start(TYPE = "ALL") {
     // test match
     // this.doBattle(this.units[32], this.units[33]);
     // return;
+    let matches;
+    if (TYPE === "ALL") {
+      matches = this.setupPvAllBattleMatches();
+    } else if ( TYPE === "PvN") {
+      matches = this.setupPvNeutralBattleMatches();
+    }
 
-    const matches = this.setupBattleMatches();
     const score = {};
     console.time("Simulation time")
     matches.forEach((match: [Unit, Unit]) => {
@@ -74,7 +81,7 @@ export class AppComponent implements AfterViewInit {
 
       return [...data,...[scorePerCoin],unit.faction, unit.tier]
     })
-    console.log(this.convertToTableStructure(newScores), newScores)
+    // console.log(this.convertToTableStructure(newScores), newScores)
     this.score = this.convertToTableStructure(newScores);
     this.sortedData = this.score.slice();
     this.analyzeData(this.score)
@@ -98,8 +105,11 @@ export class AppComponent implements AfterViewInit {
       } else if(isFinite(entry.resourceEfficiency)) {
         townefficiency.set(entry.faction, entry.score)
       }
-
     });
+    // townPower.forEach((score, faction) => {
+    //   townPower.set(faction, score / (this.units.length - 14) / 100)
+    // })
+
     console.log(townPower)
     console.log(townefficiency)
   }
@@ -167,15 +177,28 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-  private setupBattleMatches() {
+  private setupPvAllBattleMatches() {
     const matches: any = [];
     this.units.forEach((unitA: Unit) => {
       this.units.forEach((unitB: Unit) => {
-        if (unitA.id !== unitB.id) {
+        if (unitA.faction !== unitB.faction) { // or unit.id??
           matches.push([unitA, unitB]);
         }
       })
     });
+    return matches;
+  }
+
+  private setupPvNeutralBattleMatches() {
+    const matches: any = [];
+    this.units.forEach((unitA: Unit) => {
+      this.units.forEach((unitB: Unit) => {
+        if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction === "Neutral") {
+          matches.push([unitA, unitB]);
+        }
+      })
+    });
+    console.log('@', matches)
     return matches;
   }
 
@@ -188,17 +211,19 @@ export class AppComponent implements AfterViewInit {
     }
     let attackerWon = 0;
     let defenderWon = 0;
-    const itterations = 100;
+    // const itterations = 100;
 
-    for(let i = 0; i<itterations; i++) {
+    for(let i = 0; i<this.itterations; i++) {
       const initialState: CombatState = {
         attacker: {
           paralyzed: false,
-          lastThrow: undefined
+          lastThrow: [],
+          poison: 0,
         },
         defender: {
           paralyzed: false,
-          lastThrow: undefined
+          lastThrow: [],
+          poison: 0,
         }
       }
       const winner = this.startCombat({...attacker}, {...defender}, false, initialState);
@@ -214,14 +239,14 @@ export class AppComponent implements AfterViewInit {
       // console.log('-----------------------------------')
       return {
         winner: attacker,
-        percentage: Math.round((attackerWon/itterations) * 100)
+        percentage: Math.round((attackerWon/this.itterations) * 100)
       };
     } else {
       // console.log(`${this.name(defender.id)} has won (${defenderWon}/${itterations}) agains ${this.name(attacker.id)}`)
       // console.log('-----------------------------------')
       return {
         winner: defender,
-        percentage: Math.round((defenderWon/itterations) * 100)
+        percentage: Math.round((defenderWon/this.itterations) * 100)
       };
     }
 
@@ -245,9 +270,9 @@ export class AppComponent implements AfterViewInit {
       }
     }
 
-
     isAdjacent = this.checkAdjacency(attacker, isAdjacent);
-    // ACTIVATION
+
+    // ACTIVATION PHASE
     if (this.hasSkill(attacker, SPECIALS.HEAL_ONE_ON_ACTIVATION)) {
       const data = this.getUnitById(attacker.id) as Unit;
       if (attacker.health < data.health) {
@@ -255,11 +280,60 @@ export class AppComponent implements AfterViewInit {
       }
     }
 
+    if (this.hasSkill(attacker, SPECIALS.HEAL_THREE_ON_ACTIVATION)) {
+      const data = this.getUnitById(attacker.id) as Unit;
+      attacker.health+=3;
+      if (attacker.health > data.health) {
+        attacker.health = data.health;
+      }
+    }
+
+    if (this.hasSkill(attacker, SPECIALS.FAERIE_SPELL_ATTACK)) {
+      defender.health-=2;
+      if (this.isDead(defender)) {
+        const downgrade = this.findDowngrade(defender)
+        if (!downgrade) {
+          return attacker;
+        } else {
+          defender = this.doDowngrade(defender, downgrade);
+          if (this.isDead(defender)) {
+            return attacker;
+          }
+        }
+      }
+    }
+
+    if (state.attacker.poison > 0) {
+      state.attacker.poison--;
+      attacker.health--;
+      if (this.isDead(attacker)) {
+        const downgrade = this.findDowngrade(attacker)
+        if (!downgrade) {
+          return defender;
+        } else {
+          attacker = this.doDowngrade(attacker, downgrade);
+        }
+      }
+    }
+
+    // ATTACK PHASE
+
     if (state.attacker.paralyzed) {
       state.attacker.paralyzed = false;
     } else {
       // ATTACK (if not paralyzed
-      this.doDamage(attacker, defender, isAdjacent, false);
+      let damageModifier = 0;
+      if (this.hasSkill(attacker, SPECIALS.ENCHANTER)) {
+        damageModifier = 1;
+      }
+      this.doDamage(attacker, defender, isAdjacent, false, state, damageModifier);
+      if (this.hasSkill(attacker, SPECIALS.POISON)) {
+        state.defender.poison++;
+      }
+      if (this.hasSkill(attacker, SPECIALS.MIGHTY_POISON)) {
+        state.defender.poison+=2;
+      }
+
       if (this.isDead(defender)) {
         const downgrade = this.findDowngrade(defender)
         if (!downgrade) {
@@ -288,7 +362,7 @@ export class AppComponent implements AfterViewInit {
         if (this.hasSkill(attacker, SPECIALS.LOWER_RETALIATION_DAMAGE)) {
           damageModifier = -1;
         }
-        this.doDamage(defender, attacker, isAdjacent, true, damageModifier);
+        this.doDamage(defender, attacker, isAdjacent, true, state, damageModifier);
       }
 
       if (this.isDead(attacker)) {
@@ -303,11 +377,15 @@ export class AppComponent implements AfterViewInit {
         }
       }
 
-      if (this.hasSkill(attacker, SPECIALS.FEAR) && this.roll() === -1) {
+      // SKILL ACTIVATION DURING ATTACK
+      if (this.hasSkill(attacker, SPECIALS.CHANCE_TO_PARALYZE_MINUS_ONE) && this.containsRoll(state.attacker.lastThrow, -1)) {
+        state.defender.paralyzed = true;
+      }
+
+      if (this.hasSkill(attacker, SPECIALS.FEAR) && this.containsRoll(state.attacker.lastThrow, -1)) {
         state.defender.paralyzed = true;
       }
     }
-
 
     if (this.hasSkill(attacker, SPECIALS.IGNORE_PARALYSIS)) {
       state.attacker.paralyzed = false;
@@ -326,6 +404,8 @@ export class AppComponent implements AfterViewInit {
       attacker: {...state.defender},
       defender: {...state.attacker}
     }
+    newState.attacker.lastThrow = [];
+    newState.defender.lastThrow = [];
     return newState;
   }
 
@@ -355,7 +435,7 @@ export class AppComponent implements AfterViewInit {
     return target.health <= 0;
   }
 
-  private doDamage(source: Unit, target: Unit, isAdjacent: boolean, retalliation: boolean, damageModifier = 0) {
+  private doDamage(source: Unit, target: Unit, isAdjacent: boolean, retalliation: boolean, state: CombatState, damageModifier = 0) {
     if(this.hasSkill(source, SPECIALS.HEAL_TWO_ON_ATTACK)) {
       const data = this.getUnitById(source.id) as Unit;
       if (source.health < data.health) {
@@ -372,7 +452,10 @@ export class AppComponent implements AfterViewInit {
       return this.attackRoll(
         combatPenalty,
         this.hasSkill(source, SPECIALS.REROLL_ZERO_ON_DICE),
-        (this.hasSkill(source, SPECIALS.REROLL_ON_OTHER_SPACE) && !retalliation));
+        (this.hasSkill(source, SPECIALS.REROLL_ON_OTHER_SPACE) && !retalliation),
+        this.hasSkill(source, SPECIALS.LUCK),
+        this.hasSkill(source, SPECIALS.ADD_ONE_TO_ATTACK_DICE),
+      );
     };
 
     const attack = () => {
@@ -381,11 +464,21 @@ export class AppComponent implements AfterViewInit {
       }
 
       const strike = () => {
-        return isNotNegative(source.attack + attackRoll() + damageModifier)
+        const rollResult = attackRoll();
+        state.attacker.lastThrow.push(rollResult);
+        if (this.hasSkill(source, SPECIALS.DEATH_BLOW) && rollResult >= 0) {
+          damageModifier++;
+        }
+        return isNotNegative(source.attack + rollResult + damageModifier)
       }
 
       // SPECIALS.DOUBLE_ATTACK_NON_ADJACENT
       if (this.hasSkill(source, SPECIALS.DOUBLE_ATTACK_NON_ADJACENT) && !isAdjacent) {
+        return strike() + strike();
+      }
+
+      // NOT_ADJACENT_CHANCE_DOUBLE_ATTACK // TODO might need fix
+      if (this.hasSkill(source, SPECIALS.NOT_ADJACENT_CHANCE_DOUBLE_ATTACK) && !isAdjacent && this.roll() !== 1) {
         return strike() + strike();
       }
 
@@ -408,7 +501,7 @@ export class AppComponent implements AfterViewInit {
     // console.log(`${this.name(source.id)} deals ${damage} damage to ${this.name(target.id)}(${target.health}) (${combatPenalty})`)
   }
 
-  private attackRoll(combatPenalty: boolean, reRollOnZero: boolean, reRollOnNewSpace: boolean) {
+  private attackRoll(combatPenalty: boolean, reRollOnZero: boolean, reRollOnNewSpace: boolean, luck: boolean, increaseRollOne: boolean) {
     if (reRollOnZero) {
       return Math.random() < 0.5 ? -1 : 1;
     }
@@ -422,14 +515,24 @@ export class AppComponent implements AfterViewInit {
       }
       return diceRoll;
     }
+    if (luck) {
+      return Math.max(roll(),roll());
+    }
     if (combatPenalty) {
       return Math.min(roll(),roll());
+    }
+    if (increaseRollOne) {
+      return roll() + 1;
     }
     return roll();
   }
 
   private name(id: string) {
     return (id.charAt(0) + id.slice(1).toLowerCase()).replace(/_/g, " ")
+  }
+
+  private containsRoll(throws: number[], nr: number) {
+    return throws.findIndex(entry => entry === nr) !== -1;
   }
 }
 
