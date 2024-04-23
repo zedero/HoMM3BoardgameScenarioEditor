@@ -54,7 +54,22 @@ export class AppComponent implements AfterViewInit {
       matches = this.setupPvAllBattleMatches();
     } else if ( TYPE === "PvN") {
       matches = this.setupPvNeutralBattleMatches();
+    } else if ( TYPE === "PvP") {
+      matches = this.setupPvPBattleMatches();
     }
+
+
+    // const pitting = new Map();
+    // matches.forEach((match: any) => {
+    //   match.forEach((unit: any) => {
+    //     if (!pitting.has(unit.id)) {
+    //       pitting.set(unit.id, 1)
+    //     } else {
+    //       pitting.set(unit.id, pitting.get(unit.id) + 1)
+    //     }
+    //   })
+    // })
+    // console.log('@', pitting)
 
     const score = {};
     console.time("Simulation time")
@@ -80,7 +95,7 @@ export class AppComponent implements AfterViewInit {
       // @ts-ignore
       const scorePerCoin = Math.ceil(data[1] / goldCosts);
 
-      return [...data,...[scorePerCoin],unit.faction, unit.tier]
+      return [...data,...[scorePerCoin],unit.faction, unit.tier, this.statsScore(unit)]
     })
     // console.log(this.convertToTableStructure(newScores), newScores)
     this.score = this.convertToTableStructure(newScores);
@@ -88,9 +103,23 @@ export class AppComponent implements AfterViewInit {
     this.analyzeData(this.score)
   }
 
+  statsScore(unit: Unit) {
+    return {
+      attack: unit.attack,
+      defence: unit.defence,
+      health: unit.health,
+      initiative: unit.initiative,
+      total: (unit.attack * 1)
+        + (unit.defence  * 1)
+        + (unit.health  * 1)
+        + (unit.initiative * 1)
+    }
+  }
+
   analyzeData(data: any) {
     const townPower = new Map();
     const townefficiency = new Map();
+    const statScore = new Map();
     data.forEach((entry: any) => {
       if (entry.faction === "Neutral") {
         return
@@ -106,13 +135,20 @@ export class AppComponent implements AfterViewInit {
       } else if(isFinite(entry.resourceEfficiency)) {
         townefficiency.set(entry.faction, entry.score)
       }
-    });
-    // townPower.forEach((score, faction) => {
-    //   townPower.set(faction, score / (this.units.length - 14) / 100)
-    // })
 
-    console.log(townPower)
-    console.log(townefficiency)
+      if (statScore.has(entry.faction)) {
+        statScore.set(entry.faction,  statScore.get(entry.faction) + entry.statsScore.total)
+      } else {
+        statScore.set(entry.faction, entry.statsScore.total)
+      }
+    });
+    townPower.forEach((score, faction) => {
+      // townPower.set(faction, score / (this.units.length - 14) / 100)
+    })
+
+    console.log('Faction power', townPower)
+    console.log('Faction efficiency', townefficiency)
+    console.log('Faction total stats', statScore)
   }
 
   sortChange(sort: Sort) {
@@ -157,6 +193,7 @@ export class AppComponent implements AfterViewInit {
         resourceEfficiency: entry[2],
         faction: entry[3],
         tier: entry[4],
+        statsScore: entry[5],
       }
     })
   }
@@ -182,7 +219,7 @@ export class AppComponent implements AfterViewInit {
     const matches: any = [];
     this.units.forEach((unitA: Unit) => {
       this.units.forEach((unitB: Unit) => {
-        if (unitA.faction !== unitB.faction) { // or unit.id??
+        if (unitA.id !== unitB.id) { // or unit.id??
           matches.push([unitA, unitB]);
         }
       })
@@ -195,6 +232,18 @@ export class AppComponent implements AfterViewInit {
     this.units.forEach((unitA: Unit) => {
       this.units.forEach((unitB: Unit) => {
         if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction === "Neutral") {
+          matches.push([unitA, unitB]);
+        }
+      })
+    });
+    return matches;
+  }
+
+  private setupPvPBattleMatches() {
+    const matches: any = [];
+    this.units.forEach((unitA: Unit) => {
+      this.units.forEach((unitB: Unit) => {
+        if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction !== "Neutral") {
           matches.push([unitA, unitB]);
         }
       })
@@ -283,6 +332,14 @@ export class AppComponent implements AfterViewInit {
       }
     }
 
+    if (this.hasSkill(attacker, SPECIALS.HEAL_TWO_ON_ACTIVATION)) {
+      const data = this.getUnitById(attacker.id) as Unit;
+      attacker.health+=2;
+      if (attacker.health > data.health) {
+        attacker.health = data.health;
+      }
+    }
+
     if (this.hasSkill(attacker, SPECIALS.HEAL_THREE_ON_ACTIVATION)) {
       const data = this.getUnitById(attacker.id) as Unit;
       attacker.health+=3;
@@ -342,12 +399,42 @@ export class AppComponent implements AfterViewInit {
       if (this.hasSkill(attacker, SPECIALS.ENCHANTER)) {
         damageModifier = 1;
       }
+
+      if (
+        this.hasSkill(attacker, SPECIALS.BONUS_AGAINST_ARCH_DEVIL)
+        && (defender.id === "ARCH_DEVILS" || defender.id === "ARCH_DEVILS_#PACK" || defender.id === "ARCH_DEVILS *")
+      ) {
+        damageModifier = 2;
+      }
+      if (
+        this.hasSkill(attacker, SPECIALS.BONUS_AGAINST_BLACK_DRAGON)
+        && (defender.id === "BLACK_DRAGONS" || defender.id === "BLACK_DRAGONS_#PACK" || defender.id === "BLACK_DRAGONS *")
+      ) {
+        damageModifier = 2;
+      }
+      if (
+        this.hasSkill(attacker, SPECIALS.BONUS_AGAINST_ARCH_ANGELS)
+        && (defender.id === "ARCHANGELS" || defender.id === "ARCHANGELS_#PACK" || defender.id === "ARCHANGELS *")
+      ) {
+        damageModifier = 2;
+      }
+      if (
+        this.hasSkill(attacker, SPECIALS.BONUS_AGAINST_EFREET)
+        && (defender.id === "EFREETS" || defender.id === "EFREETS_#PACK" || defender.id === "EFREETS *")
+      ) {
+        damageModifier = 1;
+      }
       this.doDamage(attacker, defender, isAdjacent, false, state, damageModifier);
       if (this.hasSkill(attacker, SPECIALS.POISON)) {
         state.defender.poison++;
       }
       if (this.hasSkill(attacker, SPECIALS.MIGHTY_POISON)) {
         state.defender.poison+=2;
+      }
+      if (this.hasSkill(attacker, SPECIALS.CHANCE_MOVE_ENEMY_ON_ATTACK)) {
+        if(this.roll() === 0) {
+          isAdjacent = false;
+        }
       }
 
       if (this.isDead(defender)) {
@@ -369,7 +456,7 @@ export class AppComponent implements AfterViewInit {
       }
 
       // RETALIATE
-      if (this.hasSkill(attacker, SPECIALS.IGNORE_RETALIATION) || (attacker.ranged && !isAdjacent)) {
+      if (this.hasSkill(attacker, SPECIALS.IGNORE_RETALIATION) || (attacker.ranged && !isAdjacent) || !isAdjacent) {
         // Don't retaliate if the attacker ignores it
         // or if the attacker is ranged but not adjacent to the defender
       } else {
@@ -396,6 +483,12 @@ export class AppComponent implements AfterViewInit {
       // SKILL ACTIVATION DURING ATTACK
       if (this.hasSkill(attacker, SPECIALS.CHANCE_TO_PARALYZE_MINUS_ONE) && this.containsRoll(state.attacker.lastThrow, -1)) {
         state.defender.paralyzed = true;
+      }
+      if (this.hasSkill(attacker, SPECIALS.CHANCE_TO_PARALYZE) && this.roll() === 0) {
+        state.defender.paralyzed = true;
+      }
+      if (this.hasSkill(attacker, SPECIALS.CHANCE_TO_POISON) && this.roll() === 0) {
+        state.defender.poison++;
       }
 
       if (this.hasSkill(attacker, SPECIALS.FEAR) && this.containsRoll(state.attacker.lastThrow, -1)) {
@@ -474,10 +567,19 @@ export class AppComponent implements AfterViewInit {
       if (this.hasSkill(target, SPECIALS.RETALIATION_CURSE) && retalliation) {
         return Math.min(this.roll(), this.roll());
       }
+      if (this.hasSkill(source, SPECIALS.CRUSADERS_ATTACK)) {
+        return Math.max(this.roll(), this.roll());
+      }
+      if (this.hasSkill(source, SPECIALS.ALWAYS_REROLL_MINUS_ONE)) {
+        return Math.max(this.roll(), this.roll());
+      }
+      if (this.hasSkill(source, SPECIALS.ALWAYS_REROLL_MINUS_ONE)) {
+        return Math.max(this.roll(), this.roll());
+      }
       return this.attackRoll(
         combatPenalty,
         (this.hasSkill(source, SPECIALS.REROLL_ZERO_ON_DICE) && !retalliation),
-        (this.hasSkill(source, SPECIALS.REROLL_ON_OTHER_SPACE) && !retalliation),
+        (this.hasSkill(source, SPECIALS.REROLL_ON_OTHER_SPACE) && !retalliation) || (this.hasSkill(source, SPECIALS.ATTACK_REROLL_MINUS_ONE)),
         (this.hasSkill(source, SPECIALS.LUCK) && !retalliation),
         (this.hasSkill(source, SPECIALS.ADD_ONE_TO_ATTACK_DICE) && !retalliation),
       );
@@ -489,8 +591,15 @@ export class AppComponent implements AfterViewInit {
       }
 
       const strike = () => {
-        const rollResult = attackRoll();
+        let rollResult = attackRoll();
         state.attacker.lastThrow.push(rollResult);
+
+        if (this.hasSkill(source, SPECIALS.CHAMPION_DOUBLE_ROLL)) {
+          const roll = attackRoll();
+          state.attacker.lastThrow.push(roll);
+          rollResult += roll;
+        }
+
         if (this.hasSkill(source, SPECIALS.DEATH_BLOW) && rollResult >= 0) {
           damageModifier++;
         }
