@@ -13,6 +13,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,17 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     BrowserModule,
     AppRoutingModule,
     MatSelectModule,
-    MatFormFieldModule, NgFor, MatInputModule, FormsModule, BrowserAnimationsModule, MatCheckboxModule, MatTableModule, MatSortModule, MatButtonToggleModule
+    MatFormFieldModule,
+    NgFor,
+    MatInputModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    MatButtonToggleModule,
+    MatExpansionModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

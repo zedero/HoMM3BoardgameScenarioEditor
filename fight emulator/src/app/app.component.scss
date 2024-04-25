@@ -23,3 +23,13 @@
     margin-right: 10px;
   }
 }
+
+.filter {
+  margin-bottom: 1rem;
+  .title {
+    font-weight: bold;
+  }
+  .mat-mdc-slide-toggle {
+    margin-right: 1rem !important;
+  }
+}

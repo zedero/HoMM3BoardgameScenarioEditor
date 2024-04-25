@@ -20,21 +20,17 @@ type CombatState = {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['name', 'score', 'resourceEfficiency', 'faction', 'tier'];
+  public displayedColumns: string[] = ['name', 'score','asAttacker','asDefender',  'resourceEfficiency', 'faction', 'tier'];
   public sortedData: any = [];
-  public itterations = 300;
-  public score = [{
-    name: "A",
-    score: 1,
-    resourceEfficiency: 1
-  },{
-    name: "B",
-    score: 2,
-    resourceEfficiency: 4
-  }];
+  public itterations = 100;
+  public score = [];
+  public matches = [];
+  public isOneSided = false;
 
   public factionData = [];
+  public factionDataSorted = [];
   public displayedColumnsFaction: string[] = ['faction', 'Bronze', 'Silver', 'Gold', 'Total'];
+  public menuExpanded = true;
 
   // @ViewChild(MatSort) sort: MatSort;
 
@@ -47,6 +43,19 @@ export class AppComponent implements AfterViewInit {
   public toggleDisplayMode = (event: any) => {
     this.displayMode = event.value;
   }
+  public filterSettings = {
+    Faction: {
+      Bronze: true,
+      Silver: true,
+      Gold: true,
+    },
+    Neutral: {
+      Bronze: true,
+      Silver: true,
+      Gold: true,
+      Azure: true,
+    }
+  }
 
   constructor() {
     console.log(this.units)
@@ -57,50 +66,163 @@ export class AppComponent implements AfterViewInit {
     // this.score.sort = this.sort;
   }
 
+  private filterMatchesArr(matches: any[]) {
+    // const filterCheck = function (attacker: Unit, defender: Unit, isNeutral: string, tier: string) {
+    //   if (
+    //     attacker.tier === tier && attacker.faction !== 'Neutral' && !this.filterSettings.Faction.Bronze
+    //     || defender.tier === tier && defender.faction !== 'Neutral' && !this.filterSettings.Faction.Bronze
+    //   ) {
+    //     return false;
+    //   }
+    //   return true;
+    // }
+
+
+    return matches.filter((match) => {
+      if (
+           match[0].tier === 'Bronze' && match[0].faction !== 'Neutral' && !this.filterSettings.Faction.Bronze
+        || match[1].tier === 'Bronze' && match[1].faction !== 'Neutral' && !this.filterSettings.Faction.Bronze
+      ) {
+        return false;
+      }
+      if (
+           match[0].tier === 'Bronze' && match[0].faction === 'Neutral' && !this.filterSettings.Neutral.Bronze
+        || match[1].tier === 'Bronze' && match[1].faction === 'Neutral' && !this.filterSettings.Neutral.Bronze
+      ) {
+        return false;
+      }
+      return true;
+    }).filter((match) => {
+      if (
+        match[0].tier === 'Silver' && match[0].faction !== 'Neutral' && !this.filterSettings.Faction.Silver
+        || match[1].tier === 'Silver' && match[1].faction !== 'Neutral' && !this.filterSettings.Faction.Silver
+      ) {
+        return false;
+      }
+      if (
+        match[0].tier === 'Silver' && match[0].faction === 'Neutral' && !this.filterSettings.Neutral.Silver
+        || match[1].tier === 'Silver' && match[1].faction === 'Neutral' && !this.filterSettings.Neutral.Silver
+      ) {
+        return false;
+      }
+      return true;
+    }).filter((match) => {
+      if (
+        match[0].tier === 'Gold' && match[0].faction !== 'Neutral' && !this.filterSettings.Faction.Gold
+        || match[1].tier === 'Gold' && match[1].faction !== 'Neutral' && !this.filterSettings.Faction.Gold
+      ) {
+        return false;
+      }
+      if (
+        match[0].tier === 'Gold' && match[0].faction === 'Neutral' && !this.filterSettings.Neutral.Gold
+        || match[1].tier === 'Gold' && match[1].faction === 'Neutral' && !this.filterSettings.Neutral.Gold
+      ) {
+        return false;
+      }
+      return true;
+    }).filter((match) => {
+      if (
+        match[0].tier === 'Azure' && match[0].faction === 'Neutral' && !this.filterSettings.Neutral.Azure
+        || match[1].tier === 'Azure' && match[1].faction === 'Neutral' && !this.filterSettings.Neutral.Azure
+      ) {
+        return false;
+      }
+      return true;
+    });
+  }
+
+  public changeFilterSetting(data: any) {
+    const setting = data.source.id.split('.')
+    // @ts-ignore
+    this.filterSettings[setting[0]][setting[1]] = data.checked
+  }
+
   public start(TYPE = "ALL") {
     // test match
     // this.doBattle(this.units[162], this.units[162]);
     // return;
-    let matches;
+    let matches: any;
+    this.isOneSided = false;
+
+    const units = this.units.filter((unit: Unit) => {
+      return true;
+      // return unit.tier === "Azure";
+    })
+
+    console.log(units);
+
+
     if (TYPE === "ALL") {
-      matches = this.setupPvAllBattleMatches();
+      matches = this.setupPvAllBattleMatches(units);
     } else if ( TYPE === "PvN") {
-      matches = this.setupPvNeutralBattleMatches();
+      matches = this.setupPvNeutralBattleMatches(units);
+      this.isOneSided = true;
     } else if ( TYPE === "PvP") {
-      matches = this.setupPvPBattleMatches();
+      matches = this.setupPvPBattleMatches(units);
     }else if ( TYPE === "TEST") {
       matches = this.setupTestBattleMatches();
     }
-
-
-    // const pitting = new Map();
-    // matches.forEach((match: any) => {
-    //   match.forEach((unit: any) => {
-    //     if (!pitting.has(unit.id)) {
-    //       pitting.set(unit.id, 1)
-    //     } else {
-    //       pitting.set(unit.id, pitting.get(unit.id) + 1)
-    //     }
-    //   })
-    // })
-    // console.log('@', pitting)
+    this.menuExpanded = false;
+    matches = this.filterMatchesArr(matches);
+    this.matches = matches;
 
     const score = {};
-    console.time("Simulation time")
-    matches.forEach((match: [Unit, Unit]) => {
-      const winnerData = this.doBattle(match[0], match[1]);
-      if (winnerData) {
-        this.addScore(winnerData, score);
-      }
-    })
-    console.timeEnd("Simulation time")
-    this.showScore(score);
+    const battleResults = {};
+    setTimeout(() => {
+      console.time("Simulation time")
+      matches.forEach((match: [Unit, Unit]) => {
+        const winnerData = this.doBattle(match[0], match[1]);
+        if (winnerData) {
+          this.addScore(winnerData, score);
+          this.addBattleResult(battleResults, winnerData, match[0], match[1])
+        } else {
+          this.addBattleResult(battleResults, undefined, match[0], match[1])
+        }
+      })
+      console.timeEnd("Simulation time")
+      this.showScore(battleResults);
+    }, 500)
   }
+
+  private addBattleResult(score: any, winnerData: any, attacker: Unit, defender: Unit) {
+    const add = function (score: any, unit: Unit, points: number, combatState: string) {
+      if (score[unit.id]) {
+        score[unit.id][combatState] += points;
+        score[unit.id].total += points;
+      } else {
+        score[unit.id] = {
+          attacking: 0,
+          defending: 0,
+          total: 0,
+          count: 0,
+        }
+        score[unit.id][combatState] += points;
+        score[unit.id].total += points;
+      }
+      score[unit.id].count++;
+    }
+    if (!winnerData) {
+      add(score, attacker, 0,'attacking');
+      add(score, defender, 0,'defending');
+      return
+    }
+    const winRate = winnerData.percentage;
+    if (winnerData.winner.id === attacker.id) {
+      // attacker won
+      add(score, attacker, winRate,'attacking');
+      add(score, defender, 100 - winRate,'defending');
+    } else {
+      // defender won
+      add(score, attacker, 100 - winRate,'attacking');
+      add(score, defender, winRate,'defending');
+    }
+  }
+
 
   private showScore(score: any) {
     const arr = Object.entries(score)
     // @ts-ignore
-    const sorted = arr.sort((a, b) => b[1] - a[1]);
+    const sorted = arr.sort((a, b) => b[1].total - a[1].total);
 
     const newScores = sorted.map((data) => {
       const unit = this.getUnitById(data[0]) as Unit;
@@ -109,7 +231,7 @@ export class AppComponent implements AfterViewInit {
 
       const goldCosts = this.calculateGoldCosts(unit.costs) + downgradeCost;
       // @ts-ignore
-      const scorePerCoin = Math.ceil(data[1] / goldCosts);
+      const scorePerCoin = Math.ceil(data[1].total / goldCosts);
 
       return [...data,...[scorePerCoin],unit.faction, unit.tier, this.statsScore(unit)]
     })
@@ -140,7 +262,7 @@ export class AppComponent implements AfterViewInit {
     };
     // data.forEach((data: any) => console.log(data.score))
     let total = data.reduce((acc: number, cur: any) => acc + cur.score, 0);
-    console.log('@',total)
+    // console.log('@', this.matches)
 
     const toPercentage = (amount: number) => {
       return Math.round((amount / total) * 10000)/ 100;
@@ -183,9 +305,6 @@ export class AppComponent implements AfterViewInit {
       }
     });
     delete tierResults['Test'];
-    townPower.forEach((score, faction) => {
-      // townPower.set(faction, score / (this.units.length - 14) / 100)
-    })
 
     const factionData: any= [];
     Object.entries(tierResults).forEach((data:any) => {
@@ -196,38 +315,22 @@ export class AppComponent implements AfterViewInit {
       factionData.push({faction: data[0], ...data[1]})
     })
     this.factionData = factionData;
+    this.factionDataSorted = factionData;
 
     console.log('Faction power', townPower)
     console.log('Faction efficiency', townefficiency)
     console.log('Faction total stats', statScore)
     console.log('Tier result', tierResults)
     console.log('Tier result', factionData)
-    // const average = {
-    //   attack: 0,
-    //   defence: 0,
-    //   health: 0,
-    //   initiative: 0,
-    // }
-    // this.units.forEach((unit: Unit) => {
-    //   average.attack += unit.attack;
-    //   average.defence += unit.defence;
-    //   average.health += unit.health;
-    //   average.initiative += unit.initiative;
-    // });
-    // average.attack = average.attack / this.units.length
-    // average.defence = average.defence / this.units.length
-    // average.health = average.health / this.units.length
-    // average.initiative = average.initiative / this.units.length
-    // console.log(average)
+
   }
 
-  sortChange(sort: Sort) {
+  sortChangeUnits(sort: Sort) {
     const data = this.sortedData.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
     }
-
     // @ts-ignore
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
@@ -236,6 +339,10 @@ export class AppComponent implements AfterViewInit {
           return compare(a.name, b.name, isAsc);
         case 'score':
           return compare(a.score, b.score, isAsc);
+        case 'asAttacker':
+          return compare(a.asAttacker, b.asAttacker, isAsc);
+        case 'asDefender':
+          return compare(a.asDefender, b.asDefender, isAsc);
         case 'resourceEfficiency':
           return compare(a.resourceEfficiency, b.resourceEfficiency, isAsc);
         case 'faction':
@@ -252,14 +359,51 @@ export class AppComponent implements AfterViewInit {
     function compare(a: number | string, b: number | string, isAsc: boolean) {
       return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
     }
+  }
 
+  sortChangeFaction(sort: Sort) {
+    const data = this.factionDataSorted.slice();
+    if (!sort.active || sort.direction === '') {
+      this.factionDataSorted = data;
+      return;
+    }
+    // @ts-ignore
+    this.factionDataSorted = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Bronze':
+          // @ts-ignore
+          return compare(a.Bronze, b.Bronze, isAsc);
+        case 'Silver':
+          // @ts-ignore
+          return compare(a.Silver, b.Silver, isAsc);
+        case 'Gold':
+          // @ts-ignore
+          return compare(a.Gold, b.Gold, isAsc);
+        case 'Total':
+          // @ts-ignore
+          return compare(a.Total, b.Total, isAsc);
+        default:
+          return 0;
+      }
+    });
+
+    function compare(a: number | string, b: number | string, isAsc: boolean) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
   }
 
   private convertToTableStructure(data: any) {
+    const percentage = function (total: number, count: number) {
+      return Math.round((total / count) * 100) / 100;
+    }
     return data.map((entry: any) => {
+      const devide = this.isOneSided ? 1 : 2;
       return {
         name: this.name(entry[0]),
-        score: entry[1],
+        asAttacker:  percentage(entry[1].attacking , entry[1].count / devide),
+        asDefender:  percentage(entry[1].defending , entry[1].count / devide),
+        score: percentage(entry[1].total , entry[1].count),
         resourceEfficiency: entry[2],
         faction: entry[3],
         tier: entry[4],
@@ -282,13 +426,12 @@ export class AppComponent implements AfterViewInit {
     } else {
       score[unit.id] += winnerData.percentage;
     }
-
   }
 
-  private setupPvAllBattleMatches() {
+  private setupPvAllBattleMatches(units: Unit[]) {
     const matches: any = [];
-    this.units.forEach((unitA: Unit) => {
-      this.units.forEach((unitB: Unit) => {
+    units.forEach((unitA: Unit) => {
+      units.forEach((unitB: Unit) => {
         if (unitA.id !== unitB.id) { // or unit.id??
           matches.push([unitA, unitB]);
         }
@@ -297,10 +440,10 @@ export class AppComponent implements AfterViewInit {
     return matches;
   }
 
-  private setupPvNeutralBattleMatches() {
+  private setupPvNeutralBattleMatches(units: Unit[]) {
     const matches: any = [];
-    this.units.forEach((unitA: Unit) => {
-      this.units.forEach((unitB: Unit) => {
+    units.forEach((unitA: Unit) => {
+      units.forEach((unitB: Unit) => {
         if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction === "Neutral") {
           matches.push([unitA, unitB]);
         }
@@ -309,10 +452,10 @@ export class AppComponent implements AfterViewInit {
     return matches;
   }
 
-  private setupPvPBattleMatches() {
+  private setupPvPBattleMatches(units: Unit[]) {
     const matches: any = [];
-    this.units.forEach((unitA: Unit) => {
-      this.units.forEach((unitB: Unit) => {
+    units.forEach((unitA: Unit) => {
+      units.forEach((unitB: Unit) => {
         if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction !== "Neutral" && unitA.faction !== unitB.faction) {
           matches.push([unitA, unitB]);
         }
@@ -342,7 +485,6 @@ export class AppComponent implements AfterViewInit {
     }
     let attackerWon = 0;
     let defenderWon = 0;
-    // const itterations = 100;
 
     for(let i = 0; i<this.itterations; i++) {
       const initialState: CombatState = {
@@ -590,7 +732,7 @@ export class AppComponent implements AfterViewInit {
     // CONTINUE FIGHT BY SWAPPING ATTACKER AND DEFENDER
     state = this.switchState(state)
 
-    if (combatRound === 3) {
+    if (combatRound >= 20) {
       // if it takes more then 2 rounds, quit.
       return null;
     }
