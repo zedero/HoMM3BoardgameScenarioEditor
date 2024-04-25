@@ -22,7 +22,7 @@ type CombatState = {
 export class AppComponent implements AfterViewInit {
   public displayedColumns: string[] = ['name', 'score', 'resourceEfficiency', 'faction', 'tier'];
   public sortedData: any = [];
-  public itterations = 100;
+  public itterations = 300;
   public score = [{
     name: "A",
     score: 1,
@@ -33,9 +33,21 @@ export class AppComponent implements AfterViewInit {
     resourceEfficiency: 4
   }];
 
+  public factionData = [];
+  public displayedColumnsFaction: string[] = ['faction', 'Bronze', 'Silver', 'Gold', 'Total'];
+
   // @ViewChild(MatSort) sort: MatSort;
 
-  public units: Unit[] = UNITS;
+  public units: Unit[] = UNITS.map((unit) => {
+    // unit.special = []
+    return unit;
+  });
+
+  public displayMode: string = 'unit';
+  public toggleDisplayMode = (event: any) => {
+    this.displayMode = event.value;
+  }
+
   constructor() {
     console.log(this.units)
     this.sortedData = this.score.slice();
@@ -47,7 +59,7 @@ export class AppComponent implements AfterViewInit {
 
   public start(TYPE = "ALL") {
     // test match
-    // this.doBattle(this.units[32], this.units[33]);
+    // this.doBattle(this.units[162], this.units[162]);
     // return;
     let matches;
     if (TYPE === "ALL") {
@@ -56,6 +68,8 @@ export class AppComponent implements AfterViewInit {
       matches = this.setupPvNeutralBattleMatches();
     } else if ( TYPE === "PvP") {
       matches = this.setupPvPBattleMatches();
+    }else if ( TYPE === "TEST") {
+      matches = this.setupTestBattleMatches();
     }
 
 
@@ -75,7 +89,9 @@ export class AppComponent implements AfterViewInit {
     console.time("Simulation time")
     matches.forEach((match: [Unit, Unit]) => {
       const winnerData = this.doBattle(match[0], match[1]);
-      this.addScore(winnerData, score);
+      if (winnerData) {
+        this.addScore(winnerData, score);
+      }
     })
     console.timeEnd("Simulation time")
     this.showScore(score);
@@ -120,10 +136,34 @@ export class AppComponent implements AfterViewInit {
     const townPower = new Map();
     const townefficiency = new Map();
     const statScore = new Map();
+    const tierResults: any = {
+    };
+    // data.forEach((data: any) => console.log(data.score))
+    let total = data.reduce((acc: number, cur: any) => acc + cur.score, 0);
+    console.log('@',total)
+
+    const toPercentage = (amount: number) => {
+      return Math.round((amount / total) * 10000)/ 100;
+    }
+
     data.forEach((entry: any) => {
+
+
+      if (!tierResults.hasOwnProperty(entry.faction)) {
+        tierResults[entry.faction] = {
+          Bronze: 0,
+          Silver: 0,
+          Gold: 0,
+          Total: 0,
+        }
+      }
+      tierResults[entry.faction][entry.tier] += entry.score;
+      tierResults[entry.faction].Total += entry.score;
       if (entry.faction === "Neutral") {
         return
       }
+
+
       if (townPower.has(entry.faction)) {
         townPower.set(entry.faction,  townPower.get(entry.faction) + entry.score)
       } else {
@@ -142,13 +182,43 @@ export class AppComponent implements AfterViewInit {
         statScore.set(entry.faction, entry.statsScore.total)
       }
     });
+    delete tierResults['Test'];
     townPower.forEach((score, faction) => {
       // townPower.set(faction, score / (this.units.length - 14) / 100)
     })
 
+    const factionData: any= [];
+    Object.entries(tierResults).forEach((data:any) => {
+      data[1].Bronze = toPercentage(data[1].Bronze)
+      data[1].Silver = toPercentage(data[1].Silver)
+      data[1].Gold = toPercentage(data[1].Gold)
+      data[1].Total = toPercentage(data[1].Total)
+      factionData.push({faction: data[0], ...data[1]})
+    })
+    this.factionData = factionData;
+
     console.log('Faction power', townPower)
     console.log('Faction efficiency', townefficiency)
     console.log('Faction total stats', statScore)
+    console.log('Tier result', tierResults)
+    console.log('Tier result', factionData)
+    // const average = {
+    //   attack: 0,
+    //   defence: 0,
+    //   health: 0,
+    //   initiative: 0,
+    // }
+    // this.units.forEach((unit: Unit) => {
+    //   average.attack += unit.attack;
+    //   average.defence += unit.defence;
+    //   average.health += unit.health;
+    //   average.initiative += unit.initiative;
+    // });
+    // average.attack = average.attack / this.units.length
+    // average.defence = average.defence / this.units.length
+    // average.health = average.health / this.units.length
+    // average.initiative = average.initiative / this.units.length
+    // console.log(average)
   }
 
   sortChange(sort: Sort) {
@@ -243,12 +313,23 @@ export class AppComponent implements AfterViewInit {
     const matches: any = [];
     this.units.forEach((unitA: Unit) => {
       this.units.forEach((unitB: Unit) => {
-        if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction !== "Neutral") {
+        if (unitA.id !== unitB.id && unitA.faction !== "Neutral" && unitB.faction !== "Neutral" && unitA.faction !== unitB.faction) {
           matches.push([unitA, unitB]);
         }
       })
     });
-    console.log('@', matches)
+    return matches;
+  }
+
+  private setupTestBattleMatches() {
+    const matches: any = [];
+    this.units.forEach((unitA: Unit) => {
+      this.units.forEach((unitB: Unit) => {
+        if (unitA.id !== unitB.id && unitA.faction === "Test" && unitB.faction !== "Test") {
+          matches.push([unitA, unitB]);
+        }
+      })
+    });
     return matches;
   }
 
@@ -279,6 +360,9 @@ export class AppComponent implements AfterViewInit {
         }
       }
       const winner = this.startCombat({...attacker}, {...defender}, false, initialState);
+      if (winner === null) {
+        return
+      }
       if (winner.id === attacker.id) {
         attackerWon++;
       } else {
@@ -312,7 +396,7 @@ export class AppComponent implements AfterViewInit {
     return isAdjacent || !unit.ranged
   }
 
-  private startCombat(attacker: Unit, defender: Unit, isAdjacent:boolean, state: CombatState): Unit {
+  private startCombat(attacker: Unit, defender: Unit, isAdjacent:boolean, state: CombatState, combatRound = 0): Unit | null {
     const deathStare = () => {
       if(this.hasSkill(attacker, SPECIALS.DEATH_STARE)) {
         // if both rolls are -1, set health to 0
@@ -505,7 +589,12 @@ export class AppComponent implements AfterViewInit {
 
     // CONTINUE FIGHT BY SWAPPING ATTACKER AND DEFENDER
     state = this.switchState(state)
-    return this.startCombat(defender, attacker, isAdjacent, state);
+
+    if (combatRound === 3) {
+      // if it takes more then 2 rounds, quit.
+      return null;
+    }
+    return this.startCombat(defender, attacker, isAdjacent, state, combatRound += 1);
   }
 
   private switchState(state: CombatState) {

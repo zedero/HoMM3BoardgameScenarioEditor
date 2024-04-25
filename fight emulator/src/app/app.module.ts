@@ -11,6 +11,8 @@ import {FormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import {MatSortModule} from "@angular/material/sort";
     BrowserModule,
     AppRoutingModule,
     MatSelectModule,
-    MatFormFieldModule, NgFor, MatInputModule, FormsModule, BrowserAnimationsModule, MatTableModule, MatSortModule
+    MatFormFieldModule, NgFor, MatInputModule, FormsModule, BrowserAnimationsModule, MatCheckboxModule, MatTableModule, MatSortModule, MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

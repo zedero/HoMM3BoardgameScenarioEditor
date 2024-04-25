@@ -276,7 +276,7 @@ export const NEUTRAL: Unit[] = [{
   upgradeFrom: "",
   costs: [4,0],
   faction: "Neutral",
-  tier: "BRONZE"
+  tier: "Bronze"
 },{
   id: 'HARPIES *',
   attack: 2,
@@ -288,7 +288,7 @@ export const NEUTRAL: Unit[] = [{
   upgradeFrom: "",
   costs: [5,0],
   faction: "Neutral",
-  tier: "BRONZE"
+  tier: "Bronze"
 },{
   id: 'EVIL_EYES *',
   attack: 2,
@@ -300,7 +300,7 @@ export const NEUTRAL: Unit[] = [{
   upgradeFrom: "",
   costs: [6,0],
   faction: "Neutral",
-  tier: "BRONZE"
+  tier: "Bronze"
 },{
   id: 'MEDUSAS *',
   attack: 3,
@@ -770,4 +770,17 @@ export const NEUTRAL: Unit[] = [{
   faction: "Neutral",
   tier: "Gold"
 }
+// ,{
+//   id: 'TEST *',
+//   attack: 4,
+//   defence: 1,
+//   health: 5,
+//   initiative: 7,
+//   ranged: false,
+//   special: [],
+//   upgradeFrom: "",
+//   costs: [2,0],
+//   faction: "Test",
+//   tier: "Test"
+// }
 ]
