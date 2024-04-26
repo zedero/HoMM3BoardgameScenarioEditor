@@ -31,6 +31,7 @@ export class AppComponent implements AfterViewInit {
   public factionDataSorted = [];
   public displayedColumnsFaction: string[] = ['faction', 'Bronze', 'Silver', 'Gold', 'Total'];
   public menuExpanded = true;
+  public isGenerating = false;
 
   // @ViewChild(MatSort) sort: MatSort;
 
@@ -144,12 +145,7 @@ export class AppComponent implements AfterViewInit {
     let matches: any;
     this.isOneSided = false;
 
-    const units = this.units.filter((unit: Unit) => {
-      return true;
-      // return unit.tier === "Azure";
-    })
-
-    console.log(units);
+    const units = this.units;
 
 
     if (TYPE === "ALL") {
@@ -168,6 +164,7 @@ export class AppComponent implements AfterViewInit {
 
     const score = {};
     const battleResults = {};
+    this.isGenerating = true;
     setTimeout(() => {
       console.time("Simulation time")
       matches.forEach((match: [Unit, Unit]) => {
@@ -180,6 +177,8 @@ export class AppComponent implements AfterViewInit {
         }
       })
       console.timeEnd("Simulation time")
+
+      this.isGenerating = false;
       this.showScore(battleResults);
     }, 500)
   }
@@ -909,6 +908,10 @@ export class AppComponent implements AfterViewInit {
 
   private containsRoll(throws: number[], nr: number) {
     return throws.findIndex(entry => entry === nr) !== -1;
+  }
+
+  public getRowColor(faction: string) {
+    return 'row_color__' + faction.toLowerCase();
   }
 }
 

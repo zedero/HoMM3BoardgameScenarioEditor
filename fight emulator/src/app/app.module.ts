@@ -15,6 +15,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     MatSortModule,
     MatButtonToggleModule,
     MatExpansionModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

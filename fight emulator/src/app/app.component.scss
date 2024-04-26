@@ -1,6 +1,54 @@
 :host {
 }
 
+.loader {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  background: rgba(0, 0, 0, .2);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.row_color {
+  $weight: 500;
+  &__castle {
+    color: midnightblue;
+    font-weight: $weight;
+  }
+  &__dungeon {
+    color: purple;//rebeccapurple
+    font-weight: $weight;
+  }
+  &__necropolis {
+    color: dimgray;
+    font-weight: $weight;
+  }
+  &__tower {
+    color: cornflowerblue;
+    font-weight: $weight;
+  }
+  &__rampart {
+    color: limegreen;
+    font-weight: $weight;
+  }
+  &__fortress {
+    color: teal;
+    font-weight: $weight;
+  }
+  &__inferno {
+    color: red;
+    font-weight: $weight;
+  }
+  &__neutral {
+    color: goldenrod;
+    font-weight: $weight;
+  }
+
+}
+
 .tile-container {
   margin-top: 60px;
   padding: 15px;
