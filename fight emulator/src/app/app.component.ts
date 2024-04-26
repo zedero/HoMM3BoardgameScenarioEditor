@@ -32,6 +32,7 @@ export class AppComponent implements AfterViewInit {
   public displayedColumnsFaction: string[] = ['faction', 'Bronze', 'Silver', 'Gold', 'Total'];
   public menuExpanded = true;
   public isGenerating = false;
+  public process = 0;
 
   // @ViewChild(MatSort) sort: MatSort;
 
@@ -165,22 +166,37 @@ export class AppComponent implements AfterViewInit {
     const score = {};
     const battleResults = {};
     this.isGenerating = true;
-    setTimeout(() => {
-      console.time("Simulation time")
-      matches.forEach((match: [Unit, Unit]) => {
-        const winnerData = this.doBattle(match[0], match[1]);
-        if (winnerData) {
-          this.addScore(winnerData, score);
-          this.addBattleResult(battleResults, winnerData, match[0], match[1])
-        } else {
-          this.addBattleResult(battleResults, undefined, match[0], match[1])
-        }
-      })
-      console.timeEnd("Simulation time")
+    this.process = 0;
 
-      this.isGenerating = false;
-      this.showScore(battleResults);
-    }, 500)
+    this.factionDataSorted = []
+    this.sortedData = []
+
+      console.time("Simulation time")
+      let promises = matches.map((match: [Unit, Unit], index: number) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const winnerData = this.doBattle(match[0], match[1]);
+            if (winnerData) {
+              this.addScore(winnerData, score);
+              this.addBattleResult(battleResults, winnerData, match[0], match[1])
+            } else {
+              this.addBattleResult(battleResults, undefined, match[0], match[1])
+            }
+            this.process = Math.round((index / matches.length) * 100);
+            // @ts-ignore
+            resolve();
+          },0)
+        })
+      })
+
+      Promise.all(promises)
+        .then((results) => {
+          setTimeout(() => {
+            console.timeEnd("Simulation time")
+            this.isGenerating = false;
+            this.showScore(battleResults);
+          }, 500)
+        })
   }
 
   private addBattleResult(score: any, winnerData: any, attacker: Unit, defender: Unit) {

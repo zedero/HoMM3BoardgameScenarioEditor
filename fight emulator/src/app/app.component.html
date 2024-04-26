@@ -1,5 +1,8 @@
 <div class="loader" *ngIf="isGenerating">
-  <mat-spinner></mat-spinner>
+  <mat-progress-spinner
+  [mode]="'determinate'"
+  [value]="process"
+  ></mat-progress-spinner>
 </div>
 
 <mat-expansion-panel [expanded]="menuExpanded">
