@@ -3,16 +3,20 @@
   [mode]="'determinate'"
   [value]="process"
   ></mat-progress-spinner>
+  <div class="processString" *ngIf="processData.total !== 0">
+    <div>Simulated matches</div>
+    <div>{{processData.current}} / {{processData.total}}</div>
+  </div>
 </div>
 
-<mat-expansion-panel [expanded]="menuExpanded">
+<mat-expansion-panel [expanded]="menuExpanded" (expandedChange)="menuToggled($event)">
   <mat-expansion-panel-header>
-    Simulation options
+    Generate data
   </mat-expansion-panel-header>
 
   <mat-expansion-panel >
     <mat-expansion-panel-header>
-      Filter Options
+      Simulation Options
     </mat-expansion-panel-header>
     <div class="menu filter">
       <div class="title">Faction</div>
@@ -55,17 +59,24 @@
         (change)="changeFilterSetting($event)"
       >Azure</mat-slide-toggle>
   </div>
+    <div class="menu filter">
+      <div class="title">Simulation iterations per match (lower is faster, higher is more precise)</div>
+      <mat-slider discrete min="100" max="1000" step="100">
+        <input matSliderThumb value="{{itterations}}" (valueChange)="setIterations($event)">
+      </mat-slider>
+      {{itterations}}
+    </div>
   </mat-expansion-panel>
-  <mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-      Generate Data:
-    </mat-expansion-panel-header>
-    <button (click)="start()">Free for All</button>
-    <button (click)="start('PvN')">Faction vs Neutrals</button>
-    <button (click)="start('PvP')">Faction vs Faction</button>
-    <!--<button (click)="start('TEST')">Test</button>-->
-  </mat-expansion-panel>
-
+  <div class="simulate">
+    <mat-card>
+      <mat-card-header>Simulate: </mat-card-header>
+      <mat-card-content>
+        <button (click)="start()">Free for All</button>
+        <button (click)="start('PvN')">Faction vs Neutrals</button>
+        <button (click)="start('PvP')">Faction vs Faction</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </mat-expansion-panel>
 
 
@@ -107,7 +118,7 @@
 
       <ng-container matColumnDef="tier">
         <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by resourceEfficiency"> Tier </th>
-        <td mat-cell *matCellDef="let element" class="{{getRowColor(element.faction)}}"> {{element.tier}} </td>
+        <td mat-cell *matCellDef="let element" class="{{getRowColor(element.tier)}}"> {{element.tier}} </td>
       </ng-container>
 
 
@@ -123,18 +134,18 @@
     </ng-container>
     <!-- Name Column -->
     <ng-container matColumnDef="Bronze">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by name"> Bronze </th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by name" class="row_color__bronze"> Bronze Win rate </th>
       <td mat-cell *matCellDef="let element" class="{{getRowColor(element.faction)}}"> {{element.Bronze}}% </td>
     </ng-container>
 
     <ng-container matColumnDef="Silver">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by score"> Silver </th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by score" class="row_color__silver"> Silver  Win rate</th>
       <td mat-cell *matCellDef="let element" class="{{getRowColor(element.faction)}}"> {{element.Silver}}% </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="Gold">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by resourceEfficiency"> Gold </th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by resourceEfficiency" class="row_color__gold"> Gold  Win rate</th>
       <td mat-cell *matCellDef="let element" class="{{getRowColor(element.faction)}}"> {{element.Gold}}% </td>
     </ng-container>
 

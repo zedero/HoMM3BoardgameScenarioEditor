@@ -33,6 +33,10 @@ export class AppComponent implements AfterViewInit {
   public menuExpanded = true;
   public isGenerating = false;
   public process = 0;
+  public processData = {
+    current: 0,
+    total: 0
+  }
 
   // @ViewChild(MatSort) sort: MatSort;
 
@@ -171,6 +175,9 @@ export class AppComponent implements AfterViewInit {
     this.factionDataSorted = []
     this.sortedData = []
 
+    this.processData.total = matches.length * this.itterations;
+
+    setTimeout(() => {
       console.time("Simulation time")
       let promises = matches.map((match: [Unit, Unit], index: number) => {
         return new Promise((resolve) => {
@@ -183,6 +190,7 @@ export class AppComponent implements AfterViewInit {
               this.addBattleResult(battleResults, undefined, match[0], match[1])
             }
             this.process = Math.round((index / matches.length) * 100);
+            this.processData.current = (index  * this.itterations) - Math.floor(Math.random() * this.itterations);
             // @ts-ignore
             resolve();
           },0)
@@ -192,11 +200,14 @@ export class AppComponent implements AfterViewInit {
       Promise.all(promises)
         .then((results) => {
           setTimeout(() => {
+            this.processData.current = 0;
+            this.processData.total = 0;
             console.timeEnd("Simulation time")
             this.isGenerating = false;
             this.showScore(battleResults);
-          }, 500)
+          }, 200)
         })
+    }, 500)
   }
 
   private addBattleResult(score: any, winnerData: any, attacker: Unit, defender: Unit) {
@@ -332,11 +343,21 @@ export class AppComponent implements AfterViewInit {
     this.factionData = factionData;
     this.factionDataSorted = factionData;
 
-    console.log('Faction power', townPower)
-    console.log('Faction efficiency', townefficiency)
-    console.log('Faction total stats', statScore)
-    console.log('Tier result', tierResults)
-    console.log('Tier result', factionData)
+    this.sortChangeUnits({
+      active: 'score',
+      direction: 'desc'
+    })
+
+    this.sortChangeFaction({
+      active: 'Total',
+      direction: 'desc'
+    })
+
+    // console.log('Faction power', townPower)
+    // console.log('Faction efficiency', townefficiency)
+    // console.log('Faction total stats', statScore)
+    // console.log('Tier result', tierResults)
+    // console.log('Tier result', factionData)
 
   }
 
@@ -928,6 +949,14 @@ export class AppComponent implements AfterViewInit {
 
   public getRowColor(faction: string) {
     return 'row_color__' + faction.toLowerCase();
+  }
+
+  public setIterations(amount: number) {
+    this.itterations = amount;
+  }
+
+  public menuToggled(isOpen: boolean) {
+    this.menuExpanded = isOpen;
   }
 }
 

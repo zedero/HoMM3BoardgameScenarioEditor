@@ -17,6 +17,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatExpansionModule,
     MatSlideToggleModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

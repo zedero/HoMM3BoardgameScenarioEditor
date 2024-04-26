@@ -12,14 +12,24 @@
   align-items: center;
 }
 
+
+$weight: 500;
+.processString {
+  position: absolute;
+  font-weight: $weight;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+}
+
 .row_color {
-  $weight: 500;
+
   &__castle {
     color: midnightblue;
     font-weight: $weight;
   }
   &__dungeon {
-    color: purple;//rebeccapurple
+    color: mediumpurple;//rebeccapurple
     font-weight: $weight;
   }
   &__necropolis {
@@ -47,6 +57,22 @@
     font-weight: $weight;
   }
 
+  &__bronze {
+    color: saddlebrown;
+    font-weight: $weight;
+  }
+  &__silver {
+    color: silver;
+    font-weight: $weight;
+  }
+  &__gold {
+    color: goldenrod;
+    font-weight: $weight;
+  }
+  &__azure {
+    color: #069AF3;
+    font-weight: $weight;
+  }
 }
 
 .tile-container {
@@ -81,3 +107,27 @@
     margin-right: 1rem !important;
   }
 }
+
+.simulate {
+  mat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  mat-card-header {
+    font-weight: 500;
+    padding-bottom: 8px;
+    display: inline-block;
+  }
+
+  mat-card {
+    padding: 4px 8px;
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+
