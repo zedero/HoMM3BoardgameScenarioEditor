@@ -8,6 +8,7 @@ import {ConfigService} from "./service/config.service";
 import { RandomMapGenerationService, RandomMapSettings } from './service/random-map-generation.service';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import {AboutDialogComponent} from "./components/about-dialog/about-dialog.component";
 
 declare global {
   interface Window {
@@ -207,7 +208,7 @@ export class AppComponent implements OnInit {
   }
   toggleAboutMenu() {
 
-    let dialogRef = this.dialog.open(SettingsDialogComponent, {
+    let dialogRef = this.dialog.open(AboutDialogComponent, {
       height: '400px',
       width: '100%',
     });

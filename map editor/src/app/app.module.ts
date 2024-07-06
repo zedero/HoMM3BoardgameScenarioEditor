@@ -24,6 +24,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
 import {HttpClientModule} from "@angular/common/http";
 import { PortraitComponent } from './components/portrait/portrait.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
+import { AboutDialogComponent } from './components/about-dialog/about-dialog.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SettingsDialogComponent } from './components/settings-dialog/settings-d
     CubeComponent,
     ImportExportDialogComponent,
     PortraitComponent,
-    SettingsDialogComponent
+    SettingsDialogComponent,
+    AboutDialogComponent
   ],
   imports: [
     BrowserModule,
