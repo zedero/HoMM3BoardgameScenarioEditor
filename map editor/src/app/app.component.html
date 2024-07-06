@@ -29,15 +29,16 @@
   </div>
 </div>
 <div class="toolbar">
-<!--  <div class="inputGroup">-->
-<!--    <label>Rows:</label>-->
-<!--    <input type="number" placeholder="Rows" value="{{rows.length}}" (change)="changeRows($event)">-->
-<!--  </div>-->
+  <div class="inputGroup">
+    <label>Rows:</label>
+    <input type="number" placeholder="Rows" value="{{rows.length}}" (change)="changeRows($event)">
+  </div>
 
-<!--  <div class="inputGroup">-->
-<!--    <label>Columns:</label>-->
-<!--    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">-->
-<!--  </div>-->
+  <div class="inputGroup">
+    <label>Columns:</label>
+    <input type="number" placeholder="Columns" value="{{columns.length}}" (change)="changeCols($event)">
+  </div>
+
 
 
   <button
@@ -59,6 +60,14 @@
   <button (click)="importExport()" class="toolbar-button">Import / Export Map</button>
   <button (click)="clearGrid()" class="toolbar-button warn">Clear Map</button>
   <button (click)="generateImage()" class="toolbar-button">Generate Image</button>
+  <button
+    (click)="toggleAboutMenu()"
+    class="toolbar-button"
+    matTooltip="About"
+    [matTooltipPosition]="'above'"
+  >
+    <i class="fa-solid fa-question"></i>
+  </button>
 </div>
 
 <div class="loading" *ngIf="loading">

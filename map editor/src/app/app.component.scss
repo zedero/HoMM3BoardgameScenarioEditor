@@ -35,6 +35,11 @@
   position: absolute;
 }
 
+.toolbar {
+
+  color: #ffe98c;
+}
+
 .toolbar-button {
   background-color: white;
   //border: 2px solid #777777;
@@ -131,6 +136,8 @@
 
 
 .inputGroup {
+  display: flex;
+  align-items: center;
   margin-right: 20px;
 
   label {

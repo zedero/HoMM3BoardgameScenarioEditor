@@ -174,6 +174,7 @@ export class AppComponent implements OnInit {
     let node:any = document.getElementById('tilesContainer');
     htmlToImage.toPng(node)
       .then( (dataUrl) => {
+        console.log('node', dataUrl)
         this.download(dataUrl, `scenario-map-${new Date().getTime()}.png`)
       })
       .catch(function (error) {
@@ -203,6 +204,19 @@ export class AppComponent implements OnInit {
 
   toggleMoveMenu() {
     this.moveMenuVisible = !this.moveMenuVisible;
+  }
+  toggleAboutMenu() {
+
+    let dialogRef = this.dialog.open(SettingsDialogComponent, {
+      height: '400px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.generateRandomMap();
+      }
+    });
   }
   moveUpLeft() {
     this.tilesService.moveAllUpLeft();
