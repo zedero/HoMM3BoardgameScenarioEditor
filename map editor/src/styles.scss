@@ -39,11 +39,11 @@ body { margin: 0;
   font-family: "Times New Roman";
   font-size: 16px;
 
-  background-image: url("/assets/UI/panelcoloredbg.jpg");
+  background-image: url("assets/UI/panelcoloredbg.jpg");
   background-repeat: repeat;
 
   border-image-repeat: round;
-  border-image-source: url("/assets/UI/border.png");
+  border-image-source: url("assets/UI/border.png");
   border-image-slice: 20;
   border-image-width: 20px;
 }
@@ -105,7 +105,7 @@ body { margin: 0;
   width: 32px;
   min-height: 32px;
   max-height: 32px;
-  background-image: url("/assets/UI/panelcoloredbg.jpg");
+  background-image: url("assets/UI/panelcoloredbg.jpg");
   background-repeat: repeat;
   border-radius: 0;
   color: var(--primary);
@@ -180,10 +180,10 @@ body { margin: 0;
   border-right-color  .2s
 ;
 
-  background-image: url("/assets/UI/dialog-background.png");
+  background-image: url("assets/UI/dialog-background.png");
 
   .dialog & {
-    background-image: url("/assets/UI/panelcoloredbg.jpg");
+    background-image: url("assets/UI/panelcoloredbg.jpg");
   }
 
   background-repeat: repeat;

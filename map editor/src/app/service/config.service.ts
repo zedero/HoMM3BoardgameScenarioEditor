@@ -37,7 +37,7 @@ export class ConfigService {
 
   public PORTRAITS: any = {
     CATHERINE: {
-      image: "/assets/portraits/catherine.png",
+      image: "assets/portraits/catherine.png",
       desc: "Catherine"
     }
   }
