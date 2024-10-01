@@ -23,6 +23,7 @@ declare global {
 })
 export class AppComponent implements OnInit {
   public featureSwitchStorageKey = 'featureSwitch';
+  public globalStorageKey = 'scenarioCreatorGlobalSettings';
   public tilesPerRow = 7;
   public tilesPerColumn = 7;
 
@@ -55,6 +56,19 @@ export class AppComponent implements OnInit {
     if (localStorage.getItem(this.featureSwitchStorageKey)) {
       this.featureSwitch = true;
     }
+   
+    if(!localStorage.getItem(this.globalStorageKey)) {
+      localStorage.setItem(this.globalStorageKey, JSON.stringify({
+          rows: this.tilesPerRow * 3,
+          columns: this.tilesPerColumn * 3,
+        }));	
+
+    }
+
+    const settings = JSON.parse(localStorage.getItem(this.globalStorageKey) ?? '{}');
+      this.rows = Array(settings.rows);
+      this.columns = Array(settings.columns);
+
     configService.load().then(() => {
       this.loaded = true;
       Object.values(configService.TILES).forEach((tile: any) => {
@@ -193,6 +207,7 @@ export class AppComponent implements OnInit {
     }
     this.rows = Array(parseInt($event.target.value));
     this.tilesService.rows = this.rows;
+    this.saveGlobalSettings();
   }
 
   changeCols($event: any) {
@@ -201,6 +216,15 @@ export class AppComponent implements OnInit {
     }
     this.columns = Array(parseInt($event.target.value))
     this.tilesService.columns = this.columns;
+    this.saveGlobalSettings();
+  }
+
+  saveGlobalSettings() {
+    const settings = {
+      rows: this.rows.length,
+      columns: this.columns.length,
+    }
+    localStorage.setItem(this.globalStorageKey, JSON.stringify(settings));
   }
 
   toggleMoveMenu() {
