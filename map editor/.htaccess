@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www.)?homm3bgmapeditor.zedero.nl
+RewriteRule ^(.*) https://zedero.github.io/HoMM3BoardgameScenarioEditor

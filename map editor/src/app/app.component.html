@@ -83,5 +83,5 @@
 
 
 <div class="preloader">
-  <img hidden *ngFor="let img of images;" [src]="img" />
+  <img hidden *ngFor="let img of images;" src="{{img | versioned}}" />
 </div>
