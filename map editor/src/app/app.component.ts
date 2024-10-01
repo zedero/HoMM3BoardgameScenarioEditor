@@ -38,10 +38,10 @@ export class AppComponent implements OnInit {
 
   public loaded = false;
   public images = [
-    '/assets/UI/border.png',
-    '/assets/UI/dialog-background.png',
-    '/assets/UI/dialog-background-blue.png',
-    '/assets/UI/panelcoloredbg.jpg',
+    'assets/UI/border.png',
+    'assets/UI/dialog-background.png',
+    'assets/UI/dialog-background-blue.png',
+    'assets/UI/panelcoloredbg.jpg',
   ]
 
   constructor(
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
     configService.load().then(() => {
       this.loaded = true;
       Object.values(configService.TILES).forEach((tile: any) => {
-        this.images.push('/' + tile.img)
+        this.images.push(tile.img)
       })
     });
     this.route.queryParams.subscribe((query) => {
